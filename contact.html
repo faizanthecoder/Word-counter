@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Contact | CountIt4U - Word Counter Tool</title>
+  <meta name="description" content="Contact CountIt4U for feedback, collaboration, or questions about our free online word counter and text tools." />
+  <link rel="canonical" href="https://countit4u.fun/contact.html" />
+  <style>
+    body {font-family:Arial,Helvetica,sans-serif;background:#f5f7fa;color:#333;margin:0;padding:20px;}
+    header {background:#4fd1c5;color:#fff;padding:15px;text-align:center;border-radius:5px;}
+    main {max-width:800px;margin:20px auto;background:#fff;padding:20px;border-radius:10px;box-shadow:0 4px 10px rgba(0,0,0,.1);}
+    form {display:flex;flex-direction:column;gap:10px;}
+    input,textarea {padding:10px;font-size:16px;border:1px solid #ccc;border-radius:5px;}
+    button {background:#4fd1c5;color:#fff;border:none;padding:10px;font-size:16px;border-radius:5px;cursor:pointer;}
+    button:hover {background:#38b2ac;}
+    footer {text-align:center;margin-top:30px;color:#555;}
+    a{color:#4fd1c5;text-decoration:none;} a:hover{text-decoration:underline;}
+  </style>
+</head>
+<body>
+  <header><h1>Contact Us</h1></header>
+  <main>
+    <p>If you have questions, feedback, or collaboration ideas, we’d love to hear from you!</p>
+    <form action="https://formspree.io/f/mwkzajly" method="POST">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email" required>
+      <textarea name="message" rows="5" placeholder="Your Message" required></textarea>
+      <button type="submit">Send Message</button>
+    </form>
+    <p><a href="index.html">← Back to Home</a></p>
+  </main>
+  <footer>&copy; <span id="year"></span> CountIt4U | All rights reserved.</footer>
+  <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
+</body>
+</html>
