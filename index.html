@@ -337,6 +337,50 @@
 
     updateCounts();
   </script>
+  <script>
+// === AUTO-CORRECT FEATURE ===
+
+// Simple helper: detect wrong words (not in English dictionary)
+async function autoCorrectText() {
+  let text = textarea.value.trim();
+  if (!text) return;
+
+  const words = text.split(/\s+/);
+  let correctedText = "";
+
+  for (const word of words) {
+    // skip numbers or symbols
+    if (/[^a-zA-Z]/.test(word)) {
+      correctedText += word + " ";
+      continue;
+    }
+
+    // check dictionary API for corrections
+    const res = await fetch(`https://api.datamuse.com/words?sl=${word}`);
+    const suggestions = await res.json();
+
+    // If we get a valid suggestion and the suggestion differs from typed word
+    if (suggestions.length && suggestions[0].word.toLowerCase() !== word.toLowerCase()) {
+      correctedText += suggestions[0].word + " ";
+    } else {
+      correctedText += word + " ";
+    }
+  }
+
+  textarea.value = correctedText.trim();
+  updateCounts();
+  alert("✅ Text auto-corrected successfully!");
+}
+
+// Create a button for autocorrect
+const autoBtn = document.createElement("button");
+autoBtn.textContent = "🔧 Auto-Correct Text";
+autoBtn.className = "replace-btn";
+autoBtn.style.marginTop = "10px";
+autoBtn.onclick = autoCorrectText;
+document.querySelector(".container").appendChild(autoBtn);
+</script>
+
 </body>
 
 </html>
