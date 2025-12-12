@@ -1,386 +1,197 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Online Word Counter & Text Highlighter Tool | CountIt4U</title>
-  <meta name="description"
-    content="Free online word counter and text highlighter tool. Instantly count words, characters, and spaces, highlight or replace text, and switch between dark and light modes." />
-  <meta name="keywords"
-    content="word counter, online word counter, character count, highlight text, replace text, seo writing tool, free text analyzer" />
-  <meta name="author" content="Faizan the Coder" />
-  <link rel="canonical" href="https://countit4u.fun/" />
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CountIt4U - Word Counter & Text Analyzer</title>
+<meta name="description" content="Free online word counter and text analyzer. Count words, characters, keyword density, reading time, and correct grammar mistakes easily." />
+<meta name="keywords" content="word counter, character counter, keyword density, text analyzer, reading time, grammar checker, dictionary, auto correct, writing tool" />
+<meta name="author" content="Faizan the Coder" />
+<link rel="canonical" href="https://countit4u.fun/" />
 
-  <!-- Open Graph (for social previews) -->
-  <meta property="og:title" content="Online Word Counter & Highlighter | CountIt4U" />
-  <meta property="og:description"
-    content="Count words, characters, and spaces instantly. Highlight or replace text easily." />
-  <meta property="og:type" content="website" />
-  <meta property="og:url" content="https://countit4u.fun/" />
-  <meta property="og:image" content="https://countit4u.fun/preview.png" />
+<!-- Google AdSense -->
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7173926747034822" crossorigin="anonymous"></script>
 
-  <!-- JSON-LD schema for a WebApplication -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebApplication",
-    "name": "CountIt4U - Word Counter & Text Highlighter",
-    "url": "https://countit4u.fun/",
-    "applicationCategory": "Utility",
-    "operatingSystem": "All",
-    "description": "Free online tool to count words, characters, and spaces, highlight or replace words, and toggle dark mode.",
-    "creator": { "@type": "Person", "name": "Faizan the Coder" }
-  }
-  </script>
-
-  <!-- Google AdSense -->
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7173926747034822"
-    crossorigin="anonymous"></script>
-
-  <style>
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box
-    }
-
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      min-height: 100vh;
-      display: flex;
-      flex-direction: column;
-      background: #f0f2f5;
-      color: #333;
-      transition: .3s
-    }
-
-    header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      background: #4fd1c5;
-      color: #fff;
-      padding: 10px 20px;
-      box-shadow: 0 4px 10px rgba(0, 0, 0, .2)
-    }
-
-    main {
-      flex: 1;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 20px
-    }
-
-    .container {
-      width: 100%;
-      max-width: 700px;
-      display: flex;
-      flex-direction: column
-    }
-
-    textarea {
-      width: 100%;
-      height: 150px;
-      padding: 15px;
-      font-size: 16px;
-      margin-bottom: 10px;
-      resize: vertical;
-      border-radius: 5px;
-      border: 1px solid #ccc
-    }
-
-    input[type="text"] {
-      padding: 10px;
-      font-size: 16px;
-      border-radius: 5px;
-      border: 1px solid #ccc;
-      margin-top: 10px
-    }
-
-    .count {
-      font-size: 16px;
-      font-weight: bold;
-      margin-top: 5px;
-      display: flex;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 10px
-    }
-
-    #highlightedText {
-      border: 1px solid #ccc;
-      padding: 10px;
-      min-height: 100px;
-      margin-top: 10px;
-      white-space: pre-wrap;
-      border-radius: 5px;
-      background: #fff
-    }
-
-    mark {
-      background: yellow
-    }
-
-    .replace-container {
-      display: flex;
-      flex-direction: column;
-      margin-top: 10px
-    }
-
-    button.replace-btn {
-      margin-top: 10px;
-      padding: 10px;
-      font-size: 16px;
-      border-radius: 5px;
-      border: none;
-      background: #4fd1c5;
-      color: #fff;
-      cursor: pointer
-    }
-
-    button.replace-btn:hover {
-      background: #38b2ac
-    }
-
-    body.dark {
-      background: #181818;
-      color: #e0e0e0
-    }
-
-    body.dark textarea,
-    body.dark input[type="text"],
-    body.dark #highlightedText {
-      background: #2c2c2c;
-      color: #fff;
-      border-color: #555
-    }
-
-    body.dark header {
-      background: #2c7a7b
-    }
-
-    .toggle-theme {
-      cursor: pointer;
-      padding: 5px 10px;
-      background: rgba(255, 255, 255, .3);
-      border: none;
-      border-radius: 5px;
-      color: #fff;
-      font-weight: bold
-    }
-
-    body.dark .toggle-theme {
-      background: rgba(255, 255, 255, .2)
-    }
-
-    @media(max-width:600px) {
-      textarea {
-        height: 120px
-      }
-
-      header h1 {
-        font-size: 1.2rem
-      }
-    }
-  </style>
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-0DX4VHJF07"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-
-    gtag('config', 'G-0DX4VHJF07');
-  </script>
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Arial,Helvetica,sans-serif;min-height:100vh;display:flex;flex-direction:column;background:#f5f7fa;color:#333;transition:.3s}
+header{display:flex;justify-content:space-between;align-items:center;background:#4fd1c5;color:#fff;padding:10px 20px;box-shadow:0 4px 10px rgba(0,0,0,.2)}
+main{flex:1;display:flex;justify-content:center;align-items:flex-start;padding:20px}
+.container{width:100%;max-width:800px;display:flex;flex-direction:column}
+textarea{width:100%;height:180px;padding:15px;font-size:16px;margin-bottom:10px;resize:vertical;border-radius:5px;border:1px solid #ccc}
+input[type="text"]{padding:10px;font-size:16px;border-radius:5px;border:1px solid #ccc;margin-top:10px}
+.count{font-size:16px;font-weight:bold;margin-top:5px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.stats{margin-top:10px;background:#fff;padding:10px;border-radius:8px;border:1px solid #ccc;font-size:15px;line-height:1.6}
+mark{background:yellow}
+button{margin-top:10px;padding:10px;font-size:16px;border-radius:5px;border:none;background:#4fd1c5;color:#fff;cursor:pointer}
+button:hover{background:#38b2ac}
+body.dark{background:#181818;color:#eee}
+body.dark textarea,body.dark input,body.dark .stats{background:#2c2c2c;color:#fff;border-color:#555}
+.toggle-theme{cursor:pointer;padding:5px 10px;background:rgba(255,255,255,.3);border:none;border-radius:5px;color:#fff;font-weight:bold}
+footer{text-align:center;padding:15px;font-size:14px;color:#555}
+@media(max-width:600px){textarea{height:140px}header h1{font-size:1.2rem}}
+</style>
 </head>
 
 <body>
-  <header>
-    <h1>Word Counter & Highlighter</h1>
-    <button class="toggle-theme" aria-label="Toggle dark or light mode">🌙 Dark Mode</button>
-  </header>
+<header>
+  <h1>CountIt4U</h1>
+  <button class="toggle-theme">🌙 Dark Mode</button>
+</header>
 
-  <main>
-    <div class="container">
-      <section aria-label="Word Counter Input">
-        <p>Use this free online word counter to calculate the number of words, characters, and spaces in your text. You
-          can also highlight or replace words easily and switch between light and dark modes.</p>
-        <textarea id="textarea" placeholder="Type or paste your text here..." aria-label="Input text area"></textarea>
-      </section>
-
-      <div class="count" aria-label="Text statistics">
-        <span>Words: <span id="wordCount">0</span></span>
-        <span>Characters: <span id="charCount">0</span></span>
-        <span>Spaces: <span id="spaceCount">0</span></span>
-      </div>
-
-      <input type="text" id="searchWord" placeholder="Search a word to highlight" aria-label="Word to search" />
-      <div class="count">Occurrences: <span id="occurrences">0</span></div>
-
-      <div id="highlightedText" aria-label="Highlighted output"></div>
-
-      <div class="replace-container">
-        <input type="text" id="replaceWord" placeholder="Type replacement word" aria-label="Replacement word" />
-        <button class="replace-btn" aria-label="Replace all occurrences">Replace All Highlighted</button>
-      </div>
+<main>
+  <div class="container">
+    <textarea id="textarea" placeholder="Type or paste your text here..."></textarea>
+    <div class="count">
+      <span>Words: <span id="wordCount">0</span></span>
+      <span>Characters: <span id="charCount">0</span></span>
+      <span>Spaces: <span id="spaceCount">0</span></span>
     </div>
-  </main>
 
-  <footer style="text-align:center;padding:15px;font-size:14px;color:#555">
-    <p>&copy; <span id="year"></span> CountIt4U | Created by Faizan the Coder | <a href="about.html">About</a> |
-      <a href="contact.html">Contact</a> |
-      <a href="/privacy.html">Privacy Policy</a>
-    </p>
-  </footer>
-  <script src="https://cdn.jsdelivr.net/gh/cfinke/Typo.js/typo/typo.js"></script>
+    <div class="stats" id="extraStats">
+      <p>Reading Time: <span id="readTime">0s</span> | Speaking Time: <span id="speakTime">0s</span></p>
+      <p>Keyword Density (Top 5):</p>
+      <ul id="keywords"></ul>
+    </div>
 
-  <script>
-    // === DICTIONARY FEATURE ===
-    const dictInput = document.createElement("input");
-    dictInput.type = "text";
-    dictInput.placeholder = "Enter a word to define...";
-    dictInput.style = "margin-top:15px;padding:10px;font-size:16px;width:100%;border:1px solid #ccc;border-radius:5px;";
-    const dictResult = document.createElement("div");
-    dictResult.style = "margin-top:10px;padding:10px;background:#fff;border:1px solid #ccc;border-radius:5px;min-height:80px;";
-    document.querySelector(".container").appendChild(dictInput);
-    document.querySelector(".container").appendChild(dictResult);
+    <input type="text" id="searchWord" placeholder="Search a word to highlight">
+    <div class="count">Occurrences: <span id="occurrences">0</span></div>
+    <div id="highlightedText" class="stats" style="white-space:pre-wrap;min-height:100px;"></div>
 
-    dictInput.addEventListener("keypress", async (e) => {
-      if (e.key === "Enter") {
-        const word = dictInput.value.trim();
-        if (word === "") return;
-        dictResult.innerHTML = "⏳ Searching...";
-        try {
-          const res = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`);
-          if (!res.ok) throw new Error("Word not found");
-          const data = await res.json();
-          const meaning = data[0].meanings[0].definitions[0].definition;
-          const phonetic = data[0].phonetic ? data[0].phonetic : "";
-          dictResult.innerHTML = `<strong>${word}</strong> ${phonetic ? "(" + phonetic + ")" : ""}<br>📖 ${meaning}`;
-        } catch {
-          dictResult.innerHTML = "❌ Word not found in dictionary.";
-        }
-      }
-    });
+    <input type="text" id="replaceWord" placeholder="Type replacement word">
+    <button id="replaceBtn">Replace All Highlighted</button>
 
-    document.getElementById("year").textContent = new Date().getFullYear();
+    <button id="autoCorrectBtn">🔧 Auto-Correct Text</button>
 
-    const textarea = document.getElementById('textarea');
-    const wordCountEl = document.getElementById('wordCount');
-    const charCountEl = document.getElementById('charCount');
-    const spaceCountEl = document.getElementById('spaceCount');
-    const searchWordInput = document.getElementById('searchWord');
-    const occurrencesEl = document.getElementById('occurrences');
-    const highlightedTextDiv = document.getElementById('highlightedText');
-    const replaceWordInput = document.getElementById('replaceWord');
-    const replaceBtn = document.querySelector('.replace-btn');
-    const toggleThemeBtn = document.querySelector('.toggle-theme');
+    <input type="text" id="dictInput" placeholder="Enter a word to define...">
+    <div id="dictResult" class="stats" style="min-height:70px;">Word meanings will appear here...</div>
+  </div>
+</main>
 
-    function updateCounts() {
-      const text = textarea.value;
-      charCountEl.textContent = text.length;
-      const words = text.trim() === "" ? 0 : text.trim().split(/\s+/).length;
-      wordCountEl.textContent = words;
-      const spaces = (text.match(/ /g) || []).length;
-      spaceCountEl.textContent = spaces;
-      updateHighlight();
-    }
+<footer>
+  <p>&copy; <span id="year"></span> CountIt4U | <a href="privacy.html">Privacy Policy</a></p>
+</footer>
 
-    // Simple autocorrect / misspelling detector
-    const dictionary = new Typo("en_US");
+<script>
+// === Elements ===
+const textarea=document.getElementById('textarea');
+const wordCountEl=document.getElementById('wordCount');
+const charCountEl=document.getElementById('charCount');
+const spaceCountEl=document.getElementById('spaceCount');
+const readTimeEl=document.getElementById('readTime');
+const speakTimeEl=document.getElementById('speakTime');
+const keywordsEl=document.getElementById('keywords');
+const searchWordInput=document.getElementById('searchWord');
+const occurrencesEl=document.getElementById('occurrences');
+const highlightedTextDiv=document.getElementById('highlightedText');
+const replaceWordInput=document.getElementById('replaceWord');
+const toggleThemeBtn=document.querySelector('.toggle-theme');
+const dictInput=document.getElementById('dictInput');
+const dictResult=document.getElementById('dictResult');
+document.getElementById('year').textContent=new Date().getFullYear();
 
-    function checkSpelling() {
-      const words = textarea.value.split(/\s+/);
-      let correctedText = "";
-      words.forEach(word => {
-        if (word && !dictionary.check(word)) {
-          correctedText += `<mark style="background:#ffbaba;">${word}</mark> `;
-        } else {
-          correctedText += word + " ";
-        }
-      });
-      highlightedTextDiv.innerHTML = correctedText.trim();
-    }
-
-
-    function updateHighlight() {
-      const text = textarea.value;
-      const searchWord = searchWordInput.value.trim();
-      if (searchWord === "") { highlightedTextDiv.innerHTML = text; occurrencesEl.textContent = 0; return; }
-      const regex = new RegExp(`\\b(${escapeRegExp(searchWord)})\\b`, "gi");
-      highlightedTextDiv.innerHTML = text.replace(regex, "<mark>$1</mark>");
-      const matches = text.match(regex);
-      occurrencesEl.textContent = matches ? matches.length : 0;
-    }
-
-    function escapeRegExp(string) { return string.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'); }
-
-    replaceBtn.addEventListener('click', () => {
-      const searchWord = searchWordInput.value.trim();
-      const replacement = replaceWordInput.value;
-      if (searchWord === "") return;
-      const regex = new RegExp(`\\b(${escapeRegExp(searchWord)})\\b`, "gi");
-      textarea.value = textarea.value.replace(regex, replacement);
-      replaceWordInput.value = "";
-      updateCounts();
-    });
-
-    textarea.addEventListener('input', updateCounts);
-    searchWordInput.addEventListener('input', updateHighlight);
-
-    toggleThemeBtn.addEventListener('click', () => {
-      document.body.classList.toggle('dark');
-      toggleThemeBtn.textContent = document.body.classList.contains('dark') ? '☀️ Light Mode' : '🌙 Dark Mode';
-    });
-
-    updateCounts();
-  </script>
-  <script>
-// === AUTO-CORRECT FEATURE ===
-
-// Simple helper: detect wrong words (not in English dictionary)
-async function autoCorrectText() {
-  let text = textarea.value.trim();
-  if (!text) return;
-
-  const words = text.split(/\s+/);
-  let correctedText = "";
-
-  for (const word of words) {
-    // skip numbers or symbols
-    if (/[^a-zA-Z]/.test(word)) {
-      correctedText += word + " ";
-      continue;
-    }
-
-    // check dictionary API for corrections
-    const res = await fetch(`https://api.datamuse.com/words?sl=${word}`);
-    const suggestions = await res.json();
-
-    // If we get a valid suggestion and the suggestion differs from typed word
-    if (suggestions.length && suggestions[0].word.toLowerCase() !== word.toLowerCase()) {
-      correctedText += suggestions[0].word + " ";
-    } else {
-      correctedText += word + " ";
-    }
-  }
-
-  textarea.value = correctedText.trim();
-  updateCounts();
-  alert("✅ Text auto-corrected successfully!");
+// === Update Counts ===
+function updateCounts(){
+  const text=textarea.value;
+  charCountEl.textContent=text.length;
+  const words=text.trim()===""?0:text.trim().split(/\s+/).length;
+  wordCountEl.textContent=words;
+  const spaces=(text.match(/ /g)||[]).length;
+  spaceCountEl.textContent=spaces;
+  updateTimes(words);
+  updateKeywords(text);
+  updateHighlight();
+  localStorage.setItem("savedText", text);
 }
 
-// Create a button for autocorrect
-const autoBtn = document.createElement("button");
-autoBtn.textContent = "🔧 Auto-Correct Text";
-autoBtn.className = "replace-btn";
-autoBtn.style.marginTop = "10px";
-autoBtn.onclick = autoCorrectText;
-document.querySelector(".container").appendChild(autoBtn);
+// === Reading/Speaking time ===
+function updateTimes(words){
+  const readSec=Math.round(words/3.33);
+  const speakSec=Math.round(words/2.5);
+  readTimeEl.textContent=`${readSec}s`;
+  speakTimeEl.textContent=`${speakSec}s`;
+}
+
+// === Keyword Density ===
+function updateKeywords(text){
+  const words=text.toLowerCase().match(/\b[a-z]{3,}\b/g)||[];
+  const freq={};
+  words.forEach(w=>freq[w]=(freq[w]||0)+1);
+  const top=Object.entries(freq).sort((a,b)=>b[1]-a[1]).slice(0,5);
+  keywordsEl.innerHTML=top.map(([w,c])=>`<li>${w}: ${(c/words.length*100).toFixed(1)}%</li>`).join("")||"<li>None</li>";
+}
+
+// === Highlight Word ===
+function updateHighlight(){
+  const text=textarea.value;
+  const searchWord=searchWordInput.value.trim();
+  if(!searchWord){highlightedTextDiv.innerHTML=text;occurrencesEl.textContent=0;return;}
+  const regex=new RegExp(`\\b(${escapeRegExp(searchWord)})\\b`,"gi");
+  highlightedTextDiv.innerHTML=text.replace(regex,"<mark>$1</mark>");
+  const matches=text.match(regex);
+  occurrencesEl.textContent=matches?matches.length:0;
+}
+function escapeRegExp(string){return string.replace(/[.*+?^${}()|[\]\\]/g,"\\$&");}
+
+// === Replace ===
+document.getElementById('replaceBtn').addEventListener('click',()=>{
+  const searchWord=searchWordInput.value.trim();
+  const replacement=replaceWordInput.value;
+  if(!searchWord)return;
+  const regex=new RegExp(`\\b(${escapeRegExp(searchWord)})\\b`,"gi");
+  textarea.value=textarea.value.replace(regex,replacement);
+  replaceWordInput.value="";
+  updateCounts();
+});
+
+// === Auto-Correct ===
+document.getElementById('autoCorrectBtn').addEventListener('click', async ()=>{
+  let text=textarea.value.trim();
+  if(!text)return;
+  const words=text.split(/\s+/);
+  let corrected="";
+  for(const word of words){
+    if(/[^a-zA-Z]/.test(word)){corrected+=word+" ";continue;}
+    const res=await fetch(`https://api.datamuse.com/words?sl=${word}`);
+    const data=await res.json();
+    if(data.length && data[0].word.toLowerCase()!=word.toLowerCase()){
+      corrected+=data[0].word+" ";
+    } else corrected+=word+" ";
+  }
+  textarea.value=corrected.trim();
+  updateCounts();
+  alert("✅ Auto-correction complete!");
+});
+
+// === Dictionary ===
+dictInput.addEventListener("keypress", async e=>{
+  if(e.key!=="Enter")return;
+  const word=dictInput.value.trim();
+  if(!word)return;
+  dictResult.textContent="⏳ Searching...";
+  try{
+    const res=await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`);
+    if(!res.ok)throw new Error();
+    const data=await res.json();
+    const def=data[0].meanings[0].definitions[0].definition;
+    dictResult.innerHTML=`<strong>${word}</strong><br>📖 ${def}`;
+  }catch{dictResult.textContent="❌ Word not found.";}
+});
+
+// === Dark Mode ===
+toggleThemeBtn.addEventListener('click',()=>{
+  document.body.classList.toggle('dark');
+  toggleThemeBtn.textContent=document.body.classList.contains('dark')?'☀️ Light Mode':'🌙 Dark Mode';
+});
+
+// === Auto-Save Load ===
+window.addEventListener("load",()=>{
+  const saved=localStorage.getItem("savedText");
+  if(saved){textarea.value=saved;}
+  updateCounts();
+});
+textarea.addEventListener('input',updateCounts);
+searchWordInput.addEventListener('input',updateHighlight);
 </script>
-
 </body>
-
 </html>
