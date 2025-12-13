@@ -195,6 +195,11 @@
         <span>Characters: <span id="charCount">0</span></span>
         <span>Spaces: <span id="spaceCount">0</span></span>
       </div>
+       <div class="stats" id="extraStats">
+      <p>Reading Time: <span id="readTime">0s</span> | Speaking Time: <span id="speakTime">0s</span></p>
+      <p>Keyword Density (Top 5):</p>
+      <ul id="keywords"></ul>
+    </div>
 
       <input type="text" id="searchWord" placeholder="Search a word to highlight" />
       <div class="count">
@@ -287,7 +292,231 @@
 
     updateCounts();
   </script>
+      <div class="about" style="margin-top: 10px;">
+ <p><h3 style="margin-bottom: 10px;">  What is countit4u?</h3>
+Beyond simply counting words and characters, our online editor helps you enhance your writing by improving word choice, refining style, and optionally identifying grammar mistakes or plagiarism.
+To check your word count, just click inside the text box above and start typing. As you write, delete, or edit, the number of words and characters updates automatically. You can also copy and paste text from another source directly into the editor. <br> <br>
+Your progress is saved automatically, so you’ll never lose your work — even if you leave the page and come back later. <br>
+💡 Tip: Save this page to your bookmarks for quick access anytime! <br> <br>
 
+Knowing your text’s word count can be very useful. For instance, writers often need to stay within a required word range when creating essays, reports, articles, stories, or papers. WordCounter makes it easy to ensure your writing meets or stays within those limits. <br> <br>
+
+In addition, WordCounter displays the top 10 keywords and their frequency in your text. This helps you track which words you use most and avoid keyword overuse, keeping your writing balanced and SEO-friendly. <br> <br>
+
+The Details section also estimates your text’s average reading and speaking time, along with a reading level score, which indicates the level of education a reader would need to understand your writing. <br> <br>
+
+Disclaimer: We do our best to make these tools as accurate as possible, but 100% precision cannot be guaranteed.
+</p>
+</div>
 </body>
 
 </html>
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CountIt4U - Word Counter & Text Analyzer</title>
+<meta name="description" content="Free online word counter and text analyzer. Count words, characters, keyword density, reading time, and correct grammar mistakes easily." />
+<meta name="keywords" content="word counter, character counter, keyword density, text analyzer, reading time, grammar checker, dictionary, auto correct, writing tool" />
+<meta name="author" content="Faizan the Coder" />
+<link rel="canonical" href="https://countit4u.fun/" />
+
+<!-- Google AdSense 
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7173926747034822" crossorigin="anonymous"></script>
+
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:Arial,Helvetica,sans-serif;min-height:100vh;display:flex;flex-direction:column;background:#f5f7fa;color:#333;transition:.3s}
+header{display:flex;justify-content:space-between;align-items:center;background:#4fd1c5;color:#fff;padding:10px 20px;box-shadow:0 4px 10px rgba(0,0,0,.2)}
+main{flex:1;display:flex;justify-content:center;align-items:flex-start;padding:20px}
+.container{width:100%;max-width:800px;display:flex;flex-direction:column}
+textarea{width:100%;height:180px;padding:15px;font-size:16px;margin-bottom:10px;resize:vertical;border-radius:5px;border:1px solid #ccc}
+input[type="text"]{padding:10px;font-size:16px;border-radius:5px;border:1px solid #ccc;margin-top:10px}
+.count{font-size:16px;font-weight:bold;margin-top:5px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:10px}
+.stats{margin-top:10px;background:#fff;padding:10px;border-radius:8px;border:1px solid #ccc;font-size:15px;line-height:1.6}
+mark{background:yellow}
+button{margin-top:10px;padding:10px;font-size:16px;border-radius:5px;border:none;background:#4fd1c5;color:#fff;cursor:pointer}
+button:hover{background:#38b2ac}
+body.dark{background:#181818;color:#eee}
+body.dark textarea,body.dark input,body.dark .stats{background:#2c2c2c;color:#fff;border-color:#555}
+.toggle-theme{cursor:pointer;padding:5px 10px;background:rgba(255,255,255,.3);border:none;border-radius:5px;color:#fff;font-weight:bold}
+footer{text-align:center;padding:15px;font-size:14px;color:#555}
+@media(max-width:600px){textarea{height:140px}header h1{font-size:1.2rem}}
+</style>
+</head>
+
+<body>
+<header>
+  <h1>CountIt4U</h1>
+  <button class="toggle-theme">🌙 Dark Mode</button>
+</header>
+
+<main>
+  <div class="container">
+    <textarea id="textarea" placeholder="Type or paste your text here..."></textarea>
+    <div class="count">
+      <span>Words: <span id="wordCount">0</span></span>
+      <span>Characters: <span id="charCount">0</span></span>
+      <span>Spaces: <span id="spaceCount">0</span></span>
+    </div>
+
+    <div class="stats" id="extraStats">
+      <p>Reading Time: <span id="readTime">0s</span> | Speaking Time: <span id="speakTime">0s</span></p>
+      <p>Keyword Density (Top 5):</p>
+      <ul id="keywords"></ul>
+    </div>
+
+    <input type="text" id="searchWord" placeholder="Search a word to highlight">
+    <div class="count">Occurrences: <span id="occurrences">0</span></div>
+    <div id="highlightedText" class="stats" style="white-space:pre-wrap;min-height:100px;"></div>
+
+    <input type="text" id="replaceWord" placeholder="Type replacement word">
+    <button id="replaceBtn">Replace All Highlighted</button>
+
+    <button id="autoCorrectBtn">🔧 Auto-Correct Text</button>
+
+    <input type="text" id="dictInput" placeholder="Enter a word to define...">
+    <div id="dictResult" class="stats" style="min-height:70px;">Word meanings will appear here...</div>
+
+<section style="margin-top:30px; background:#fff; padding:20px; border-radius:10px; border:1px solid #ddd;">
+  <h2>About CountIt4U - Free Online Word Counter</h2>
+  <p>CountIt4U is a free online word and character counting tool designed to help writers, students, and content creators improve their writing quality. You can quickly calculate the total number of words, characters, and spaces in any text, check your reading and speaking time, and even highlight or replace specific words instantly.</p>
+  <p>Our tool also provides keyword analysis to show which words appear most frequently in your writing, helping you balance keyword usage for SEO optimization. With additional features like auto-correct, a built-in dictionary, and auto-save, CountIt4U is a complete writing assistant that works directly in your browser without any installation.</p>
+  <p>To get started, type or paste your text in the box above. Your statistics update in real time as you edit. You can also switch between light and dark mode for comfortable writing. Whether you're preparing essays, blog posts, or reports, CountIt4U helps you write smarter, faster, and more effectively.</p>
+  <p><strong>Note:</strong> This website does not store your text or share it with anyone. Everything runs locally on your device for maximum privacy and safety.</p>
+</section>
+
+
+  </div>
+</main>
+
+<footer>
+  <p>&copy; <span id="year"></span> CountIt4U | <a href="privacy.html">Privacy Policy</a> | <a href="about.html">About Us</a> | <a href="contact.html">Conatct Us</a></p>
+</footer>
+
+<script>
+// === Elements ===
+const textarea=document.getElementById('textarea');
+const wordCountEl=document.getElementById('wordCount');
+const charCountEl=document.getElementById('charCount');
+const spaceCountEl=document.getElementById('spaceCount');
+const readTimeEl=document.getElementById('readTime');
+const speakTimeEl=document.getElementById('speakTime');
+const keywordsEl=document.getElementById('keywords');
+const searchWordInput=document.getElementById('searchWord');
+const occurrencesEl=document.getElementById('occurrences');
+const highlightedTextDiv=document.getElementById('highlightedText');
+const replaceWordInput=document.getElementById('replaceWord');
+const toggleThemeBtn=document.querySelector('.toggle-theme');
+const dictInput=document.getElementById('dictInput');
+const dictResult=document.getElementById('dictResult');
+document.getElementById('year').textContent=new Date().getFullYear();
+
+// === Update Counts ===
+function updateCounts(){
+  const text=textarea.value;
+  charCountEl.textContent=text.length;
+  const words=text.trim()===""?0:text.trim().split(/\s+/).length;
+  wordCountEl.textContent=words;
+  const spaces=(text.match(/ /g)||[]).length;
+  spaceCountEl.textContent=spaces;
+  updateTimes(words);
+  updateKeywords(text);
+  updateHighlight();
+  localStorage.setItem("savedText", text);
+}
+
+// === Reading/Speaking time ===
+function updateTimes(words){
+  const readSec=Math.round(words/3.33);
+  const speakSec=Math.round(words/2.5);
+  readTimeEl.textContent=`${readSec}s`;
+  speakTimeEl.textContent=`${speakSec}s`;
+}
+
+// === Keyword Density ===
+function updateKeywords(text){
+  const words=text.toLowerCase().match(/\b[a-z]{3,}\b/g)||[];
+  const freq={};
+  words.forEach(w=>freq[w]=(freq[w]||0)+1);
+  const top=Object.entries(freq).sort((a,b)=>b[1]-a[1]).slice(0,5);
+  keywordsEl.innerHTML=top.map(([w,c])=>`<li>${w}: ${(c/words.length*100).toFixed(1)}%</li>`).join("")||"<li>None</li>";
+}
+
+// === Highlight Word ===
+function updateHighlight(){
+  const text=textarea.value;
+  const searchWord=searchWordInput.value.trim();
+  if(!searchWord){highlightedTextDiv.innerHTML=text;occurrencesEl.textContent=0;return;}
+  const regex=new RegExp(`\\b(${escapeRegExp(searchWord)})\\b`,"gi");
+  highlightedTextDiv.innerHTML=text.replace(regex,"<mark>$1</mark>");
+  const matches=text.match(regex);
+  occurrencesEl.textContent=matches?matches.length:0;
+}
+function escapeRegExp(string){return string.replace(/[.*+?^${}()|[\]\\]/g,"\\$&");}
+
+// === Replace ===
+document.getElementById('replaceBtn').addEventListener('click',()=>{
+  const searchWord=searchWordInput.value.trim();
+  const replacement=replaceWordInput.value;
+  if(!searchWord)return;
+  const regex=new RegExp(`\\b(${escapeRegExp(searchWord)})\\b`,"gi");
+  textarea.value=textarea.value.replace(regex,replacement);
+  replaceWordInput.value="";
+  updateCounts();
+});
+
+// === Auto-Correct ===
+document.getElementById('autoCorrectBtn').addEventListener('click', async ()=>{
+  let text=textarea.value.trim();
+  if(!text)return;
+  const words=text.split(/\s+/);
+  let corrected="";
+  for(const word of words){
+    if(/[^a-zA-Z]/.test(word)){corrected+=word+" ";continue;}
+    const res=await fetch(`https://api.datamuse.com/words?sl=${word}`);
+    const data=await res.json();
+    if(data.length && data[0].word.toLowerCase()!=word.toLowerCase()){
+      corrected+=data[0].word+" ";
+    } else corrected+=word+" ";
+  }
+  textarea.value=corrected.trim();
+  updateCounts();
+  alert("✅ Auto-correction complete!");
+});
+
+// === Dictionary ===
+dictInput.addEventListener("keypress", async e=>{
+  if(e.key!=="Enter")return;
+  const word=dictInput.value.trim();
+  if(!word)return;
+  dictResult.textContent="⏳ Searching...";
+  try{
+    const res=await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`);
+    if(!res.ok)throw new Error();
+    const data=await res.json();
+    const def=data[0].meanings[0].definitions[0].definition;
+    dictResult.innerHTML=`<strong>${word}</strong><br>📖 ${def}`;
+  }catch{dictResult.textContent="❌ Word not found.";}
+});
+
+// === Dark Mode ===
+toggleThemeBtn.addEventListener('click',()=>{
+  document.body.classList.toggle('dark');
+  toggleThemeBtn.textContent=document.body.classList.contains('dark')?'☀️ Light Mode':'🌙 Dark Mode';
+});
+
+// === Auto-Save Load ===
+window.addEventListener("load",()=>{
+  const saved=localStorage.getItem("savedText");
+  if(saved){textarea.value=saved;}
+  updateCounts();
+});
+textarea.addEventListener('input',updateCounts);
+searchWordInput.addEventListener('input',updateHighlight);
+</script>
+</body>
+</html> -->
+

@@ -7,11 +7,18 @@
   <meta name="description" content="Learn more about CountIt4U, a free online word counter and text highlighter built by Faizan the Coder to help writers and students count and edit text easily." />
   <link rel="canonical" href="https://countit4u.fun/about.html" />
   <style>
-    body {font-family:Arial,Helvetica,sans-serif;background:#f5f7fa;color:#333;margin:0;padding:20px;line-height:1.6;}
+    body {font-family:Arial,Helvetica,sans-serif;background:#f5f7fa;color:#333;margin:0;padding:0px;line-height:1.6;}
     header {background:#4fd1c5;color:#fff;padding:15px;text-align:center;border-radius:5px;}
-    main {max-width:800px;margin:20px auto;background:#fff;padding:20px;border-radius:10px;box-shadow:0 4px 10px rgba(0,0,0,.1);}
-    a {color:#4fd1c5;text-decoration:none;} a:hover{text-decoration:underline;}
-    footer {text-align:center;margin-top:30px;color:#555;}
+    main {max-width:800px;margin:20px auto;background: linear-gradient(180deg, #ffffff, #f9fdfd);padding:20px;border-radius:10px;box-shadow: 0 4px 20px 20px rgb(26 206 218 / 23%);}
+    .inner-main{box-shadow: 0 6px 25px rgba(0, 0, 0, 0.08);}
+    a {color:#f3f3f3;text-decoration:none;} a:hover{text-decoration:underline;}
+    footer{
+  text-align:center;
+  padding:20px;
+  background:linear-gradient(135deg,#4fd1c5,#38b2ac);
+  color:#fff;
+}
+
   </style>
   <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-0DX4VHJF07"></script>
@@ -26,6 +33,7 @@
 <body>
   <header><h1>About CountIt4U</h1></header>
   <main>
+    <div class="inner-main">
     <h2>Who We Are</h2>
     <p><strong>CountIt4U</strong> is a free online tool created by <em>Faizan the Coder</em> to make writing, editing, and counting text effortless. It helps you instantly calculate words, characters, and spaces — and even highlight or replace words in real time.</p>
 
@@ -36,8 +44,11 @@
     <p>We are continuously improving the platform. Planned features include reading-time estimation, paragraph count, and AI-based text suggestions. Stay tuned!</p>
 
     <p><a href="index.html">← Back to Home</a></p>
+    </div>
   </main>
-  <footer>&copy; <span id="year"></span> CountIt4U | All rights reserved.</footer>
+  <footer>
+    <p>&copy; <span id="year"></span> CountIt4U | <a href="index.html">Home page</a> | <a href="contact.html">Contact</a> | <a href="privacy.html">Privacy Policy</a></p>
+  </footer>
   <script>document.getElementById("year").textContent = new Date().getFullYear();</script>
 </body>
 </html>
