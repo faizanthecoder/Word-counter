@@ -9,6 +9,13 @@
 <meta name="author" content="Faizan the Coder" />
 <link rel="canonical" href="https://countit4u.fun/" />
 
+<!-- Open Graph for SEO -->
+<meta property="og:title" content="CountIt4U - Free Word Counter & Writing Tool" />
+<meta property="og:description" content="Improve your writing instantly with CountIt4U — a free online word counter and analyzer." />
+<meta property="og:type" content="website" />
+<meta property="og:url" content="https://countit4u.fun/" />
+<meta property="og:image" content="https://countit4u.fun/assets/banner.jpg" />
+
 <!-- Google AdSense -->
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7173926747034822" crossorigin="anonymous"></script>
 
@@ -46,6 +53,9 @@ header{
   box-shadow:0 4px 10px rgba(0,0,0,0.2);
 }
 header h1{font-size:1.6rem;letter-spacing:.5px;}
+.navbar{display:flex;gap:20px;flex-wrap:wrap;}
+.navbar a{color:#fff;text-decoration:none;font-weight:500;transition:opacity .3s}
+.navbar a:hover{opacity:.8}
 .toggle-theme{
   cursor:pointer;
   padding:7px 12px;
@@ -89,10 +99,6 @@ input[type="text"]{
   transition:.3s;
   background-color:#ffffff;
 }
-input[type="text"]:focus{
-  border-color:#4fd1c5;
-  box-shadow:0 0 6px rgba(79,209,197,0.4);
-}
 .count{
   font-size:16px;
   font-weight:bold;
@@ -110,7 +116,6 @@ input[type="text"]:focus{
   border:1px solid #cbe9e6;
   font-size:15px;
   line-height:1.6;
-  box-shadow:inset 0 0 5px rgba(0,0,0,0.05);
 }
 mark{background:#fff176;padding:0 3px;border-radius:3px;}
 button{
@@ -126,45 +131,54 @@ button{
   transition:.3s;
 }
 button:hover{transform:translateY(-2px);box-shadow:0 4px 10px rgba(56,178,172,0.4);}
-body.dark{
-  background:linear-gradient(145deg,#1c1c1c,#232323);
-  color:#e0e0e0;
-}
-body.dark textarea,
-body.dark input,
-body.dark .stats{
-  background:#2a2a2a;
-  color:#f5f5f5;
-  border-color:#444;
-  box-shadow:none;
-}
-body.dark header{background:linear-gradient(135deg,#319795,#285e61);}
-body.dark .container{background:linear-gradient(180deg,#262626,#1f1f1f);}
-body.dark button{background:linear-gradient(135deg,#319795,#2c7a7b);}
-body.dark mark{background:#4fd1c5;color:#000;}
-.about{
-  background:#ffffff;
+.action-buttons{display:flex;gap:10px;flex-wrap:wrap;}
+.suggestion{
+  background:#fff;
   border-radius:14px;
-  max-width:800px;
   padding:25px;
-  line-height:1.7;
-  box-shadow:0 4px 20px rgba(0,0,0,0.08);
-}
-body.dark .about{background:#222;}
-footer{
+  max-width:800px;
+  box-shadow:0 6px 25px rgba(0,0,0,0.08);
   text-align:center;
-  padding:20px;
-  background:linear-gradient(135deg,#4fd1c5,#38b2ac);
-  color:#fff;
+  line-height:1.7;
 }
+.blog-section{
+  max-width:1000px;
+  background:#fff;
+  border-radius:14px;
+  padding:25px;
+  box-shadow:0 6px 25px rgba(0,0,0,0.08);
+}
+.blog-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:20px;
+}
+.blog-card{
+  border:1px solid #cbe9e6;
+  border-radius:10px;
+  overflow:hidden;
+  background:#f9fdfd;
+  transition:.3s;
+}
+.blog-card:hover{transform:translateY(-3px);box-shadow:0 4px 12px rgba(0,0,0,0.1);}
+.blog-card img{width:100%;height:150px;object-fit:cover;}
+.blog-card h3{padding:10px;font-size:17px;color:#333;}
+.blog-card p{padding:0 10px 10px;font-size:14px;color:#666;}
+footer{text-align:center;padding:20px;background:linear-gradient(135deg,#4fd1c5,#38b2ac);color:#fff;}
 footer a{color:#fff;text-decoration:underline}
-@media(max-width:600px){textarea{height:140px}header h1{font-size:1.2rem}main{padding:15px}}
 </style>
 </head>
 
 <body>
 <header>
   <h1>CountIt4U</h1>
+  <nav class="navbar">
+    <a href="index.html">Home</a>
+    <a href="about.html">About</a>
+      <a href="blog/index.html">Blog</a>
+    <a href="contact.html">Contact</a>
+    <a href="privacy.html">Privacy</a>
+  </nav>
   <button class="toggle-theme">🌙 Dark Mode</button>
 </header>
 
@@ -176,11 +190,15 @@ footer a{color:#fff;text-decoration:underline}
       <span>Characters: <span id="charCount">0</span></span>
       <span>Spaces: <span id="spaceCount">0</span></span>
     </div>
+    <div class="action-buttons">
+      <button id="saveBtn">💾 Save Text</button>
+      <button id="clearBtn">🧹 Clear Text</button>
+    </div>
 
     <div class="stats" id="extraStats">
       <p>Reading Time: <span id="readTime">0s</span> | Speaking Time: <span id="speakTime">0s</span></p>
       <p>Keyword Density (Top 5):</p>
-      <ul style="list-style:decimal;" id="keywords"></ul>
+      <ul id="keywords"></ul>
     </div>
 
     <input type="text" id="searchWord" placeholder="Search a word to highlight">
@@ -196,32 +214,32 @@ footer a{color:#fff;text-decoration:underline}
     <div id="dictResult" class="stats" style="min-height:70px;">Word meanings will appear here...</div>
   </article>
 
-  <section class="about">
-    <h2>About CountIt4U</h2>
-    <p><strong>CountIt4U</strong> is your all-in-one online writing assistant. It helps you count words, characters, and spaces instantly, analyze keyword density, and improve your text using built-in dictionary and auto-correct tools. Whether you’re writing essays, blog posts, or professional content, CountIt4U ensures your writing is accurate, readable, and SEO-optimized.</p>
+  <section class="suggestion">
+    <h2>💡 Have Suggestions?</h2>
+    <p>We’d love to hear from you! If you have ideas, feature requests, or notice any bugs, feel free to email us directly at:</p>
+    <p><strong><a href="mailto:faizanthecoder@gmail.com">faizanthecoder@gmail.com</a></strong></p>
+    <p>Your feedback helps improve CountIt4U for everyone.</p>
+  </section>
 
-    <h3>How to Use</h3>
-    <p>Using CountIt4U is simple and fast:</p>
-    <ol>
-      <li>Type or paste your text into the box above.</li>
-      <li>Watch your word, character, and space count update live as you write.</li>
-      <li>Check the estimated <strong>reading time</strong> and <strong>speaking time</strong> for your content.</li>
-      <li>View the <strong>top 5 keywords</strong> and their percentage usage for SEO insights.</li>
-      <li>Highlight or replace any word instantly using the search and replace tools.</li>
-      <li>Use <strong>Auto-Correct</strong> to fix spelling mistakes automatically.</li>
-      <li>Look up word meanings with the built-in <strong>Dictionary</strong>.</li>
-    </ol>
-    <p>Your text never leaves your device — everything runs in your browser for maximum privacy.</p>
-
-    <h3>Why Choose CountIt4U</h3>
-    <p>Unlike simple word counters, CountIt4U offers advanced writing analytics and smart correction tools while remaining 100% free and ad-supported. It’s ideal for students, content creators, bloggers, and professionals who want precision and style in their writing. The tool works smoothly on both desktop and mobile devices.</p>
-
-    <h3>Frequently Asked Questions</h3>
-    <p><strong>Q1: Is my text saved or shared?</strong><br>No. CountIt4U never uploads your data anywhere. Everything happens locally in your browser.</p>
-    <p><strong>Q2: How accurate are the results?</strong><br>The counts and keyword analysis are nearly 100% accurate. Small variations may occur due to formatting or punctuation.</p>
-    <p><strong>Q3: Can I use this on my phone?</strong><br>Yes. CountIt4U is fully responsive and optimized for all screen sizes.</p>
-
-    <p><em>Disclaimer:</em> While every effort is made to ensure accuracy, results may vary slightly based on text formatting. CountIt4U is designed for general educational and content optimization use.</p>
+  <section class="blog-section">
+    <h2>📝 Writing Tips & Resources</h2>
+    <div class="blog-grid">
+      <a style="text-decoration: none;" href="/blog/how-to-write-an-essay.html"><div class="blog-card">
+        <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2" alt="Essay Writing Tips">
+        <h3>5 Tips to Write a Perfect Essay</h3>
+        <p>Learn how to plan, draft, and polish your essays with clear structure and creativity.</p>
+      </div></a>
+            <a style="text-decoration: none;" href="/blog/creative-writing-guide.html"><div class="blog-card">
+        <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b" alt="Writing Productivity">
+        <h3>Boost Your Writing Productivity</h3>
+        <p>Discover tools and techniques that make writing smoother, faster, and more enjoyable.</p>
+      </div></a>
+            <a style="text-decoration: none;" href="/blog/grammar-tips.html"><div class="blog-card">
+        <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f" alt="Grammar Guide">
+        <h3>Grammar Mistakes You Should Avoid</h3>
+        <p>Find out the most common grammar mistakes and how to fix them like a pro.</p>
+      </div></a>
+    </div>
   </section>
 </main>
 
@@ -247,8 +265,11 @@ const replaceWordInput=document.getElementById('replaceWord');
 const toggleThemeBtn=document.querySelector('.toggle-theme');
 const dictInput=document.getElementById('dictInput');
 const dictResult=document.getElementById('dictResult');
+const saveBtn=document.getElementById('saveBtn');
+const clearBtn=document.getElementById('clearBtn');
 document.getElementById('year').textContent=new Date().getFullYear();
 
+// Update counts
 function updateCounts(){
   const text=textarea.value;
   charCountEl.textContent=text.length;
@@ -284,6 +305,8 @@ function updateHighlight(){
   occurrencesEl.textContent=matches?matches.length:0;
 }
 function escapeRegExp(string){return string.replace(/[.*+?^${}()|[\]\\]/g,"\\$&");}
+
+// Replace highlighted words
 document.getElementById('replaceBtn').addEventListener('click',()=>{
   const searchWord=searchWordInput.value.trim();
   const replacement=replaceWordInput.value;
@@ -293,6 +316,19 @@ document.getElementById('replaceBtn').addEventListener('click',()=>{
   replaceWordInput.value="";
   updateCounts();
 });
+
+// Save and Clear
+saveBtn.addEventListener('click',()=>{
+  localStorage.setItem('savedText',textarea.value);
+  alert("✅ Text saved successfully!");
+});
+clearBtn.addEventListener('click',()=>{
+  textarea.value="";
+  localStorage.removeItem('savedText');
+  updateCounts();
+});
+
+// Auto-correct
 document.getElementById('autoCorrectBtn').addEventListener('click', async ()=>{
   let text=textarea.value.trim();
   if(!text)return;
@@ -310,6 +346,8 @@ document.getElementById('autoCorrectBtn').addEventListener('click', async ()=>{
   updateCounts();
   alert("✅ Auto-correction complete!");
 });
+
+// Dictionary
 dictInput.addEventListener("keypress", async e=>{
   if(e.key!=="Enter")return;
   const word=dictInput.value.trim();
@@ -323,10 +361,14 @@ dictInput.addEventListener("keypress", async e=>{
     dictResult.innerHTML=`<strong>${word}</strong><br>📖 ${def}`;
   }catch{dictResult.textContent="❌ Word not found.";}
 });
+
+// Dark Mode
 toggleThemeBtn.addEventListener('click',()=>{
   document.body.classList.toggle('dark');
   toggleThemeBtn.textContent=document.body.classList.contains('dark')?'☀️ Light Mode':'🌙 Dark Mode';
 });
+
+// Auto Load Saved Text
 window.addEventListener("load",()=>{
   const saved=localStorage.getItem("savedText");
   if(saved){textarea.value=saved;}
