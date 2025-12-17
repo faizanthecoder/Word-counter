@@ -1,31 +1,144 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Writing Blog - CountIt4U</title>
-<meta name="description" content="Explore CountIt4U Blog for writing tips, essay guides, grammar improvement, SEO writing advice, and content creation insights.">
-<link rel="canonical" href="https://countit4u.fun/blog/">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>CountIt4U Blog - Writing Tips, Grammar, SEO & More</title>
+<meta name="description" content="Read writing guides, grammar lessons, essay tips, SEO strategies, creative writing inspiration, and proofreading advice on CountIt4U Blog.">
+<link rel="canonical" href="https://countit4u.fun/blog/" />
+
+<!-- Open Graph Meta -->
+<meta property="og:title" content="CountIt4U Blog - Improve Your Writing Skills" />
+<meta property="og:description" content="Enhance your writing with CountIt4U Blog — essays, grammar, SEO, creative writing, and proofreading tips." />
+<meta property="og:image" content="https://source.unsplash.com/1200x630/?writing,books" />
+<meta property="og:url" content="https://countit4u.fun/blog/" />
+<meta name="twitter:card" content="summary_large_image" />
+
 <style>
-body{font-family:'Segoe UI',Arial,sans-serif;margin:0;padding:0;background:linear-gradient(145deg,#e8f9f7,#d0f0ed);color:#222}
-header{display:flex;justify-content:space-between;align-items:center;background:linear-gradient(135deg,#4fd1c5,#38b2ac);color:#fff;padding:12px 25px;box-shadow:0 4px 10px rgba(0,0,0,0.2)}
+*{margin:0;padding:0;box-sizing:border-box}
+body{
+  font-family:'Segoe UI',Arial,sans-serif;
+  background:linear-gradient(145deg,#e8f9f7,#d0f0ed);
+  color:#222;
+  transition:background .4s,color .4s;
+}
+header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:linear-gradient(135deg,#4fd1c5,#38b2ac);
+  color:#fff;
+  padding:12px 25px;
+  box-shadow:0 4px 10px rgba(0,0,0,.2);
+  flex-wrap:wrap;
+}
 .navbar{display:flex;gap:20px;flex-wrap:wrap;}
 .navbar a{color:#fff;text-decoration:none;font-weight:500;transition:opacity .3s}
 .navbar a:hover{opacity:.8}
-main{max-width:1000px;margin:40px auto;padding:20px}
-h1{text-align:center;margin-bottom:30px;}
-.blog-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;}
-.blog-card{background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 4px 15px rgba(0,0,0,0.08);transition:.3s;}
-.blog-card:hover{transform:translateY(-5px);box-shadow:0 6px 18px rgba(0,0,0,0.12);}
-.blog-card img{width:100%;height:160px;object-fit:cover;}
-.blog-card h2{padding:10px 15px;font-size:18px;color:#333;}
-.blog-card p{padding:0 15px 15px;color:#555;font-size:14px;}
-.blog-card a{display:inline-block;margin:0 15px 15px;padding:8px 12px;background:linear-gradient(135deg,#4fd1c5,#38b2ac);color:#fff;text-decoration:none;border-radius:6px;font-size:14px;}
-.blog-card a:hover{opacity:.9;}
-footer{text-align:center;padding:20px;background:linear-gradient(135deg,#4fd1c5,#38b2ac);color:#fff;margin-top:40px;}
+.toggle-theme{
+  padding:6px 10px;
+  background:rgba(255,255,255,.25);
+  border:none;
+  border-radius:6px;
+  color:#fff;
+  font-weight:600;
+  cursor:pointer;
+  transition:.3s;
+}
+.toggle-theme:hover{background:rgba(255,255,255,.4);}
+main{
+  max-width:1100px;
+  margin:40px auto;
+  padding:20px;
+}
+h1{text-align:center;margin-bottom:25px;font-size:2rem;}
+#searchBox{
+  display:block;
+  margin:0 auto 30px;
+  padding:10px 15px;
+  width:90%;
+  max-width:400px;
+  font-size:16px;
+  border-radius:6px;
+  border:1px solid #bcdad6;
+  outline:none;
+  transition:all .3s ease;
+}
+#searchBox:focus{
+  border-color:#4fd1c5;
+  box-shadow:0 0 6px rgba(79,209,197,.4);
+}
+.blog-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(300px,1fr));
+  gap:25px;
+}
+.blog-card{
+  background:#fff;
+  border-radius:12px;
+  overflow:hidden;
+  box-shadow:0 5px 18px rgba(0,0,0,.08);
+  transition:all .35s ease;
+  display:flex;
+  flex-direction:column;
+}
+.blog-card:hover{
+  transform:translateY(-7px);
+  box-shadow:0 8px 20px rgba(0,0,0,.12);
+}
+.blog-card img{
+  width:100%;
+  height:180px;
+  object-fit:cover;
+  transition:transform .5s ease;
+}
+.blog-card:hover img{transform:scale(1.05);}
+.blog-card h2{
+  padding:15px;
+  font-size:20px;
+  color:#333;
+}
+.blog-card p{
+  padding:0 15px 15px;
+  color:#555;
+  font-size:15px;
+  line-height:1.6;
+  flex-grow:1;
+}
+.blog-card a{
+  display:inline-block;
+  margin:0 15px 15px;
+  padding:8px 12px;
+  background:linear-gradient(135deg,#4fd1c5,#38b2ac);
+  color:#fff;
+  text-decoration:none;
+  border-radius:6px;
+  font-size:14px;
+  transition:background .3s ease;
+}
+.blog-card a:hover{background:linear-gradient(135deg,#38b2ac,#319795);}
+footer{
+  text-align:center;
+  padding:20px;
+  background:linear-gradient(135deg,#4fd1c5,#38b2ac);
+  color:#fff;
+  margin-top:40px;
+}
 footer a{color:#fff;text-decoration:underline}
+body.dark{
+  background:linear-gradient(145deg,#1b1b1b,#242424);
+  color:#f0f0f0;
+}
+body.dark header{background:linear-gradient(135deg,#319795,#285e61);}
+body.dark .blog-card{background:#2b2b2b;box-shadow:0 3px 12px rgba(0,0,0,.3);}
+body.dark .blog-card h2{color:#fff;}
+body.dark .blog-card p{color:#ccc;}
+body.dark .blog-card a{background:linear-gradient(135deg,#319795,#2c7a7b);}
+body.dark footer{background:linear-gradient(135deg,#319795,#285e61);}
+@media(max-width:600px){h1{font-size:1.6rem}}
 </style>
 </head>
+
 <body>
 <header>
   <h1>CountIt4U Blog</h1>
@@ -36,70 +149,83 @@ footer a{color:#fff;text-decoration:underline}
     <a href="../contact.html">Contact</a>
     <a href="../privacy.html">Privacy</a>
   </nav>
+  <button class="toggle-theme">🌙 Dark Mode</button>
 </header>
 
 <main>
   <h1>Explore Our Writing Guides & Tips</h1>
-  <div class="blog-grid">
+  <input type="text" id="searchBox" placeholder="Search blog topics...">
+  
+  <div class="blog-grid" id="blogGrid">
+
     <div class="blog-card">
-      <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2" alt="Essay Writing">
+            <img loading="lazy" src="https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c" alt="Essay Writing">
       <h2>How to Write an Essay That Stands Out</h2>
-      <p>Learn to plan, structure, and write essays that impress teachers and readers alike.</p>
+      <p>Learn how to plan, structure, and craft essays that engage and impress any audience.</p>
       <a href="how-to-write-an-essay.html">Read More</a>
     </div>
+
     <div class="blog-card">
-      <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f" alt="Grammar Tips">
+      <img loading="lazy" src="https://images.unsplash.com/photo-1518081461904-9be0abcf447d" alt="Grammar Tips">
       <h2>10 Grammar Rules Every Writer Should Know</h2>
-      <p>Strengthen your grammar and clarity with these simple but powerful tips.</p>
+      <p>Boost your writing accuracy and confidence by mastering these essential grammar principles.</p>
       <a href="grammar-tips.html">Read More</a>
     </div>
+
     <div class="blog-card">
-      <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b" alt="Writing Speed">
+      <img loading="lazy" src="https://images.unsplash.com/photo-1573497019222-905b63f94b87" alt="Writing Speed">
       <h2>How to Improve Your Writing Speed</h2>
-      <p>Train your mind and fingers to write faster without losing quality.</p>
+      <p>Train your mind and fingers to write faster without compromising clarity or creativity.</p>
       <a href="improve-writing-speed.html">Read More</a>
     </div>
+
     <div class="blog-card">
-      <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f" alt="SEO Writing">
+      <img loading="lazy" src="https://source.unsplash.com/800x600/?seo,content" alt="SEO Writing">
       <h2>Writing for SEO: A Complete Guide</h2>
-      <p>Understand how to make your writing both readable and discoverable on search engines.</p>
+      <p>Master SEO-friendly writing that connects with readers while ranking higher on Google.</p>
       <a href="writing-for-seo.html">Read More</a>
     </div>
+
     <div class="blog-card">
-      <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b" alt="Creative Writing">
+      <img loading="lazy" src="https://source.unsplash.com/800x600/?creative,writing" alt="Creative Writing">
       <h2>Creative Writing Techniques to Inspire Ideas</h2>
-      <p>Unlock creativity and overcome writer’s block with these proven exercises.</p>
+      <p>Boost imagination with powerful exercises and prompts to unleash your creativity.</p>
       <a href="creative-writing-guide.html">Read More</a>
     </div>
+
     <div class="blog-card">
-      <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2" alt="Plagiarism">
+      <img loading="lazy" src="https://source.unsplash.com/800x600/?plagiarism,education" alt="Plagiarism Prevention">
       <h2>How to Avoid Plagiarism in Your Writing</h2>
-      <p>Understand the importance of originality and how to cite sources properly.</p>
+      <p>Protect your credibility and learn how to cite, paraphrase, and stay 100% original.</p>
       <a href="avoiding-plagiarism.html">Read More</a>
     </div>
+
     <div class="blog-card">
-      <img src="../assets/blog7.jpg" alt="Resume Writing">
+      <img loading="lazy" src="https://source.unsplash.com/800x600/?resume,job" alt="Resume Writing">
       <h2>Resume Writing Tips That Get You Noticed</h2>
-      <p>Create a resume that reflects your skills clearly and professionally.</p>
+      <p>Design resumes that highlight your strengths and get recruiters calling you back.</p>
       <a href="resume-writing.html">Read More</a>
     </div>
+
     <div class="blog-card">
-      <img src="../assets/blog8.jpg" alt="Story Writing">
+      <img loading="lazy" src="https://source.unsplash.com/800x600/?story,book" alt="Story Writing">
       <h2>The Art of Story Writing</h2>
-      <p>From plot structure to character development, master the craft of storytelling.</p>
+      <p>Turn your ideas into stories that captivate readers with strong plots and characters.</p>
       <a href="story-writing.html">Read More</a>
     </div>
+
     <div class="blog-card">
-      <img src="../assets/blog9.jpg" alt="Academic Writing">
+      <img loading="lazy" src="https://source.unsplash.com/800x600/?academic,study" alt="Academic Writing">
       <h2>Academic Writing Simplified</h2>
-      <p>Learn how to write academic content that’s structured, credible, and effective.</p>
+      <p>Learn how to write essays, reports, and research papers with clarity and structure.</p>
       <a href="academic-writing.html">Read More</a>
     </div>
+
     <div class="blog-card">
-      <img src="../assets/blog10.jpg" alt="Proofreading">
+      <img loading="lazy" src="https://source.unsplash.com/800x600/?proofreading,editor" alt="Proofreading">
       <h2>Editing and Proofreading: The Final Touch</h2>
-      <p>Polish your writing with techniques to spot errors and improve readability.</p>
-      <a href="editing-proofreading.html">Read More</a>
+      <p>Catch every typo, polish every sentence, and perfect your writing like a pro editor.</p>
+      <a href="proofreading-guide.html">Read More</a>
     </div>
   </div>
 </main>
@@ -107,6 +233,29 @@ footer a{color:#fff;text-decoration:underline}
 <footer>
   <p>&copy; <span id="year"></span> CountIt4U | <a href="../index.html">Home</a></p>
 </footer>
-<script>document.getElementById('year').textContent=new Date().getFullYear();</script>
+
+<script>
+// Year update
+document.getElementById("year").textContent = new Date().getFullYear();
+
+// Dark mode
+const toggle = document.querySelector(".toggle-theme");
+toggle.addEventListener("click",()=>{
+  document.body.classList.toggle("dark");
+  toggle.textContent = document.body.classList.contains("dark") ? "☀️ Light Mode" : "🌙 Dark Mode";
+});
+
+// Blog search filter
+const searchBox = document.getElementById("searchBox");
+const cards = document.querySelectorAll(".blog-card");
+searchBox.addEventListener("input",()=>{
+  const val = searchBox.value.toLowerCase();
+  cards.forEach(card=>{
+    const text = card.querySelector("h2").textContent.toLowerCase();
+    card.style.display = text.includes(val) ? "flex" : "none";
+  });
+});
+</script>
+
 </body>
 </html>
