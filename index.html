@@ -1,26 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>CountIt4U - Word Counter & Text Analyzer</title>
-<meta name="description" content="CountIt4U is a free online word counter and text analyzer that helps you count words, characters, keyword density, and improve writing with built-in auto-correct and dictionary." />
-<meta name="keywords" content="word counter, text analyzer, character counter, writing assistant, grammar checker, keyword density, auto-correct, dictionary tool" />
-<meta name="author" content="Faizan the Coder" />
-<link rel="canonical" href="https://countit4u.fun/" />
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>CountIt4U - Word Counter & Text Analyzer</title>
+  <meta name="description"
+    content="CountIt4U is a free online word counter and text analyzer that helps you count words, characters, keyword density, and improve writing with built-in auto-correct and dictionary." />
+  <meta name="keywords"
+    content="word counter, text analyzer, character counter, writing assistant, grammar checker, keyword density, auto-correct, dictionary tool" />
+  <meta name="author" content="Faizan the Coder" />
+  <link rel="canonical" href="https://countit4u.fun/" />
+  <!-- <link rel="icon" type="image/png" href="dd113783-720f-424e-ab9e-b0baf6a45094.jpg"> -->
+  <link rel="icon" type="image/png" href="logo.png">
 
-<!-- Open Graph for SEO -->
-<meta property="og:title" content="CountIt4U - Free Word Counter & Writing Tool" />
-<meta property="og:description" content="Improve your writing instantly with CountIt4U — a free online word counter and analyzer." />
-<meta property="og:type" content="website" />
-<meta property="og:url" content="https://countit4u.fun/" />
-<meta property="og:image" content="https://countit4u.fun/assets/banner.jpg" />
 
-<!-- Google AdSense -->
-<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7173926747034822" crossorigin="anonymous"></script>
+  <!-- Open Graph for SEO -->
 
-<!-- JSON-LD SEO -->
-<script type="application/ld+json">
+  <meta property="og:title" content="CountIt4U - Free Word Counter & Writing Tool" />
+  <meta property="og:description"
+    content="Improve your writing instantly with CountIt4U — a free online word counter and analyzer." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://countit4u.fun/" />
+  <meta property="og:image" content="https://countit4u.fun/assets/banner.jpg" />
+
+  <!-- Google AdSense -->
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7173926747034822"
+    crossorigin="anonymous"></script>
+
+  <!-- JSON-LD SEO -->
+  <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "WebApplication",
@@ -35,523 +44,760 @@
 }
 </script>
 
-<style>
-*{margin:0;padding:0;box-sizing:border-box}
-body{
-  font-family:'Segoe UI',Arial,Helvetica,sans-serif;
-  min-height:100vh;
-  display:flex;
-  flex-direction:column;
-  background: linear-gradient(116deg, #e8f9f7, #44bfb4);
-  color:#222;
-  transition:.3s;
-}
-header{
-  display:flex;
-  justify-content:space-between;
-  align-items:center;
-  background:linear-gradient(135deg,#4fd1c5,#38b2ac);
-  color:#fff;
-  padding:12px 25px;
-  box-shadow:0 4px 10px rgba(0,0,0,0.2);
-}
-header h1{font-size:1.6rem;letter-spacing:.5px;}
-.navbar{display:flex;gap:20px;flex-wrap:wrap;}
-.navbar a{color:#fff;text-decoration:none;font-weight:500;transition:opacity .3s}
-.navbar a:hover{opacity:.8}
-.toggle-theme{
-  padding:6px 10px;
-  background:rgba(255,255,255,.25);
-  border:none;
-  border-radius:6px;
-  color:#fff;
-  font-weight:600;
-  cursor:pointer;
-  transition:.3s;
-}
-.toggle-theme:hover{background:rgba(255,255,255,.4);}
-main{
-  flex:1;
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  padding:30px 20px;
-  gap:20px
-}
-.container{
-  width:100%;
-  max-width:800px;
-  background:linear-gradient(180deg,#ffffff,#f9fdfd);
-  padding:25px;
-  border-radius:14px;
-  box-shadow:0 6px 25px rgba(0,0,0,0.08);
-  display:flex;
-  flex-direction:column;
-}
-editor{
-  width:100%;
-  height:180px;
-  padding:15px;
-  font-size:16px;
-  border-radius:8px;
-  border:1px solid #bcdad6;
-  outline:none;
-  background-color:#fcfefe;
-  transition:all .3s ease;
-}
-editor:focus{border-color:#4fd1c5;box-shadow:0 0 6px rgba(79,209,197,0.4);}
-input[type="text"]{
-  padding:10px;
-  font-size:16px;
-  border-radius:8px;
-  border:1px solid #bcdad6;
-  margin-top:10px;
-  transition:.3s;
-  background-color:#ffffff;
-}
-.count{
-  font-size:16px;
-  font-weight:bold;
-  margin-top:8px;
-  display:flex;
-  justify-content:space-between;
-  flex-wrap:wrap;
-  gap:10px;
-}
-.stats{
-  margin-top:10px;
-  background:#ffffff;
-  padding:12px;
-  border-radius:10px;
-  border:1px solid #cbe9e6;
-  font-size:15px;
-  line-height:1.6;
-}
-mark{background:#fff176;padding:0 3px;border-radius:3px;}
-button{
-  margin-top:10px;
-  padding:10px;
-  font-size:16px;
-  border-radius:8px;
-  border:none;
-  background:linear-gradient(135deg,#4fd1c5,#38b2ac);
-  color:#fff;
-  font-weight:600;
-  cursor:pointer;
-  transition:.3s;
-}
-button:hover{transform:translateY(-2px);box-shadow:0 4px 10px rgba(56,178,172,0.4);}
-.action-buttons{display:flex;gap:10px;flex-wrap:wrap;}
-.suggestion{
-  background:#fff;
-  border-radius:14px;
-  padding:25px;
-  max-width:800px;
-  box-shadow:0 6px 25px rgba(0,0,0,0.08);
-  text-align:center;
-  line-height:1.7;
-}
-.blog-section{
-  max-width:1000px;
-  background:#fff;
-  border-radius:14px;
-  padding:25px;
-  box-shadow:0 6px 25px rgba(0,0,0,0.08);
-}
-.blog-grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-  gap:20px;
-}
-.blog-card{
-  border:1px solid #cbe9e6;
-  border-radius:10px;
-  overflow:hidden;
-  background:#f9fdfd;
-  transition:.3s;
-}
-.blog-card:hover{transform:translateY(-3px);box-shadow:0 4px 12px rgba(0,0,0,0.1);}
-.blog-card img{width:100%;height:150px;object-fit:cover;}
-.blog-card h3{padding:10px;font-size:17px;color:#333;}
-.blog-card p{padding:0 10px 10px;font-size:14px;color:#666;}
-footer{text-align:center;padding:20px;background:linear-gradient(135deg,#4fd1c5,#38b2ac);color:#fff;}
-footer a{color:#fff;text-decoration:underline}
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box
+    }
 
-/* 🌙 Dark Mode Styles */
-body.dark{ background:linear-gradient(145deg,#1b1b1b,#242424); color:#f0f0f0; }
-body.dark header{ background:linear-gradient(135deg,#319795,#285e61); }
-body.dark .container, body.dark .stats, body.dark input[type="text"], body.dark .editor, body.dark .blog-section, body.dark .suggestion{ background:#2b2b2b; color:#f0f0f0; border-color:#444; }
-body.dark .editor, body.dark input[type="text"]{ background-color:#3b3b3b; color:#f0f0f0; }
-body.dark .blog-card{ background:#2c2c2c; color:#f0f0f0; border-color:#444; }
-body.dark .blog-card h3{color:#fff;}
-body.dark .blog-card p{color:#ccc;}
-body.dark button, body.dark .toggle-theme{ background:linear-gradient(135deg,#319795,#2c7a7b); color:#fff; }
-body.dark footer{ background:linear-gradient(135deg,#319795,#285e61); }
+    body {
+      font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      background: linear-gradient(116deg, #e8f9f7, #44bfb4);
+      color: #222;
+      transition: .3s;
+    }
 
-/* ✏️ New spellcheck styles */
-.editor{
-  width:100%;
-  max-width:800px;
-  min-height:250px;
-  border:1px solid #bcdad6;
-  border-radius:10px;
-  padding:15px;
-  background:#fff;
-  font-size:16px;
-  line-height:1.6;
-  outline:none;
-  overflow-y:auto;
-  white-space:pre-wrap;
-}
-.editor span.error-spell{text-decoration:underline wavy red;cursor:pointer;}
-.editor span.error-grammar{text-decoration:underline wavy blue;cursor:pointer;}
-.tooltip{
-  position:absolute;
-  background:rgba(40,40,40,0.95);
-  backdrop-filter:blur(6px);
-  color:#fff;
-  padding:10px 12px;
-  border-radius:8px;
-  font-size:14px;
-  z-index:100;
-  max-width:260px;
-  box-shadow:0 4px 12px rgba(0,0,0,.25);
-  display:none;
-  opacity:0;
-  transition:opacity .25s ease;
-}
-.tooltip.visible{display:block;opacity:1;}
-.tooltip ul{margin:8px 0 0;padding:0;list-style:none;}
-.tooltip li{padding:4px 0;cursor:pointer;border-radius:4px;transition:.2s;}
-.tooltip li:hover{background:rgba(255,255,255,0.15);}
-.buttons{ display:flex; gap:10px; margin-top:15px; }
-button{ padding:10px 15px; font-size:15px; background:linear-gradient(135deg,#4fd1c5,#38b2ac); color:#fff; border:none; border-radius:8px; cursor:pointer; transition:.3s; }
-button:hover{transform:translateY(-2px);box-shadow:0 4px 10px rgba(56,178,172,0.4);}
-.toast{ position:fixed; bottom:20px; right:20px; background:#333; color:#fff; padding:10px 15px; border-radius:6px; opacity:0; transition:.3s; pointer-events:none; }
-</style>
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      background: linear-gradient(135deg, #4fd1c5, #38b2ac);
+      color: #fff;
+      padding: 12px 25px;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+    }
+
+    header h1 {
+      font-size: 1.6rem;
+      letter-spacing: .5px;
+    }
+
+    .navbar {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .navbar a {
+      color: #fff;
+      text-decoration: none;
+      font-weight: 500;
+      transition: opacity .3s
+    }
+
+    .navbar a:hover {
+      opacity: .8
+    }
+
+    .toggle-theme {
+      padding: 6px 10px;
+      background: rgba(255, 255, 255, .25);
+      border: none;
+      border-radius: 6px;
+      color: #fff;
+      font-weight: 600;
+      cursor: pointer;
+      transition: .3s;
+    }
+
+    .toggle-theme:hover {
+      background: rgba(255, 255, 255, .4);
+    }
+
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 30px 20px;
+      gap: 20px
+    }
+
+    .container {
+      width: 100%;
+      max-width: 800px;
+      background: linear-gradient(180deg, #ffffff, #f9fdfd);
+      padding: 25px;
+      border-radius: 14px;
+      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.08);
+      display: flex;
+      flex-direction: column;
+    }
+
+    editor {
+      width: 100%;
+      height: 180px;
+      padding: 15px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: 1px solid #bcdad6;
+      outline: none;
+      background-color: #fcfefe;
+      transition: all .3s ease;
+    }
+
+    editor:focus {
+      border-color: #4fd1c5;
+      box-shadow: 0 0 6px rgba(79, 209, 197, 0.4);
+    }
+
+    input[type="text"] {
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: 1px solid #bcdad6;
+      margin-top: 10px;
+      transition: .3s;
+      background-color: #ffffff;
+    }
+
+    .count {
+      font-size: 16px;
+      font-weight: bold;
+      margin-top: 8px;
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .stats {
+      margin-top: 10px;
+      background: #ffffff;
+      padding: 12px;
+      border-radius: 10px;
+      border: 1px solid #cbe9e6;
+      font-size: 15px;
+      line-height: 1.6;
+    }
+
+    mark {
+      background: #fff176;
+      padding: 0 3px;
+      border-radius: 3px;
+    }
+
+    button {
+      margin-top: 10px;
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: none;
+      background: linear-gradient(135deg, #4fd1c5, #38b2ac);
+      color: #fff;
+      font-weight: 600;
+      cursor: pointer;
+      transition: .3s;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(56, 178, 172, 0.4);
+    }
+
+    .action-buttons {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .suggestion {
+      background: #fff;
+      border-radius: 14px;
+      padding: 25px;
+      max-width: 800px;
+      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.08);
+      text-align: center;
+      line-height: 1.7;
+    }
+
+    .blog-section {
+      max-width: 1000px;
+      background: #fff;
+      border-radius: 14px;
+      padding: 25px;
+      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.08);
+    }
+
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+    }
+
+    .blog-card {
+      border: 1px solid #cbe9e6;
+      border-radius: 10px;
+      overflow: hidden;
+      background: #f9fdfd;
+      transition: .3s;
+    }
+
+    .blog-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    }
+
+    .blog-card img {
+      width: 100%;
+      height: 150px;
+      object-fit: cover;
+    }
+
+    .blog-card h3 {
+      padding: 10px;
+      font-size: 17px;
+      color: #333;
+    }
+
+    .blog-card p {
+      padding: 0 10px 10px;
+      font-size: 14px;
+      color: #666;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: linear-gradient(135deg, #4fd1c5, #38b2ac);
+      color: #fff;
+    }
+
+    footer a {
+      color: #fff;
+      text-decoration: underline
+    }
+
+    /* 🌙 Dark Mode Styles */
+    body.dark {
+      background: linear-gradient(145deg, #1b1b1b, #242424);
+      color: #f0f0f0;
+    }
+
+    body.dark header {
+      background: linear-gradient(135deg, #319795, #285e61);
+    }
+
+    body.dark .container,
+    body.dark .stats,
+    body.dark input[type="text"],
+    body.dark .editor,
+    body.dark .blog-section,
+    body.dark .suggestion {
+      background: #2b2b2b;
+      color: #f0f0f0;
+      border-color: #444;
+    }
+
+    body.dark .editor,
+    body.dark input[type="text"] {
+      background-color: #3b3b3b;
+      color: #f0f0f0;
+    }
+
+    body.dark .blog-card {
+      background: #2c2c2c;
+      color: #f0f0f0;
+      border-color: #444;
+    }
+
+    body.dark .blog-card h3 {
+      color: #fff;
+    }
+
+    body.dark .blog-card p {
+      color: #ccc;
+    }
+
+    body.dark button,
+    body.dark .toggle-theme {
+      background: linear-gradient(135deg, #319795, #2c7a7b);
+      color: #fff;
+    }
+
+    body.dark footer {
+      background: linear-gradient(135deg, #319795, #285e61);
+    }
+
+    /* ✏️ New spellcheck styles */
+    .editor {
+      width: 100%;
+      max-width: 800px;
+      min-height: 250px;
+      border: 1px solid #bcdad6;
+      border-radius: 10px;
+      padding: 15px;
+      background: #fff;
+      font-size: 16px;
+      line-height: 1.6;
+      outline: none;
+      overflow-y: auto;
+      white-space: pre-wrap;
+    }
+
+    .editor span.error-spell {
+      text-decoration: underline wavy red;
+      cursor: pointer;
+    }
+
+    .editor span.error-grammar {
+      text-decoration: underline wavy blue;
+      cursor: pointer;
+    }
+
+    .tooltip {
+      position: absolute;
+      background: rgba(40, 40, 40, 0.95);
+      backdrop-filter: blur(6px);
+      color: #fff;
+      padding: 10px 12px;
+      border-radius: 8px;
+      font-size: 14px;
+      z-index: 100;
+      max-width: 260px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, .25);
+      display: none;
+      opacity: 0;
+      transition: opacity .25s ease;
+    }
+
+    .tooltip.visible {
+      display: block;
+      opacity: 1;
+    }
+
+    .tooltip ul {
+      margin: 8px 0 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .tooltip li {
+      padding: 4px 0;
+      cursor: pointer;
+      border-radius: 4px;
+      transition: .2s;
+    }
+
+    .tooltip li:hover {
+      background: rgba(255, 255, 255, 0.15);
+    }
+
+    .buttons {
+      display: flex;
+      gap: 10px;
+      margin-top: 15px;
+    }
+
+    button {
+      padding: 10px 15px;
+      font-size: 15px;
+      background: linear-gradient(135deg, #4fd1c5, #38b2ac);
+      color: #fff;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: .3s;
+    }
+
+    button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(56, 178, 172, 0.4);
+    }
+
+    .toast {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: #333;
+      color: #fff;
+      padding: 10px 15px;
+      border-radius: 6px;
+      opacity: 0;
+      transition: .3s;
+      pointer-events: none;
+    }
+  </style>
 </head>
+
 <body>
-<header>
-<h1>CountIt4U</h1>
-<nav class="navbar">
-<a href="index.html">Home</a>
-<a href="about.html">About</a>
-<a href="blog/index.html">Blog</a>
-<a href="contact.html">Contact</a>
-<a href="privacy.html">Privacy</a>
-<a href="FAQs.html">FAQs</a>
-</nav>
-<button class="toggle-theme">🌙 Dark Mode</button>
-</header>
+  <header>
+    <h1>CountIt4U</h1>
+    <nav class="navbar">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="blog/index.html">Blog</a>
+      <a href="contact.html">Contact</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="FAQs.html">FAQs</a>
+    </nav>
+    <button class="toggle-theme">🌙 Dark Mode</button>
+  </header>
 
-<main>
-<article class="container">
-<div id="editor" class="editor" contenteditable="true" spellcheck="false"></div>
-<!-- <editor spellcheck="false" contenteditable="true" class="editor" id="editor" placeholder="Type or paste your text here..."></editor> -->
-<div class="count">
-<span>Words: <span id="wordCount">0</span></span>
-<span>Characters: <span id="charCount">0</span></span>
-<span>Spaces: <span id="spaceCount">0</span></span>
-</div>
-<div class="action-buttons">
-<button id="saveBtn">💾 Save Text</button>
-<button id="clearBtn">🧹 Clear Text</button>
-<button id="copyBtn">📋 Copy Text</button>
-<button id="fixAllBtn">🪄 Fix All</button>
-</div>
-<div class="toast" id="toast">Copied ✅</div>
-<div class="tooltip" id="tooltip"></div>
-<div class="stats" id="extraStats">
-<p>Reading Time: <span id="readTime">0s</span> | Speaking Time: <span id="speakTime">0s</span></p>
-<p>Keyword Density (Top 5):</p>
-<ul id="keywords"></ul>
-</div>
-<input type="text" id="searchWord" placeholder="Search a word to highlight">
-<div class="count">Occurrences: <span id="occurrences">0</span></div>
-<div id="highlightedText" class="stats" style="white-space:pre-wrap;min-height:100px;"></div>
-<input type="text" id="replaceWord" placeholder="Type replacement word">
-<button id="replaceBtn">Replace All Highlighted</button>
-<button id="autoCorrectBtn">🔧 Auto-Correct Text</button>
-<input type="text" id="dictInput" placeholder="Enter a word to define...">
-<div id="dictResult" class="stats" style="min-height:70px;">Word meanings will appear here...</div>
-</article>
+  <main>
+    <article class="container">
+      <div id="editor" class="editor" contenteditable="true" spellcheck="false"></div>
+      <!-- <editor spellcheck="false" contenteditable="true" class="editor" id="editor" placeholder="Type or paste your text here..."></editor> -->
+      <div class="count">
+        <span>Words: <span id="wordCount">0</span></span>
+        <span>Characters: <span id="charCount">0</span></span>
+        <span>Spaces: <span id="spaceCount">0</span></span>
+      </div>
+      <div class="action-buttons">
+        <button id="saveBtn">💾 Save Text</button>
+        <button id="clearBtn">🧹 Clear Text</button>
+        <button id="copyBtn">📋 Copy Text</button>
+        <button id="fixAllBtn">🪄 Fix All</button>
+      </div>
+      <div class="toast" id="toast">Copied ✅</div>
+      <div class="tooltip" id="tooltip"></div>
+      <div class="stats" id="extraStats">
+        <p>Reading Time: <span id="readTime">0s</span> | Speaking Time: <span id="speakTime">0s</span></p>
+        <p>Keyword Density (Top 5):</p>
+        <ul id="keywords"></ul>
+      </div>
+      <input type="text" id="searchWord" placeholder="Search a word to highlight">
+      <div class="count">Occurrences: <span id="occurrences">0</span></div>
+      <div id="highlightedText" class="stats" style="white-space:pre-wrap;min-height:100px;"></div>
+      <input type="text" id="replaceWord" placeholder="Type replacement word">
+      <button id="replaceBtn">Replace All Highlighted</button>
+      <button id="autoCorrectBtn">🔧 Auto-Correct Text</button>
+      <input type="text" id="dictInput" placeholder="Enter a word to define...">
+      <div id="dictResult" class="stats" style="min-height:70px;">Word meanings will appear here...</div>
+    </article>
 
-<section class="suggestion">
-<h2>💡 Have Suggestions?</h2>
-<p>We’d love to hear from you! If you have ideas, feature requests, or notice any bugs, feel free to email us directly at:</p>
-<p><strong><a href="mailto:faizanthecoder@gmail.com">faizanthecoder@gmail.com</a></strong></p>
-<p>Your feedback helps improve CountIt4U for everyone.</p>
-</section>
-<!-- <section  style="margin-top:30px; max-width:800px; background:#fff; padding:20px; border-radius:10px; border:1px solid #ddd;"> -->
+    <section class="suggestion">
+      <h2>💡 Have Suggestions?</h2>
+      <p>We’d love to hear from you! If you have ideas, feature requests, or notice any bugs, feel free to email us
+        directly at:</p>
+      <p><strong><a href="mailto:faizanthecoder@gmail.com">faizanthecoder@gmail.com</a></strong></p>
+      <p>Your feedback helps improve CountIt4U for everyone.</p>
+    </section>
+    <!-- <section  style="margin-top:30px; max-width:800px; background:#fff; padding:20px; border-radius:10px; border:1px solid #ddd;"> -->
 
-<section class="suggestion">
-<h2 style="padding: 0px 100px;">About CountIt4U - Free Online Word Counter</h2>
-<p><strong>Countit4u</strong> is a free online word and character counting tool designed to help writers, students, and content creators improve their writing quality. You can quickly calculate the total number of words, characters, and spaces in any text, check your reading and speaking time, and even highlight or replace specific words instantly.</p>
-<p>Our tool also provides keyword analysis to show which words appear most frequently in your writing, helping you balance keyword usage for SEO optimization. With additional features like auto-correct, a built-in dictionary, and auto-save, CountIt4U is a complete writing assistant that works directly in your browser without any installation.</p>
-<p>To get started, type or paste your text in the box above. Your statistics update in real time as you edit. You can also switch between light and dark mode for comfortable writing. Whether you're preparing essays, blog posts, or reports, CountIt4U helps you write smarter, faster, and more effectively.</p>
-<p><strong>Note:</strong> This website does not store your text or share it with anyone. Everything runs locally on your device for maximum privacy and safety.</p>
-</section>
+    <section class="suggestion">
+      <h2 style="padding: 0px 100px;">About CountIt4U - Free Online Word Counter</h2>
+      <p><strong>Countit4u</strong> is a free online word and character counting tool designed to help writers,
+        students, and content creators improve their writing quality. You can quickly calculate the total number of
+        words, characters, and spaces in any text, check your reading and speaking time, and even highlight or replace
+        specific words instantly.</p>
+      <p>Our tool also provides keyword analysis to show which words appear most frequently in your writing, helping you
+        balance keyword usage for SEO optimization. With additional features like auto-correct, a built-in dictionary,
+        and auto-save, CountIt4U is a complete writing assistant that works directly in your browser without any
+        installation.</p>
+      <p>To get started, type or paste your text in the box above. Your statistics update in real time as you edit. You
+        can also switch between light and dark mode for comfortable writing. Whether you're preparing essays, blog
+        posts, or reports, CountIt4U helps you write smarter, faster, and more effectively.</p>
+      <p><strong>Note:</strong> This website does not store your text or share it with anyone. Everything runs locally
+        on your device for maximum privacy and safety.</p>
+    </section>
 
-<section class="blog-section">
-<h2>📝 Writing Tips & Resources</h2>
-<div class="blog-grid">
-<a style="text-decoration: none;" href="/blog/how-to-write-an-essay.html"><div class="blog-card">
-<img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2" alt="Essay Writing Tips">
-<h3>5 Tips to Write a Perfect Essay</h3>
-<p>Learn how to plan, draft, and polish your essays with clear structure and creativity.</p>
-</div></a>
-<a style="text-decoration: none;" href="/blog/creative-writing-guide.html"><div class="blog-card">
-<img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b" alt="Writing Productivity">
-<h3>Boost Your Writing Productivity</h3>
-<p>Discover tools and techniques that make writing smoother, faster, and more enjoyable.</p>
-</div></a>
-<a style="text-decoration: none;" href="/blog/grammar-tips.html"><div class="blog-card">
-<img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f" alt="Grammar Guide">
-<h3>Grammar Mistakes You Should Avoid</h3>
-<p>Find out the most common grammar mistakes and how to fix them like a pro.</p>
-</div></a>
-<a style="text-decoration: none;" href="/blog/tutorial.html"><div class="blog-card">
-        <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2" alt="Website Guide">
-        <h3>Complete tutorial on usage of our website </h3>
-        <p>This is a complete guide on how to use our website without any issue.</p>
-      </div></a>
-</div>
-</section>
-</main>
+    <section class="blog-section">
+      <h2>📝 Writing Tips & Resources</h2>
+      <div class="blog-grid">
+        <a style="text-decoration: none;" href="/blog/how-to-write-an-essay.html">
+          <div class="blog-card">
+            <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2" alt="Essay Writing Tips">
+            <h3>5 Tips to Write a Perfect Essay</h3>
+            <p>Learn how to plan, draft, and polish your essays with clear structure and creativity.</p>
+          </div>
+        </a>
+        <a style="text-decoration: none;" href="/blog/creative-writing-guide.html">
+          <div class="blog-card">
+            <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b" alt="Writing Productivity">
+            <h3>Boost Your Writing Productivity</h3>
+            <p>Discover tools and techniques that make writing smoother, faster, and more enjoyable.</p>
+          </div>
+        </a>
+        <a style="text-decoration: none;" href="/blog/grammar-tips.html">
+          <div class="blog-card">
+            <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f" alt="Grammar Guide">
+            <h3>Grammar Mistakes You Should Avoid</h3>
+            <p>Find out the most common grammar mistakes and how to fix them like a pro.</p>
+          </div>
+        </a>
+        <a style="text-decoration: none;" href="/blog/tutorial.html">
+          <div class="blog-card">
+            <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2" alt="Website Guide">
+            <h3>Complete tutorial on usage of our website </h3>
+            <p>This is a complete guide on how to use our website without any issue.</p>
+          </div>
+        </a>
+      </div>
+    </section>
+  </main>
 
-<footer>
-<p>&copy; <span id="year"></span> CountIt4U | <a href="about.html">About</a> | <a href="contact.html">Contact</a> | <a href="privacy.html">Privacy Policy</a></p>
-</footer>
+  <footer>
+    <p>&copy; <span id="year"></span> CountIt4U | <a href="about.html">About</a> | <a href="contact.html">Contact</a> |
+      <a href="privacy.html">Privacy Policy</a>
+       <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="white" viewBox="0 0 100 100" id="social">        <path d="M50,0C22.386,0,0,22.386,0,50c0,27.614,22.386,50,50,50c27.614,0,50-22.386,50-50C100,22.386,77.614,0,50,0z M66.764,28.385
+	c0,0.745-0.604,1.349-1.348,1.349l-5.779,0.002c-3.984,0-4.713,1.553-4.713,4.611v6.363h10.089c0.358,0,0.702,0.142,0.955,0.396
+	c0.253,0.253,0.395,0.596,0.395,0.954l-0.004,10.876c0,0.745-0.604,1.349-1.349,1.349H54.924v27.443
+	c0,0.745-0.604,1.349-1.349,1.349H42.322c-0.745,0-1.349-0.604-1.349-1.349V54.284h-8.625c-0.745,0-1.349-0.604-1.349-1.349V42.06
+	c0-0.745,0.604-1.35,1.349-1.35h8.625v-7.506c0-9.89,6.228-16.28,15.866-16.28l8.579,0.014c0.744,0.001,1.347,0.605,1.347,1.349
+	V28.385z"></path></svg>
 
-<script>
-const editor=document.getElementById('editor');
-const wordCountEl=document.getElementById('wordCount');
-const charCountEl=document.getElementById('charCount');
-const spaceCountEl=document.getElementById('spaceCount');
-const readTimeEl=document.getElementById('readTime');
-const speakTimeEl=document.getElementById('speakTime');
-const keywordsEl=document.getElementById('keywords');
-const searchWordInput=document.getElementById('searchWord');
-const occurrencesEl=document.getElementById('occurrences');
-const highlightedTextDiv=document.getElementById('highlightedText');
-const replaceWordInput=document.getElementById('replaceWord');
-const toggle = document.querySelector(".toggle-theme");
-const dictInput=document.getElementById('dictInput');
-const dictResult=document.getElementById('dictResult');
-const saveBtn=document.getElementById('saveBtn');
-const clearBtn=document.getElementById('clearBtn');
-document.getElementById('year').textContent=new Date().getFullYear();
+      
+      <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="white" version="1.2" viewBox="0 0 24 24"
+        id="social">
+        <path
+          d="M18 3H6C4.3 3 3 4.3 3 6v12c0 1.7 1.3 3 3 3h12c1.7 0 3-1.3 3-3V6c0-1.7-1.3-3-3-3zm-6 6c1.7 0 3 1.3 3 3s-1.3 3-3 3-3-1.3-3-3 1.3-3 3-3zm3.8-2c0-.7.6-1.2 1.2-1.2s1.2.6 1.2 1.2-.5 1.2-1.2 1.2-1.2-.5-1.2-1.2zM18 19H6c-.6 0-1-.4-1-1v-6h2c0 2.8 2.2 5 5 5s5-2.2 5-5h2v6c0 .6-.4 1-1 1z">
+        </path>
+      </svg>
+      <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="white" version="1.2"
+        viewBox="0 0 24 24" id="social">
+        <path
+          d="M8 19H5V9h3v10zm11 0h-3v-5.342c0-1.392-.496-2.085-1.479-2.085-.779 0-1.273.388-1.521 1.165V19h-3s.04-9 0-10h2.368l.183 2h.062c.615-1 1.598-1.678 2.946-1.678 1.025 0 1.854.285 2.487 1.001.637.717.954 1.679.954 3.03V19z">
+        </path>
+        <ellipse cx="6.5" cy="6.5" rx="1.55" ry="1.5"></ellipse>
+</svg><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="none" viewBox="0 0 256 256" id="social">
+  <rect width="224" height="224" x="16" y="16" fill="url(#paint0_linear_531_13667)" rx="70"></rect>
+  <path fill="#000" d="M166.445 68H186.802L142.329 118.831L194.649 188H153.682L121.596 146.049L84.8824 188H64.5131L112.082 133.631L61.8916 68H103.898L132.901 106.345L166.445 68ZM159.301 175.815H170.581L97.7685 79.5446H85.6639L159.301 175.815Z"></path>
+  <defs>
+    <linearGradient id="paint0_linear_531_13667" x1="16" x2="208" y1="16" y2="240" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fff"></stop>
+      <stop offset="1" stop-color="#ACCCFF"></stop>
+    </linearGradient>
+  </defs>
+</svg>
+<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="white" version="1.2" id="social">
+  <path d="M22.8 8.6c-.2-1.5-.4-2.6-1-3C21.2 5.1 16 5 12 5s-9.2.1-9.8.6c-.6.4-.8 1.5-1 3S1 11 1 12s0 1.9.2 3.4.4 2.6 1 3c.6.5 5.8.6 9.8.6 4 0 9.2-.1 9.8-.6.6-.4.8-1.5 1-3S23 13 23 12s0-1.9-.2-3.4zm-12.8 7V8.4l6 3.6-6 3.6z"></path>
+</svg>  </footer>
 
-// Update counts
-function updateCounts(){
-const text=editor.innerText;
-charCountEl.textContent=text.length;
-const words=text.trim()===""?0:text.trim().split(/\s+/).length;
-wordCountEl.textContent=words;
-const spaces=(text.match(/ /g)||[]).length;
-spaceCountEl.textContent=spaces;
-updateTimes(words);
-updateKeywords(text);
-updateHighlight();
-localStorage.setItem("savedText", text);
-}
-function updateTimes(words){
-const readSec=Math.round(words/3.33);
-const speakSec=Math.round(words/2.5);
-readTimeEl.textContent=`${readSec}s`;
-speakTimeEl.textContent=`${speakSec}s`;
-}
-function updateKeywords(text){
-const words=text.toLowerCase().match(/\b[a-z]{3,}\b/g)||[];
-const freq={};
-words.forEach(w=>freq[w]=(freq[w]||0)+1);
-const top=Object.entries(freq).sort((a,b)=>b[1]-a[1]).slice(0,5);
-keywordsEl.innerHTML=top.map(([w,c])=>`<li>${w}: ${(c/words.length*100).toFixed(1)}%</li>`).join("")||"<li>None</li>";
-}
-function updateHighlight(){
-const text=editor.innerText;
-const searchWord=searchWordInput.innerText.trim();
-if(!searchWord){highlightedTextDiv.innerHTML=text;occurrencesEl.textContent=0;return;}
-const regex=new RegExp(`\\b(${escapeRegExp(searchWord)})\\b`,"gi");
-highlightedTextDiv.innerHTML=text.replace(regex,"<mark>$1</mark>");
-const matches=text.match(regex);
-occurrencesEl.textContent=matches?matches.length:0;
-}
-function escapeRegExp(string){return string.replace(/[.*+?^${}()|[\]\\]/g,"\\$&");}
+  <script>
+    const editor = document.getElementById('editor');
+    const wordCountEl = document.getElementById('wordCount');
+    const charCountEl = document.getElementById('charCount');
+    const spaceCountEl = document.getElementById('spaceCount');
+    const readTimeEl = document.getElementById('readTime');
+    const speakTimeEl = document.getElementById('speakTime');
+    const keywordsEl = document.getElementById('keywords');
+    const searchWordInput = document.getElementById('searchWord');
+    const occurrencesEl = document.getElementById('occurrences');
+    const highlightedTextDiv = document.getElementById('highlightedText');
+    const replaceWordInput = document.getElementById('replaceWord');
+    const toggle = document.querySelector(".toggle-theme");
+    const dictInput = document.getElementById('dictInput');
+    const dictResult = document.getElementById('dictResult');
+    const saveBtn = document.getElementById('saveBtn');
+    const clearBtn = document.getElementById('clearBtn');
+    document.getElementById('year').textContent = new Date().getFullYear();
 
-// Replace highlighted words
-document.getElementById('replaceBtn').addEventListener('click',()=>{
-const searchWord=searchWordInput.innerText.trim();
-const replacement=replaceWordInput.innerText;
-if(!searchWord)return;
-const regex=new RegExp(`\\b(${escapeRegExp(searchWord)})\\b`,"gi");
-editor.innerText=editor.innerText.replace(regex,replacement);
-replaceWordInput.innerText="";
-updateCounts();
-});
+    // Update counts
+    function updateCounts() {
+      const text = editor.innerText;
+      charCountEl.textContent = text.length;
+      const words = text.trim() === "" ? 0 : text.trim().split(/\s+/).length;
+      wordCountEl.textContent = words;
+      const spaces = (text.match(/ /g) || []).length;
+      spaceCountEl.textContent = spaces;
+      updateTimes(words);
+      updateKeywords(text);
+      updateHighlight();
+      localStorage.setItem("savedText", text);
+    }
+    function updateTimes(words) {
+      const readSec = Math.round(words / 3.33);
+      const speakSec = Math.round(words / 2.5);
+      readTimeEl.textContent = `${readSec}s`;
+      speakTimeEl.textContent = `${speakSec}s`;
+    }
+    function updateKeywords(text) {
+      const words = text.toLowerCase().match(/\b[a-z]{3,}\b/g) || [];
+      const freq = {};
+      words.forEach(w => freq[w] = (freq[w] || 0) + 1);
+      const top = Object.entries(freq).sort((a, b) => b[1] - a[1]).slice(0, 5);
+      keywordsEl.innerHTML = top.map(([w, c]) => `<li>${w}: ${(c / words.length * 100).toFixed(1)}%</li>`).join("") || "<li>None</li>";
+    }
+    function updateHighlight() {
+      const text = editor.innerText;
+      const searchWord = searchWordInput.innerText.trim();
+      if (!searchWord) { highlightedTextDiv.innerHTML = text; occurrencesEl.textContent = 0; return; }
+      const regex = new RegExp(`\\b(${escapeRegExp(searchWord)})\\b`, "gi");
+      highlightedTextDiv.innerHTML = text.replace(regex, "<mark>$1</mark>");
+      const matches = text.match(regex);
+      occurrencesEl.textContent = matches ? matches.length : 0;
+    }
+    function escapeRegExp(string) { return string.replace(/[.*+?^${}()|[\]\\]/g, "\\$&"); }
 
-// Save and Clear
-saveBtn.addEventListener('click',()=>{
-localStorage.setItem('savedText',editor.innerText);
-alert("✅ Text saved successfully!");
-});
-clearBtn.addEventListener('click',()=>{
-editor.innerText="";
-localStorage.removeItem('savedText');
-updateCounts();
-});
+    // Replace highlighted words
+    document.getElementById('replaceBtn').addEventListener('click', () => {
+      const searchWord = searchWordInput.innerText.trim();
+      const replacement = replaceWordInput.innerText;
+      if (!searchWord) return;
+      const regex = new RegExp(`\\b(${escapeRegExp(searchWord)})\\b`, "gi");
+      editor.innerText = editor.innerText.replace(regex, replacement);
+      replaceWordInput.innerText = "";
+      updateCounts();
+    });
 
-// 🌙 Persistent Dark Mode
-if (localStorage.getItem("theme") === "dark") {
-document.body.classList.add("dark");
-toggle.textContent = "☀️ Light Mode";
-} else { toggle.textContent = "🌙 Dark Mode"; }
-toggle.addEventListener("click", () => {
-document.body.classList.toggle("dark");
-const mode = document.body.classList.contains("dark") ? "dark" : "light";
-localStorage.setItem("theme", mode);
-toggle.textContent = mode === "dark" ? "☀️ Light Mode" : "🌙 Dark Mode";
-});
+    // Save and Clear
+    saveBtn.addEventListener('click', () => {
+      localStorage.setItem('savedText', editor.innerText);
+      alert("✅ Text saved successfully!");
+    });
+    clearBtn.addEventListener('click', () => {
+      editor.innerText = "";
+      localStorage.removeItem('savedText');
+      updateCounts();
+    });
+
+    // 🌙 Persistent Dark Mode
+    if (localStorage.getItem("theme") === "dark") {
+      document.body.classList.add("dark");
+      toggle.textContent = "☀️ Light Mode";
+    } else { toggle.textContent = "🌙 Dark Mode"; }
+    toggle.addEventListener("click", () => {
+      document.body.classList.toggle("dark");
+      const mode = document.body.classList.contains("dark") ? "dark" : "light";
+      localStorage.setItem("theme", mode);
+      toggle.textContent = mode === "dark" ? "☀️ Light Mode" : "🌙 Dark Mode";
+    });
 
 
-const tooltip=document.getElementById("tooltip");
-const copyBtn=document.getElementById("copyBtn");
-const fixAllBtn=document.getElementById("fixAllBtn");
-const toast=document.getElementById("toast");
-let latestText="",activeTarget=null,hideTimer=null,checkTimer=null,recheckTimer=null;
-let tooltipLocked=false,insideHoverZone=false;
+    const tooltip = document.getElementById("tooltip");
+    const copyBtn = document.getElementById("copyBtn");
+    const fixAllBtn = document.getElementById("fixAllBtn");
+    const toast = document.getElementById("toast");
+    let latestText = "", activeTarget = null, hideTimer = null, checkTimer = null, recheckTimer = null;
+    let tooltipLocked = false, insideHoverZone = false;
 
-// Typing listener
-editor.addEventListener("input",()=>{
-clearTimeout(checkTimer);
-latestText=editor.innerText;
-checkTimer=setTimeout(runCheck,900);
-});
+    // Typing listener
+    editor.addEventListener("input", () => {
+      clearTimeout(checkTimer);
+      latestText = editor.innerText;
+      checkTimer = setTimeout(runCheck, 900);
+    });
 
-// Spell + Grammar Check
-async function runCheck(){
-if(tooltipLocked) return;
-const text=editor.innerText.trim();
-if(!text) return;
-try{
-const res=await fetch("https://api.languagetool.org/v2/check",{
-method:"POST",
-headers:{"Content-Type":"application/x-www-form-urlencoded"},
-body:new URLSearchParams({text,language:"en-US"})
-});
-const data=await res.json();
-highlightIssues(data.matches);
-}catch(e){console.error(e);}
-}
+    // Spell + Grammar Check
+    async function runCheck() {
+      if (tooltipLocked) return;
+      const text = editor.innerText.trim();
+      if (!text) return;
+      try {
+        const res = await fetch("https://api.languagetool.org/v2/check", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: new URLSearchParams({ text, language: "en-US" })
+        });
+        const data = await res.json();
+        highlightIssues(data.matches);
+      } catch (e) { console.error(e); }
+    }
 
-function highlightIssues(matches){
-const text=latestText;
-let segments=[],last=0;
-matches.forEach(m=>{
-if(m.offset>last)segments.push(escapeHtml(text.slice(last,m.offset)));
-const wrong=text.slice(m.offset,m.offset+m.length);
-const cls=m.rule.issueType==="misspelling"?"error-spell":"error-grammar";
-const sug=m.replacements.slice(0,3).map(s=>s.innerText);
-segments.push(`<span class="${cls}" data-suggestions='${JSON.stringify(sug)}'>${escapeHtml(wrong)}</span>`);
-last=m.offset+m.length;
-});
-segments.push(escapeHtml(text.slice(last)));
-editor.innerHTML=segments.join("");
-placeCaretAtEnd(editor);
-}
-function escapeHtml(str){
-return str.replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#039;"}[m]));
-}
-function placeCaretAtEnd(el){
-const range=document.createRange();
-const sel=window.getSelection();
-range.selectNodeContents(el);
-range.collapse(false);
-sel.removeAllRanges();
-sel.addRange(range);
-}
+    function highlightIssues(matches) {
+      const text = latestText;
+      let segments = [], last = 0;
+      matches.forEach(m => {
+        if (m.offset > last) segments.push(escapeHtml(text.slice(last, m.offset)));
+        const wrong = text.slice(m.offset, m.offset + m.length);
+        const cls = m.rule.issueType === "misspelling" ? "error-spell" : "error-grammar";
+        const sug = m.replacements.slice(0, 3).map(s => s.innerText);
+        segments.push(`<span class="${cls}" data-suggestions='${JSON.stringify(sug)}'>${escapeHtml(wrong)}</span>`);
+        last = m.offset + m.length;
+      });
+      segments.push(escapeHtml(text.slice(last)));
+      editor.innerHTML = segments.join("");
+      placeCaretAtEnd(editor);
+    }
+    function escapeHtml(str) {
+      return str.replace(/[&<>"']/g, m => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", "\"": "&quot;", "'": "&#039;" }[m]));
+    }
+    function placeCaretAtEnd(el) {
+      const range = document.createRange();
+      const sel = window.getSelection();
+      range.selectNodeContents(el);
+      range.collapse(false);
+      sel.removeAllRanges();
+      sel.addRange(range);
+    }
 
-// Tooltip behavior
-editor.addEventListener("mousemove",e=>{
-const t=e.target;
-if(t.classList.contains("error-spell")||t.classList.contains("error-grammar")){
-insideHoverZone=true;
-clearTimeout(hideTimer);
-if(activeTarget!==t) showTooltip(t);
-} else {
-insideHoverZone=false;
-if(!tooltip.matches(":hover")) scheduleHideTooltip();
-}
-});
-tooltip.addEventListener("mouseenter",()=>{insideHoverZone=true;clearTimeout(hideTimer);});
-tooltip.addEventListener("mouseleave",()=>{insideHoverZone=false;scheduleHideTooltip();});
-function showTooltip(target){
-const sugg=JSON.parse(target.dataset.suggestions);
-const rect=target.getBoundingClientRect();
-tooltip.innerHTML=`<strong>${target.classList.contains("error-spell")?"Spelling suggestions:":"Grammar suggestions:"}</strong><ul>${sugg.map(s=>`<li>${s}</li>`).join("")||"<li>No suggestions</li>"}</ul>`;
-tooltip.classList.add("visible");
-tooltip.style.left=rect.left+window.scrollX+"px";
-tooltip.style.top=rect.bottom+window.scrollY+8+"px";
-activeTarget=target;
-}
-function scheduleHideTooltip(){clearTimeout(hideTimer);hideTimer=setTimeout(()=>{if(!insideHoverZone){tooltip.classList.remove("visible");activeTarget=null;}},800);}
+    // Tooltip behavior
+    editor.addEventListener("mousemove", e => {
+      const t = e.target;
+      if (t.classList.contains("error-spell") || t.classList.contains("error-grammar")) {
+        insideHoverZone = true;
+        clearTimeout(hideTimer);
+        if (activeTarget !== t) showTooltip(t);
+      } else {
+        insideHoverZone = false;
+        if (!tooltip.matches(":hover")) scheduleHideTooltip();
+      }
+    });
+    tooltip.addEventListener("mouseenter", () => { insideHoverZone = true; clearTimeout(hideTimer); });
+    tooltip.addEventListener("mouseleave", () => { insideHoverZone = false; scheduleHideTooltip(); });
+    function showTooltip(target) {
+      const sugg = JSON.parse(target.dataset.suggestions);
+      const rect = target.getBoundingClientRect();
+      tooltip.innerHTML = `<strong>${target.classList.contains("error-spell") ? "Spelling suggestions:" : "Grammar suggestions:"}</strong><ul>${sugg.map(s => `<li>${s}</li>`).join("") || "<li>No suggestions</li>"}</ul>`;
+      tooltip.classList.add("visible");
+      tooltip.style.left = rect.left + window.scrollX + "px";
+      tooltip.style.top = rect.bottom + window.scrollY + 8 + "px";
+      activeTarget = target;
+    }
+    function scheduleHideTooltip() { clearTimeout(hideTimer); hideTimer = setTimeout(() => { if (!insideHoverZone) { tooltip.classList.remove("visible"); activeTarget = null; } }, 800); }
 
-// Click suggestion replaces word
-tooltip.addEventListener("click",e=>{
-if(e.target.tagName==="LI" && activeTarget){
-tooltipLocked=true;
-const newWord=e.target.textContent;
-activeTarget.outerHTML=newWord;
-latestText=editor.innerText;
-tooltip.classList.remove("visible");
-clearTimeout(recheckTimer);
-recheckTimer=setTimeout(()=>{tooltipLocked=false;runCheck();},400);
-}
-});
+    // Click suggestion replaces word
+    tooltip.addEventListener("click", e => {
+      if (e.target.tagName === "LI" && activeTarget) {
+        tooltipLocked = true;
+        const newWord = e.target.textContent;
+        activeTarget.outerHTML = newWord;
+        latestText = editor.innerText;
+        tooltip.classList.remove("visible");
+        clearTimeout(recheckTimer);
+        recheckTimer = setTimeout(() => { tooltipLocked = false; runCheck(); }, 400);
+      }
+    });
 
-// Copy Text
-copyBtn.addEventListener("click",()=>{
-navigator.clipboard.writeText(editor.innerText).then(()=>{
-toast.style.opacity=1;
-copyBtn.textContent="✅";
-setTimeout(()=>{toast.style.opacity=0;copyBtn.textContent="📋 Copy Text";},1500);
-});
-});
+    // Copy Text
+    copyBtn.addEventListener("click", () => {
+      navigator.clipboard.writeText(editor.innerText).then(() => {
+        toast.style.opacity = 1;
+        copyBtn.textContent = "✅";
+        setTimeout(() => { toast.style.opacity = 0; copyBtn.textContent = "📋 Copy Text"; }, 1500);
+      });
+    });
 
-// Fix All Mistakes
-fixAllBtn.addEventListener("click",async()=>{
-const text=editor.innerText.trim();
-if(!text)return;
-fixAllBtn.textContent="⏳ Fixing...";
-try{
-const res=await fetch("https://api.languagetool.org/v2/check",{
-method:"POST",
-headers:{"Content-Type":"application/x-www-form-urlencoded"},
-body:new URLSearchParams({text,language:"en-US"})
-});
-const data=await res.json();
-let correctedText=text;
-const sortedMatches=data.matches.sort((a,b)=>b.offset-a.offset);
-for(const match of sortedMatches){
-const best=match.replacements[0]?.innerText;
-if(best){correctedText=correctedText.slice(0,match.offset)+best+correctedText.slice(match.offset+match.length);}
-}
-editor.innerText=correctedText;
-latestText=correctedText;
-runCheck();
-fixAllBtn.textContent="✅ Fixed!";
-setTimeout(()=>fixAllBtn.textContent="🪄 Fix All",1500);
-}catch(e){fixAllBtn.textContent="⚠️ Try Again";console.error(e);}
-});
+    // Fix All Mistakes
+    fixAllBtn.addEventListener("click", async () => {
+      const text = editor.innerText.trim();
+      if (!text) return;
+      fixAllBtn.textContent = "⏳ Fixing...";
+      try {
+        const res = await fetch("https://api.languagetool.org/v2/check", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: new URLSearchParams({ text, language: "en-US" })
+        });
+        const data = await res.json();
+        let correctedText = text;
+        const sortedMatches = data.matches.sort((a, b) => b.offset - a.offset);
+        for (const match of sortedMatches) {
+          const best = match.replacements[0]?.innerText;
+          if (best) { correctedText = correctedText.slice(0, match.offset) + best + correctedText.slice(match.offset + match.length); }
+        }
+        editor.innerText = correctedText;
+        latestText = correctedText;
+        runCheck();
+        fixAllBtn.textContent = "✅ Fixed!";
+        setTimeout(() => fixAllBtn.textContent = "🪄 Fix All", 1500);
+      } catch (e) { fixAllBtn.textContent = "⚠️ Try Again"; console.error(e); }
+    });
 
-// Auto Load Saved Text
-window.addEventListener("load",()=>{
-const saved=localStorage.getItem("savedText");
-if(saved){editor.innerText=saved;}
-updateCounts();
-});
-editor.addEventListener('input',updateCounts);
-searchWordInput.addEventListener('input',updateHighlight);
-</script>
+    // Auto Load Saved Text
+    window.addEventListener("load", () => {
+      const saved = localStorage.getItem("savedText");
+      if (saved) { editor.innerText = saved; }
+      updateCounts();
+    });
+    editor.addEventListener('input', updateCounts);
+    searchWordInput.addEventListener('input', updateHighlight);
+  </script>
 </body>
+
 </html>
