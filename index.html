@@ -448,7 +448,7 @@
         <span>Spaces: <span id="spaceCount">0</span></span>
       </div>
       <div class="action-buttons">
-        <button id="saveBtn">💾 Save Text</button>
+        <button id="saveBtn">💾 Download Text</button>
         <button id="clearBtn">🧹 Clear Text</button>
         <button id="copyBtn">📋 Copy Text</button>
         <button id="fixAllBtn">🪄 Fix All</button>
@@ -636,10 +636,15 @@
     });
 
     // Save and Clear
-    saveBtn.addEventListener('click', () => {
-      localStorage.setItem('savedText', editor.innerText);
-      alert("✅ Text saved successfully!");
-    });
+// Download text
+saveBtn.addEventListener('click',()=>{
+  const blob=new Blob([editor.innerText],{type:"text/plain"});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download="text.txt";
+  a.click();
+  URL.revokeObjectURL(a.href);
+});
     clearBtn.addEventListener('click', () => {
       editor.innerText = "";
       localStorage.removeItem('savedText');
