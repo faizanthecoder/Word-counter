@@ -696,7 +696,7 @@
         if (m.offset > last) segments.push(escapeHtml(text.slice(last, m.offset)));
         const wrong = text.slice(m.offset, m.offset + m.length);
         const cls = m.rule.issueType === "misspelling" ? "error-spell" : "error-grammar";
-        const sug = m.replacements.slice(0, 3).map(s => s.innerText);
+        const sug = m.replacements.slice(0, 3).map(s => s.value);
         segments.push(`<span class="${cls}" data-suggestions='${JSON.stringify(sug)}'>${escapeHtml(wrong)}</span>`);
         last = m.offset + m.length;
       });
@@ -778,7 +778,7 @@
         let correctedText = text;
         const sortedMatches = data.matches.sort((a, b) => b.offset - a.offset);
         for (const match of sortedMatches) {
-          const best = match.replacements[0]?.innerText;
+          const best = match.replacements[0]?.value;
           if (best) { correctedText = correctedText.slice(0, match.offset) + best + correctedText.slice(match.offset + match.length); }
         }
         editor.innerText = correctedText;
