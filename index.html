@@ -28,7 +28,10 @@
   "url": "https://countit4u.fun/",
   "applicationCategory": "Utility",
   "description": "Free online word counter and text analyzer for writers and students.",
-  "creator": {"@type": "Person","name": "Faizan the Coder"}
+  "creator": {
+    "@type": "Person",
+    "name": "Faizan the Coder"
+  }
 }
 </script>
 
@@ -39,7 +42,7 @@ body{
   min-height:100vh;
   display:flex;
   flex-direction:column;
-  background:linear-gradient(145deg,#e8f9f7,#d0f0ed);
+  background: linear-gradient(116deg, #e8f9f7, #44bfb4);
   color:#222;
   transition:.3s;
 }
@@ -67,7 +70,14 @@ header h1{font-size:1.6rem;letter-spacing:.5px;}
   transition:.3s;
 }
 .toggle-theme:hover{background:rgba(255,255,255,.4);}
-main{flex:1;display:flex;flex-direction:column;align-items:center;padding:30px 20px;gap:20px}
+main{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  padding:30px 20px;
+  gap:20px
+}
 .container{
   width:100%;
   max-width:800px;
@@ -78,7 +88,7 @@ main{flex:1;display:flex;flex-direction:column;align-items:center;padding:30px 2
   display:flex;
   flex-direction:column;
 }
-textarea{
+editor{
   width:100%;
   height:180px;
   padding:15px;
@@ -89,7 +99,7 @@ textarea{
   background-color:#fcfefe;
   transition:all .3s ease;
 }
-textarea:focus{border-color:#4fd1c5;box-shadow:0 0 6px rgba(79,209,197,0.4);}
+editor:focus{border-color:#4fd1c5;box-shadow:0 0 6px rgba(79,209,197,0.4);}
 input[type="text"]{
   padding:10px;
   font-size:16px;
@@ -166,92 +176,155 @@ button:hover{transform:translateY(-2px);box-shadow:0 4px 10px rgba(56,178,172,0.
 .blog-card p{padding:0 10px 10px;font-size:14px;color:#666;}
 footer{text-align:center;padding:20px;background:linear-gradient(135deg,#4fd1c5,#38b2ac);color:#fff;}
 footer a{color:#fff;text-decoration:underline}
+
+/* 🌙 Dark Mode Styles */
+body.dark{ background:linear-gradient(145deg,#1b1b1b,#242424); color:#f0f0f0; }
+body.dark header{ background:linear-gradient(135deg,#319795,#285e61); }
+body.dark .container, body.dark .stats, body.dark input[type="text"], body.dark .editor, body.dark .blog-section, body.dark .suggestion{ background:#2b2b2b; color:#f0f0f0; border-color:#444; }
+body.dark .editor, body.dark input[type="text"]{ background-color:#3b3b3b; color:#f0f0f0; }
+body.dark .blog-card{ background:#2c2c2c; color:#f0f0f0; border-color:#444; }
+body.dark .blog-card h3{color:#fff;}
+body.dark .blog-card p{color:#ccc;}
+body.dark button, body.dark .toggle-theme{ background:linear-gradient(135deg,#319795,#2c7a7b); color:#fff; }
+body.dark footer{ background:linear-gradient(135deg,#319795,#285e61); }
+
+/* ✏️ New spellcheck styles */
+.editor{
+  width:100%;
+  max-width:800px;
+  min-height:250px;
+  border:1px solid #bcdad6;
+  border-radius:10px;
+  padding:15px;
+  background:#fff;
+  font-size:16px;
+  line-height:1.6;
+  outline:none;
+  overflow-y:auto;
+  white-space:pre-wrap;
+}
+.editor span.error-spell{text-decoration:underline wavy red;cursor:pointer;}
+.editor span.error-grammar{text-decoration:underline wavy blue;cursor:pointer;}
+.tooltip{
+  position:absolute;
+  background:rgba(40,40,40,0.95);
+  backdrop-filter:blur(6px);
+  color:#fff;
+  padding:10px 12px;
+  border-radius:8px;
+  font-size:14px;
+  z-index:100;
+  max-width:260px;
+  box-shadow:0 4px 12px rgba(0,0,0,.25);
+  display:none;
+  opacity:0;
+  transition:opacity .25s ease;
+}
+.tooltip.visible{display:block;opacity:1;}
+.tooltip ul{margin:8px 0 0;padding:0;list-style:none;}
+.tooltip li{padding:4px 0;cursor:pointer;border-radius:4px;transition:.2s;}
+.tooltip li:hover{background:rgba(255,255,255,0.15);}
+.buttons{ display:flex; gap:10px; margin-top:15px; }
+button{ padding:10px 15px; font-size:15px; background:linear-gradient(135deg,#4fd1c5,#38b2ac); color:#fff; border:none; border-radius:8px; cursor:pointer; transition:.3s; }
+button:hover{transform:translateY(-2px);box-shadow:0 4px 10px rgba(56,178,172,0.4);}
+.toast{ position:fixed; bottom:20px; right:20px; background:#333; color:#fff; padding:10px 15px; border-radius:6px; opacity:0; transition:.3s; pointer-events:none; }
 </style>
 </head>
-
 <body>
 <header>
-  <h1>CountIt4U</h1>
-  <nav class="navbar">
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-      <a href="blog/index.html">Blog</a>
-    <a href="contact.html">Contact</a>
-    <a href="privacy.html">Privacy</a>
-  </nav>
-  <button class="toggle-theme">🌙 Dark Mode</button>
+<h1>CountIt4U</h1>
+<nav class="navbar">
+<a href="index.html">Home</a>
+<a href="about.html">About</a>
+<a href="blog/index.html">Blog</a>
+<a href="contact.html">Contact</a>
+<a href="privacy.html">Privacy</a>
+<a href="FAQs.html">FAQs</a>
+</nav>
+<button class="toggle-theme">🌙 Dark Mode</button>
 </header>
 
 <main>
-  <article class="container">
-    <textarea id="textarea" placeholder="Type or paste your text here..."></textarea>
-    <div class="count">
-      <span>Words: <span id="wordCount">0</span></span>
-      <span>Characters: <span id="charCount">0</span></span>
-      <span>Spaces: <span id="spaceCount">0</span></span>
-    </div>
-    <div class="action-buttons">
-      <button id="saveBtn">💾 Save Text</button>
-      <button id="clearBtn">🧹 Clear Text</button>
-    </div>
+<article class="container">
+<div id="editor" class="editor" contenteditable="true" spellcheck="false"></div>
+<!-- <editor spellcheck="false" contenteditable="true" class="editor" id="editor" placeholder="Type or paste your text here..."></editor> -->
+<div class="count">
+<span>Words: <span id="wordCount">0</span></span>
+<span>Characters: <span id="charCount">0</span></span>
+<span>Spaces: <span id="spaceCount">0</span></span>
+</div>
+<div class="action-buttons">
+<button id="saveBtn">💾 Save Text</button>
+<button id="clearBtn">🧹 Clear Text</button>
+<button id="copyBtn">📋 Copy Text</button>
+<button id="fixAllBtn">🪄 Fix All</button>
+</div>
+<div class="toast" id="toast">Copied ✅</div>
+<div class="tooltip" id="tooltip"></div>
+<div class="stats" id="extraStats">
+<p>Reading Time: <span id="readTime">0s</span> | Speaking Time: <span id="speakTime">0s</span></p>
+<p>Keyword Density (Top 5):</p>
+<ul id="keywords"></ul>
+</div>
+<input type="text" id="searchWord" placeholder="Search a word to highlight">
+<div class="count">Occurrences: <span id="occurrences">0</span></div>
+<div id="highlightedText" class="stats" style="white-space:pre-wrap;min-height:100px;"></div>
+<input type="text" id="replaceWord" placeholder="Type replacement word">
+<button id="replaceBtn">Replace All Highlighted</button>
+<button id="autoCorrectBtn">🔧 Auto-Correct Text</button>
+<input type="text" id="dictInput" placeholder="Enter a word to define...">
+<div id="dictResult" class="stats" style="min-height:70px;">Word meanings will appear here...</div>
+</article>
 
-    <div class="stats" id="extraStats">
-      <p>Reading Time: <span id="readTime">0s</span> | Speaking Time: <span id="speakTime">0s</span></p>
-      <p>Keyword Density (Top 5):</p>
-      <ul id="keywords"></ul>
-    </div>
+<section class="suggestion">
+<h2>💡 Have Suggestions?</h2>
+<p>We’d love to hear from you! If you have ideas, feature requests, or notice any bugs, feel free to email us directly at:</p>
+<p><strong><a href="mailto:faizanthecoder@gmail.com">faizanthecoder@gmail.com</a></strong></p>
+<p>Your feedback helps improve CountIt4U for everyone.</p>
+</section>
+<!-- <section  style="margin-top:30px; max-width:800px; background:#fff; padding:20px; border-radius:10px; border:1px solid #ddd;"> -->
 
-    <input type="text" id="searchWord" placeholder="Search a word to highlight">
-    <div class="count">Occurrences: <span id="occurrences">0</span></div>
-    <div id="highlightedText" class="stats" style="white-space:pre-wrap;min-height:100px;"></div>
+<section class="suggestion">
+<h2 style="padding: 0px 100px;">About CountIt4U - Free Online Word Counter</h2>
+<p><strong>Countit4u</strong> is a free online word and character counting tool designed to help writers, students, and content creators improve their writing quality. You can quickly calculate the total number of words, characters, and spaces in any text, check your reading and speaking time, and even highlight or replace specific words instantly.</p>
+<p>Our tool also provides keyword analysis to show which words appear most frequently in your writing, helping you balance keyword usage for SEO optimization. With additional features like auto-correct, a built-in dictionary, and auto-save, CountIt4U is a complete writing assistant that works directly in your browser without any installation.</p>
+<p>To get started, type or paste your text in the box above. Your statistics update in real time as you edit. You can also switch between light and dark mode for comfortable writing. Whether you're preparing essays, blog posts, or reports, CountIt4U helps you write smarter, faster, and more effectively.</p>
+<p><strong>Note:</strong> This website does not store your text or share it with anyone. Everything runs locally on your device for maximum privacy and safety.</p>
+</section>
 
-    <input type="text" id="replaceWord" placeholder="Type replacement word">
-    <button id="replaceBtn">Replace All Highlighted</button>
-
-    <button id="autoCorrectBtn">🔧 Auto-Correct Text</button>
-
-    <input type="text" id="dictInput" placeholder="Enter a word to define...">
-    <div id="dictResult" class="stats" style="min-height:70px;">Word meanings will appear here...</div>
-  </article>
-
-  <section class="suggestion">
-    <h2>💡 Have Suggestions?</h2>
-    <p>We’d love to hear from you! If you have ideas, feature requests, or notice any bugs, feel free to email us directly at:</p>
-    <p><strong><a href="mailto:faizanthecoder@gmail.com">faizanthecoder@gmail.com</a></strong></p>
-    <p>Your feedback helps improve CountIt4U for everyone.</p>
-  </section>
-
-  <section class="blog-section">
-    <h2>📝 Writing Tips & Resources</h2>
-    <div class="blog-grid">
-      <a style="text-decoration: none;" href="/blog/how-to-write-an-essay.html"><div class="blog-card">
-        <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2" alt="Essay Writing Tips">
-        <h3>5 Tips to Write a Perfect Essay</h3>
-        <p>Learn how to plan, draft, and polish your essays with clear structure and creativity.</p>
+<section class="blog-section">
+<h2>📝 Writing Tips & Resources</h2>
+<div class="blog-grid">
+<a style="text-decoration: none;" href="/blog/how-to-write-an-essay.html"><div class="blog-card">
+<img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2" alt="Essay Writing Tips">
+<h3>5 Tips to Write a Perfect Essay</h3>
+<p>Learn how to plan, draft, and polish your essays with clear structure and creativity.</p>
+</div></a>
+<a style="text-decoration: none;" href="/blog/creative-writing-guide.html"><div class="blog-card">
+<img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b" alt="Writing Productivity">
+<h3>Boost Your Writing Productivity</h3>
+<p>Discover tools and techniques that make writing smoother, faster, and more enjoyable.</p>
+</div></a>
+<a style="text-decoration: none;" href="/blog/grammar-tips.html"><div class="blog-card">
+<img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f" alt="Grammar Guide">
+<h3>Grammar Mistakes You Should Avoid</h3>
+<p>Find out the most common grammar mistakes and how to fix them like a pro.</p>
+</div></a>
+<a style="text-decoration: none;" href="/blog/tutorial.html"><div class="blog-card">
+        <img src="https://images.unsplash.com/photo-1515378791036-0648a3ef77b2" alt="Website Guide">
+        <h3>Complete tutorial on usage of our website </h3>
+        <p>This is a complete guide on how to use our website without any issue.</p>
       </div></a>
-            <a style="text-decoration: none;" href="/blog/creative-writing-guide.html"><div class="blog-card">
-        <img src="https://images.unsplash.com/photo-1503676260728-1c00da094a0b" alt="Writing Productivity">
-        <h3>Boost Your Writing Productivity</h3>
-        <p>Discover tools and techniques that make writing smoother, faster, and more enjoyable.</p>
-      </div></a>
-            <a style="text-decoration: none;" href="/blog/grammar-tips.html"><div class="blog-card">
-        <img src="https://images.unsplash.com/photo-1524995997946-a1c2e315a42f" alt="Grammar Guide">
-        <h3>Grammar Mistakes You Should Avoid</h3>
-        <p>Find out the most common grammar mistakes and how to fix them like a pro.</p>
-      </div></a>
-    </div>
-  </section>
+</div>
+</section>
 </main>
 
 <footer>
-  <p>&copy; <span id="year"></span> CountIt4U |
-  <a href="about.html">About</a> |
-  <a href="contact.html">Contact</a> |
-  <a href="privacy.html">Privacy Policy</a></p>
+<p>&copy; <span id="year"></span> CountIt4U | <a href="about.html">About</a> | <a href="contact.html">Contact</a> | <a href="privacy.html">Privacy Policy</a></p>
 </footer>
 
 <script>
-const textarea=document.getElementById('textarea');
+const editor=document.getElementById('editor');
 const wordCountEl=document.getElementById('wordCount');
 const charCountEl=document.getElementById('charCount');
 const spaceCountEl=document.getElementById('spaceCount');
@@ -271,110 +344,213 @@ document.getElementById('year').textContent=new Date().getFullYear();
 
 // Update counts
 function updateCounts(){
-  const text=textarea.value;
-  charCountEl.textContent=text.length;
-  const words=text.trim()===""?0:text.trim().split(/\s+/).length;
-  wordCountEl.textContent=words;
-  const spaces=(text.match(/ /g)||[]).length;
-  spaceCountEl.textContent=spaces;
-  updateTimes(words);
-  updateKeywords(text);
-  updateHighlight();
-  localStorage.setItem("savedText", text);
+const text=editor.innerText;
+charCountEl.textContent=text.length;
+const words=text.trim()===""?0:text.trim().split(/\s+/).length;
+wordCountEl.textContent=words;
+const spaces=(text.match(/ /g)||[]).length;
+spaceCountEl.textContent=spaces;
+updateTimes(words);
+updateKeywords(text);
+updateHighlight();
+localStorage.setItem("savedText", text);
 }
 function updateTimes(words){
-  const readSec=Math.round(words/3.33);
-  const speakSec=Math.round(words/2.5);
-  readTimeEl.textContent=`${readSec}s`;
-  speakTimeEl.textContent=`${speakSec}s`;
+const readSec=Math.round(words/3.33);
+const speakSec=Math.round(words/2.5);
+readTimeEl.textContent=`${readSec}s`;
+speakTimeEl.textContent=`${speakSec}s`;
 }
 function updateKeywords(text){
-  const words=text.toLowerCase().match(/\b[a-z]{3,}\b/g)||[];
-  const freq={};
-  words.forEach(w=>freq[w]=(freq[w]||0)+1);
-  const top=Object.entries(freq).sort((a,b)=>b[1]-a[1]).slice(0,5);
-  keywordsEl.innerHTML=top.map(([w,c])=>`<li>${w}: ${(c/words.length*100).toFixed(1)}%</li>`).join("")||"<li>None</li>";
+const words=text.toLowerCase().match(/\b[a-z]{3,}\b/g)||[];
+const freq={};
+words.forEach(w=>freq[w]=(freq[w]||0)+1);
+const top=Object.entries(freq).sort((a,b)=>b[1]-a[1]).slice(0,5);
+keywordsEl.innerHTML=top.map(([w,c])=>`<li>${w}: ${(c/words.length*100).toFixed(1)}%</li>`).join("")||"<li>None</li>";
 }
 function updateHighlight(){
-  const text=textarea.value;
-  const searchWord=searchWordInput.value.trim();
-  if(!searchWord){highlightedTextDiv.innerHTML=text;occurrencesEl.textContent=0;return;}
-  const regex=new RegExp(`\\b(${escapeRegExp(searchWord)})\\b`,"gi");
-  highlightedTextDiv.innerHTML=text.replace(regex,"<mark>$1</mark>");
-  const matches=text.match(regex);
-  occurrencesEl.textContent=matches?matches.length:0;
+const text=editor.innerText;
+const searchWord=searchWordInput.innerText.trim();
+if(!searchWord){highlightedTextDiv.innerHTML=text;occurrencesEl.textContent=0;return;}
+const regex=new RegExp(`\\b(${escapeRegExp(searchWord)})\\b`,"gi");
+highlightedTextDiv.innerHTML=text.replace(regex,"<mark>$1</mark>");
+const matches=text.match(regex);
+occurrencesEl.textContent=matches?matches.length:0;
 }
 function escapeRegExp(string){return string.replace(/[.*+?^${}()|[\]\\]/g,"\\$&");}
 
 // Replace highlighted words
 document.getElementById('replaceBtn').addEventListener('click',()=>{
-  const searchWord=searchWordInput.value.trim();
-  const replacement=replaceWordInput.value;
-  if(!searchWord)return;
-  const regex=new RegExp(`\\b(${escapeRegExp(searchWord)})\\b`,"gi");
-  textarea.value=textarea.value.replace(regex,replacement);
-  replaceWordInput.value="";
-  updateCounts();
+const searchWord=searchWordInput.innerText.trim();
+const replacement=replaceWordInput.innerText;
+if(!searchWord)return;
+const regex=new RegExp(`\\b(${escapeRegExp(searchWord)})\\b`,"gi");
+editor.innerText=editor.innerText.replace(regex,replacement);
+replaceWordInput.innerText="";
+updateCounts();
 });
 
 // Save and Clear
 saveBtn.addEventListener('click',()=>{
-  localStorage.setItem('savedText',textarea.value);
-  alert("✅ Text saved successfully!");
+localStorage.setItem('savedText',editor.innerText);
+alert("✅ Text saved successfully!");
 });
 clearBtn.addEventListener('click',()=>{
-  textarea.value="";
-  localStorage.removeItem('savedText');
-  updateCounts();
+editor.innerText="";
+localStorage.removeItem('savedText');
+updateCounts();
 });
 
-// Auto-correct
-document.getElementById('autoCorrectBtn').addEventListener('click', async ()=>{
-  let text=textarea.value.trim();
-  if(!text)return;
-  const words=text.split(/\s+/);
-  let corrected="";
-  for(const word of words){
-    if(/[^a-zA-Z]/.test(word)){corrected+=word+" ";continue;}
-    const res=await fetch(`https://api.datamuse.com/words?sl=${word}`);
-    const data=await res.json();
-    if(data.length && data[0].word.toLowerCase()!=word.toLowerCase()){
-      corrected+=data[0].word+" ";
-    } else corrected+=word+" ";
-  }
-  textarea.value=corrected.trim();
-  updateCounts();
-  alert("✅ Auto-correction complete!");
+// 🌙 Persistent Dark Mode
+if (localStorage.getItem("theme") === "dark") {
+document.body.classList.add("dark");
+toggle.textContent = "☀️ Light Mode";
+} else { toggle.textContent = "🌙 Dark Mode"; }
+toggle.addEventListener("click", () => {
+document.body.classList.toggle("dark");
+const mode = document.body.classList.contains("dark") ? "dark" : "light";
+localStorage.setItem("theme", mode);
+toggle.textContent = mode === "dark" ? "☀️ Light Mode" : "🌙 Dark Mode";
 });
 
-// Dictionary
-dictInput.addEventListener("keypress", async e=>{
-  if(e.key!=="Enter")return;
-  const word=dictInput.value.trim();
-  if(!word)return;
-  dictResult.textContent="⏳ Searching...";
-  try{
-    const res=await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`);
-    if(!res.ok)throw new Error();
-    const data=await res.json();
-    const def=data[0].meanings[0].definitions[0].definition;
-    dictResult.innerHTML=`<strong>${word}</strong><br>📖 ${def}`;
-  }catch{dictResult.textContent="❌ Word not found.";}
+
+const tooltip=document.getElementById("tooltip");
+const copyBtn=document.getElementById("copyBtn");
+const fixAllBtn=document.getElementById("fixAllBtn");
+const toast=document.getElementById("toast");
+let latestText="",activeTarget=null,hideTimer=null,checkTimer=null,recheckTimer=null;
+let tooltipLocked=false,insideHoverZone=false;
+
+// Typing listener
+editor.addEventListener("input",()=>{
+clearTimeout(checkTimer);
+latestText=editor.innerText;
+checkTimer=setTimeout(runCheck,900);
 });
 
-// Dark Mode
-toggle.addEventListener("click",()=>{
-  document.body.classList.toggle("dark");
-  toggle.textContent = document.body.classList.contains("dark") ? "☀️ Light Mode" : "🌙 Dark Mode";
+// Spell + Grammar Check
+async function runCheck(){
+if(tooltipLocked) return;
+const text=editor.innerText.trim();
+if(!text) return;
+try{
+const res=await fetch("https://api.languagetool.org/v2/check",{
+method:"POST",
+headers:{"Content-Type":"application/x-www-form-urlencoded"},
+body:new URLSearchParams({text,language:"en-US"})
+});
+const data=await res.json();
+highlightIssues(data.matches);
+}catch(e){console.error(e);}
+}
+
+function highlightIssues(matches){
+const text=latestText;
+let segments=[],last=0;
+matches.forEach(m=>{
+if(m.offset>last)segments.push(escapeHtml(text.slice(last,m.offset)));
+const wrong=text.slice(m.offset,m.offset+m.length);
+const cls=m.rule.issueType==="misspelling"?"error-spell":"error-grammar";
+const sug=m.replacements.slice(0,3).map(s=>s.innerText);
+segments.push(`<span class="${cls}" data-suggestions='${JSON.stringify(sug)}'>${escapeHtml(wrong)}</span>`);
+last=m.offset+m.length;
+});
+segments.push(escapeHtml(text.slice(last)));
+editor.innerHTML=segments.join("");
+placeCaretAtEnd(editor);
+}
+function escapeHtml(str){
+return str.replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;","'":"&#039;"}[m]));
+}
+function placeCaretAtEnd(el){
+const range=document.createRange();
+const sel=window.getSelection();
+range.selectNodeContents(el);
+range.collapse(false);
+sel.removeAllRanges();
+sel.addRange(range);
+}
+
+// Tooltip behavior
+editor.addEventListener("mousemove",e=>{
+const t=e.target;
+if(t.classList.contains("error-spell")||t.classList.contains("error-grammar")){
+insideHoverZone=true;
+clearTimeout(hideTimer);
+if(activeTarget!==t) showTooltip(t);
+} else {
+insideHoverZone=false;
+if(!tooltip.matches(":hover")) scheduleHideTooltip();
+}
+});
+tooltip.addEventListener("mouseenter",()=>{insideHoverZone=true;clearTimeout(hideTimer);});
+tooltip.addEventListener("mouseleave",()=>{insideHoverZone=false;scheduleHideTooltip();});
+function showTooltip(target){
+const sugg=JSON.parse(target.dataset.suggestions);
+const rect=target.getBoundingClientRect();
+tooltip.innerHTML=`<strong>${target.classList.contains("error-spell")?"Spelling suggestions:":"Grammar suggestions:"}</strong><ul>${sugg.map(s=>`<li>${s}</li>`).join("")||"<li>No suggestions</li>"}</ul>`;
+tooltip.classList.add("visible");
+tooltip.style.left=rect.left+window.scrollX+"px";
+tooltip.style.top=rect.bottom+window.scrollY+8+"px";
+activeTarget=target;
+}
+function scheduleHideTooltip(){clearTimeout(hideTimer);hideTimer=setTimeout(()=>{if(!insideHoverZone){tooltip.classList.remove("visible");activeTarget=null;}},800);}
+
+// Click suggestion replaces word
+tooltip.addEventListener("click",e=>{
+if(e.target.tagName==="LI" && activeTarget){
+tooltipLocked=true;
+const newWord=e.target.textContent;
+activeTarget.outerHTML=newWord;
+latestText=editor.innerText;
+tooltip.classList.remove("visible");
+clearTimeout(recheckTimer);
+recheckTimer=setTimeout(()=>{tooltipLocked=false;runCheck();},400);
+}
+});
+
+// Copy Text
+copyBtn.addEventListener("click",()=>{
+navigator.clipboard.writeText(editor.innerText).then(()=>{
+toast.style.opacity=1;
+copyBtn.textContent="✅";
+setTimeout(()=>{toast.style.opacity=0;copyBtn.textContent="📋 Copy Text";},1500);
+});
+});
+
+// Fix All Mistakes
+fixAllBtn.addEventListener("click",async()=>{
+const text=editor.innerText.trim();
+if(!text)return;
+fixAllBtn.textContent="⏳ Fixing...";
+try{
+const res=await fetch("https://api.languagetool.org/v2/check",{
+method:"POST",
+headers:{"Content-Type":"application/x-www-form-urlencoded"},
+body:new URLSearchParams({text,language:"en-US"})
+});
+const data=await res.json();
+let correctedText=text;
+const sortedMatches=data.matches.sort((a,b)=>b.offset-a.offset);
+for(const match of sortedMatches){
+const best=match.replacements[0]?.innerText;
+if(best){correctedText=correctedText.slice(0,match.offset)+best+correctedText.slice(match.offset+match.length);}
+}
+editor.innerText=correctedText;
+latestText=correctedText;
+runCheck();
+fixAllBtn.textContent="✅ Fixed!";
+setTimeout(()=>fixAllBtn.textContent="🪄 Fix All",1500);
+}catch(e){fixAllBtn.textContent="⚠️ Try Again";console.error(e);}
 });
 
 // Auto Load Saved Text
 window.addEventListener("load",()=>{
-  const saved=localStorage.getItem("savedText");
-  if(saved){textarea.value=saved;}
-  updateCounts();
+const saved=localStorage.getItem("savedText");
+if(saved){editor.innerText=saved;}
+updateCounts();
 });
-textarea.addEventListener('input',updateCounts);
+editor.addEventListener('input',updateCounts);
 searchWordInput.addEventListener('input',updateHighlight);
 </script>
 </body>
