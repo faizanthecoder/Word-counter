@@ -1,11 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>About CountIt4U - Word Counter & Writing Assistant</title>
-<link rel="canonical" href="https://countit4u.fun/about.html" />
-<meta name="description" content="Learn more about CountIt4U — your all-in-one online word counter, writing analyzer, and productivity tool built for accuracy, privacy, and simplicity." />
 <style>
 body{font-family:'Segoe UI',Arial,sans-serif;margin:0;padding:0;background:linear-gradient(145deg,#e8f9f7,#d0f0ed);color:#222}
 header{display:flex;justify-content:space-between;align-items:center;background:linear-gradient(135deg,#4fd1c5,#38b2ac);color:#fff;padding:12px 25px;box-shadow:0 4px 10px rgba(0,0,0,0.2)}
@@ -37,16 +29,40 @@ footer a{color:#fff;text-decoration:underline}
      color: #f0f0f0;
  }
 
+ body.dark header {
+     background: linear-gradient(135deg, #319795, #285e61);
+ }
 
- body.dark main
-{
+ body.dark .container,
+ body.dark .stats,
+ body.dark input[type="text"],
+ body.dark .editor,
+ body.dark .blog-section,
+ body.dark .suggestion {
      background: #2b2b2b;
      color: #f0f0f0;
      border-color: #444;
  }
 
- body.dark header {
-    background: linear-gradient(135deg, #319795, #285e61);}
+ body.dark .editor,
+ body.dark input[type="text"] {
+     background-color: #3b3b3b;
+     color: #f0f0f0;
+ }
+
+ body.dark .blog-card {
+     background: #2c2c2c;
+     color: #f0f0f0;
+     border-color: #444;
+ }
+
+ body.dark .blog-card h3 {
+     color: #fff;
+ }
+
+ body.dark .blog-card p {
+     color: #ccc;
+ }
 
  body.dark button,
  body.dark .toggle-theme {
@@ -117,56 +133,15 @@ footer a{color:#fff;text-decoration:underline}
 
 </style>
 
-
-</head>
-<body>
-<header>
-  <h1>CountIt4U</h1>
-
-  <nav class="navbar" id="navbar">
-    <a href="index.html">Home</a>
-    <a href="about.html">About</a>
-    <a href="blog/index.html">Blog</a>
-    <a href="contact.html">Contact</a>
-    <a href="privacy.html">Privacy</a>
-    <a href="FAQs.html">FAQs</a>
-  </nav>
-
-  <div class="menu-icon" id="menu-icon">☰</div>
-  <button class="toggle-theme">🌙 Dark Mode</button>
-</header>
-
-
-<main>
-  <h1>About CountIt4U</h1>
-  <p><strong>CountIt4U</strong> is a free, intelligent, and easy-to-use online writing assistant designed for students, content creators, and professionals who want precision in their words. We built this tool to simplify the writing process by combining key functions — word counting, character tracking, keyword analysis, and instant grammar support — in one clean interface.</p>
-  
-  <p>CountIt4U helps users track their writing progress while maintaining quality and readability. Whether you're preparing an essay, an email, a blog post, or a research paper, this tool ensures that every word counts — literally. You can view total words, characters, spaces, keyword density, and estimated reading time in real-time.</p>
-  
-  <h2>Our Mission</h2>
-  <p>Our mission is to empower writers, students, and professionals to express their ideas more clearly and efficiently. We believe everyone should have access to smart, ad-supported tools that improve productivity without compromising privacy. That’s why <strong>CountIt4U</strong> runs completely in your browser — your data stays private, always.</p>
-  
-  <h2>Key Features</h2>
-  <ul>
-    <li>Real-time word, character, and space counting</li>
-    <li>Keyword density and frequency tracking</li>
-    <li>Built-in dictionary and meaning lookup</li>
-    <li>Auto-correct for spelling improvement</li>
-    <li>Dark mode for comfortable night writing</li>
-    <li>Responsive design — works perfectly on phones and desktops</li>
-  </ul>
-  
-  <h2>Why We Built It</h2>
-  <p>Writing is both an art and a skill, but not everyone has access to expensive editing tools. CountIt4U was made to bridge that gap — providing powerful text analysis, grammar help, and writing insight completely free. We continuously enhance our algorithms to make it more accurate, accessible, and user-friendly.</p>
-  
-  <p>CountIt4U is proudly created by <strong>Faizan the Coder</strong> — a passionate developer and student exploring web technologies, AI integration, and open-source creativity.</p>
-</main>
-
-<footer>
-  <p>&copy; <span id="year"></span> CountIt4U | <a href="index.html">Home</a> | <a href="privacy.html">Privacy Policy</a></p>
-</footer>
-
-
+body{font-family:'Segoe UI',Arial,sans-serif;margin:0;padding:0;background:linear-gradient(145deg,#e8f9f7,#d0f0ed);color:#222}
+header{display:flex;justify-content:space-between;align-items:center;background:linear-gradient(135deg,#4fd1c5,#38b2ac);color:#fff;padding:12px 25px}
+.navbar{display:flex;gap:20px;flex-wrap:wrap;}
+.navbar a{color:#fff;text-decoration:none;font-weight:500;}
+.navbar a:hover{opacity:.8}
+main{max-width:850px;margin:40px auto;padding:20px;background:#fff;border-radius:12px;box-shadow:0 4px 15px rgba(0,0,0,0.1);line-height:1.7}
+main img{width:100%;border-radius:10px;margin-bottom:20px;}
+footer{text-align:center;padding:20px;background:linear-gradient(135deg,#4fd1c5,#38b2ac);color:#fff;margin-top:40px;}
+footer a{color:#fff;text-decoration:underline}
 <script>
 document.getElementById('year').textContent = new Date().getFullYear();
   // Mobile Navbar Toggle
@@ -197,5 +172,3 @@ toggle.addEventListener("click", () => {
 });
 
 </script>
-</body>
-</html>
