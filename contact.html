@@ -99,12 +99,24 @@ footer a{color:#fff;text-decoration:underline}
   <h1>Contact Us</h1>
   <p>We love hearing from our users! If you have feedback, feature requests, or issues with the site, feel free to reach out. Your input helps us make CountIt4U even better.</p>
 
-  <form action="mailto:faizanthecoder@example.com" method="post" enctype="text/plain">
-    <input type="text" name="name" placeholder="Your Name" required>
-    <input type="email" name="email" placeholder="Your Email" required>
-    <textarea name="message" rows="5" placeholder="Your Message..." required></textarea>
-    <button type="submit">Send Message</button>
-  </form>
+<form action="https://formspree.io/f/xykzgkll" method="POST">
+  <input type="text" name="name" placeholder="Your Name" required>
+
+  <input type="email" name="email" placeholder="Your Email" required>
+
+  <textarea name="message" rows="5" placeholder="Your Message..." required></textarea>
+
+  <!-- Security + spam protection -->
+  <input type="hidden" name="_subject" value="New Contact Message - CountIt4U">
+  <input type="hidden" name="_captcha" value="false">
+
+  <button type="submit">Send Message</button>
+  <p style="font-size:13px;color:#555">
+  Your message is sent securely. We never share your email.
+</p>
+
+</form>
+
 
   <p>You can also reach us on social media or email directly at <strong>faizanthecoder@example.com</strong>.</p>
 </main>
