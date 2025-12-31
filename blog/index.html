@@ -46,6 +46,62 @@ header{
   transition:.3s;
 }
 .toggle-theme:hover{background:rgba(255,255,255,.4);}
+/* Responsive Navbar */
+.menu-icon {
+  display: none;
+  font-size: 24px;
+  cursor: pointer;
+  color: #fff;
+  background: rgba(255,255,255,0.25);
+  padding: 6px 10px;
+  border-radius: 6px;
+  transition: .3s;
+}
+.menu-icon:hover {
+  background: rgba(255,255,255,0.4);
+}
+
+@media (max-width: 768px) {
+  .navbar {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(135deg,#4fd1c5,#38b2ac);
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    padding: 15px 0;
+    display: none;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+    z-index: 999;
+    animation: slideDown .3s ease forwards;
+  }
+
+  .navbar.active {
+    display: flex;
+  }
+
+  .menu-icon {
+    display: block;
+  }
+
+  header {
+    position: relative;
+    flex-wrap: wrap;
+  }
+
+  .toggle-theme {
+    order: 3;
+    margin-top: 10px;
+  }
+}
+
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
 main{
   max-width:1100px;
   margin:40px auto;
@@ -148,9 +204,13 @@ body.dark footer{background:linear-gradient(135deg,#319795,#285e61);}
     <a href="index.html">Blog</a>
     <a href="../contact.html">Contact</a>
     <a href="../privacy.html">Privacy</a>
+    <a href="FAQs.html">FAQs</a>
   </nav>
+  
+  <div class="menu-icon" id="menu-icon">☰</div>
   <button class="toggle-theme">🌙 Dark Mode</button>
 </header>
+
 
 <main>
   <h1>Explore Our Writing Guides & Tips</h1>
@@ -243,6 +303,14 @@ body.dark footer{background:linear-gradient(135deg,#319795,#285e61);}
 <script>
 // Year update
 document.getElementById("year").textContent = new Date().getFullYear();
+// Mobile Navbar Toggle
+const menuIcon = document.getElementById("menu-icon");
+const navbar = document.getElementById("navbar");
+
+menuIcon.addEventListener("click", () => {
+  navbar.classList.toggle("active");
+  menuIcon.textContent = navbar.classList.contains("active") ? "✖" : "☰";
+});
 
 // Dark mode
 const toggle = document.querySelector(".toggle-theme");
