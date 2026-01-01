@@ -1,3 +1,6 @@
+
+document.addEventListener("DOMContentLoaded", () => {
+
 const editor = document.getElementById('editor');
 const wordCountEl = document.getElementById('wordCount');
 const charCountEl = document.getElementById('charCount');
@@ -9,21 +12,28 @@ const searchWordInput = document.getElementById('searchWord');
 const occurrencesEl = document.getElementById('occurrences');
 const highlightedTextDiv = document.getElementById('highlightedText');
 const replaceWordInput = document.getElementById('replaceWord');
-const toggle = document.querySelector(".toggle-theme");
+// const toggle = document.querySelector(".toggle-theme");
 const dictInput = document.getElementById('dictInput');
 const dictResult = document.getElementById('dictResult');
 const saveBtn = document.getElementById('saveBtn');
 const clearBtn = document.getElementById('clearBtn');
-document.getElementById('year').textContent = new Date().getFullYear();
+
 
 // Mobile Navbar Toggle
 const menuIcon = document.getElementById("menu-icon");
 const navbar = document.getElementById("navbar");
 
-menuIcon.addEventListener("click", () => {
-    navbar.classList.toggle("active");
-    menuIcon.textContent = navbar.classList.contains("active") ? "✖" : "☰";
-});
+// 📱 Navbar toggle (works safely on all pages)
+  if (menuIcon && navbar) {
+    menuIcon.addEventListener("click", () => {
+      navbar.classList.toggle("active");
+      menuIcon.textContent = navbar.classList.contains("active") ? "✖" : "☰";
+    });
+  }
+// menuIcon.addEventListener("click", () => {
+//     navbar.classList.toggle("active");
+//     menuIcon.textContent = navbar.classList.contains("active") ? "✖" : "☰";
+// });
 
 // Update counts
 function updateCounts() {
@@ -89,17 +99,44 @@ clearBtn.addEventListener('click', () => {
     updateCounts();
 });
 
-// 🌙 Persistent Dark Mode
-if (localStorage.getItem("theme") === "dark") {
-    document.body.classList.add("dark");
-    toggle.textContent = "☀️ Light Mode";
-} else { toggle.textContent = "🌙 Dark Mode"; }
-toggle.addEventListener("click", () => {
-    document.body.classList.toggle("dark");
-    const mode = document.body.classList.contains("dark") ? "dark" : "light";
-    localStorage.setItem("theme", mode);
-    toggle.textContent = mode === "dark" ? "☀️ Light Mode" : "🌙 Dark Mode";
-});
+// 🌙 Persistent Dark Mode Setup
+
+
+// Load saved theme from localStorage
+//   if (toggle) {
+//     if (localStorage.getItem("theme") === "dark") {
+//       document.body.classList.add("dark");
+//       toggle.textContent = "☀️ Light Mode";
+//     } else {
+//       toggle.textContent = "🌙 Dark Mode";
+//     }
+
+//     toggle.addEventListener("click", () => {
+//       document.body.classList.toggle("dark");
+//       const mode = document.body.classList.contains("dark") ? "dark" : "light";
+//       localStorage.setItem("theme", mode);
+//       toggle.textContent = mode === "dark" ? "☀️ Light Mode" : "🌙 Dark Mode";
+//     });
+//   }
+    // 🕓 Footer year (safe on all pages)
+  const year = document.getElementById("year");
+  if (year) year.textContent = new Date().getFullYear();
+
+
+// if (localStorage.getItem("theme") === "dark") {
+//   document.body.classList.add("dark");
+//   toggle.textContent = "☀️ Light Mode";
+// } else {
+//   toggle.textContent = "🌙 Dark Mode";
+// }
+
+// // Toggle theme and save preference
+// toggle.addEventListener("click", () => {
+//   document.body.classList.toggle("dark");
+//   const mode = document.body.classList.contains("dark") ? "dark" : "light";
+//   localStorage.setItem("theme", mode);
+//   toggle.textContent = mode === "dark" ? "☀️ Light Mode" : "🌙 Dark Mode";
+// });
 
 
 const tooltip = document.getElementById("tooltip");
@@ -234,3 +271,4 @@ fixAllBtn.addEventListener("click", async () => {
 
 editor.addEventListener('input', updateCounts);
 searchWordInput.addEventListener('input', updateHighlight);
+});

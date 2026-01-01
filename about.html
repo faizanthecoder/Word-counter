@@ -6,6 +6,13 @@
 <title>About CountIt4U - Word Counter & Writing Assistant</title>
 <link rel="canonical" href="https://countit4u.fun/about.html" />
 <meta name="description" content="Learn more about CountIt4U — your all-in-one online word counter, writing analyzer, and productivity tool built for accuracy, privacy, and simplicity." />
+
+
+  <link rel="icon" type="image/png" href="logo.png">
+
+  <script src="index.js" defer></script>
+  <script src="darkmode.js" defer></script>
+
 <style>
 body{font-family:'Segoe UI',Arial,sans-serif;margin:0;padding:0;background:linear-gradient(145deg,#e8f9f7,#d0f0ed);color:#222}
 header{display:flex;justify-content:space-between;align-items:center;background:linear-gradient(135deg,#4fd1c5,#38b2ac);color:#fff;padding:12px 25px;box-shadow:0 4px 10px rgba(0,0,0,0.2)}
@@ -114,7 +121,65 @@ footer a{color:#fff;text-decoration:underline}
   from { opacity: 0; transform: translateY(-10px); }
   to { opacity: 1; transform: translateY(0); }
 }
+footer {
+  background: linear-gradient(135deg, #4fd1c5, #38b2ac);
+  color: #fff;
+  padding: 20px 10% 0px 10%;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+  text-align: center;
+}
 
+.footer-container {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 40px;
+}
+
+.footer-section {
+  flex: 1;
+  min-width: 220px;
+}
+
+.footer-section h4 {
+  margin-bottom: 10px;
+  font-size: 18px;
+  color: #fff;
+  border-bottom: 2px solid rgba(255,255,255,0.3);
+  display: inline-block;
+  padding-bottom: 5px;
+}
+
+.footer-section a {
+  display: flex;
+  justify-content: center;
+  color: #fff;
+  align-items: center;
+  text-decoration: none;
+  margin: 6px 0;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  padding: 4px;
+}
+
+.footer-section a:hover {
+  color: #e6fdfb;
+  transform: translateX(3px);
+}
+
+.common {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.copyright {
+  border-top: 1px solid rgba(255,255,255,0.2);
+  padding: 20px;
+  font-size: 16px;
+}
 </style>
 
 
@@ -230,35 +295,6 @@ footer a{color:#fff;text-decoration:underline}
   </footer>
 
 
-<script>
-document.getElementById('year').textContent = new Date().getFullYear();
-  // Mobile Navbar Toggle
-const menuIcon = document.getElementById("menu-icon");
-const navbar = document.getElementById("navbar");
 
-menuIcon.addEventListener("click", () => {
-  navbar.classList.toggle("active");
-  menuIcon.textContent = navbar.classList.contains("active") ? "✖" : "☰";
-});
-// 🌙 Persistent Dark Mode Setup
-const toggle = document.querySelector(".toggle-theme");
-
-// Load saved theme from localStorage
-if (localStorage.getItem("theme") === "dark") {
-  document.body.classList.add("dark");
-  toggle.textContent = "☀️ Light Mode";
-} else {
-  toggle.textContent = "🌙 Dark Mode";
-}
-
-// Toggle theme and save preference
-toggle.addEventListener("click", () => {
-  document.body.classList.toggle("dark");
-  const mode = document.body.classList.contains("dark") ? "dark" : "light";
-  localStorage.setItem("theme", mode);
-  toggle.textContent = mode === "dark" ? "☀️ Light Mode" : "🌙 Dark Mode";
-});
-
-</script>
 </body>
 </html>

@@ -329,6 +329,7 @@
   }
 }
 
+
  /* 🌙 Dark Mode Styles */
  body.dark {
      background: linear-gradient(145deg, #1b1b1b, #242424);
@@ -355,6 +356,17 @@
      background-color: #3b3b3b;
      color: #f0f0f0;
  }
+
+ body.dark main
+{
+     background: #2b2b2b;
+     color: #f0f0f0;
+     border-color: #444;
+ }
+
+ body.dark header {
+    background: linear-gradient(135deg, #319795, #285e61);}
+
 
  body.dark .blog-card {
      background: #2c2c2c;
