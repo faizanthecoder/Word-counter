@@ -199,7 +199,7 @@ body.dark footer{background:linear-gradient(135deg,#319795,#285e61);}
 <body>
 <header>
   <h1>CountIt4U Blog</h1>
-  <nav class="navbar">
+  <nav class="navbar" id="navbar">
     <a href="../index.html">Home</a>
     <a href="../about.html">About</a>
     <a href="index.html">Blog</a>
@@ -302,9 +302,8 @@ body.dark footer{background:linear-gradient(135deg,#319795,#285e61);}
 </footer>
 
 <script>
-// Year update
-document.getElementById("year").textContent = new Date().getFullYear();
-// Mobile Navbar Toggle
+document.getElementById('year').textContent = new Date().getFullYear();
+  // Mobile Navbar Toggle
 const menuIcon = document.getElementById("menu-icon");
 const navbar = document.getElementById("navbar");
 
@@ -312,7 +311,6 @@ menuIcon.addEventListener("click", () => {
   navbar.classList.toggle("active");
   menuIcon.textContent = navbar.classList.contains("active") ? "✖" : "☰";
 });
-
 // 🌙 Persistent Dark Mode Setup
 const toggle = document.querySelector(".toggle-theme");
 
@@ -332,17 +330,6 @@ toggle.addEventListener("click", () => {
   toggle.textContent = mode === "dark" ? "☀️ Light Mode" : "🌙 Dark Mode";
 });
 
-
-// Blog search filter
-const searchBox = document.getElementById("searchBox");
-const cards = document.querySelectorAll(".blog-card");
-searchBox.addEventListener("input",()=>{
-  const val = searchBox.value.toLowerCase();
-  cards.forEach(card=>{
-    const text = card.querySelector("h2").textContent.toLowerCase();
-    card.style.display = text.includes(val) ? "flex" : "none";
-  });
-});
 </script>
 
 </body>
