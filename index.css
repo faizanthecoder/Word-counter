@@ -146,22 +146,6 @@
      flex-direction: column;
  }
 
- editor {
-     width: 100%;
-     height: 180px;
-     padding: 15px;
-     font-size: 16px;
-     border-radius: 8px;
-     border: 1px solid #bcdad6;
-     outline: none;
-     background-color: #fcfefe;
-     transition: all .3s ease;
- }
-
- editor:focus {
-     border-color: #4fd1c5;
-     box-shadow: 0 0 6px rgba(79, 209, 197, 0.4);
- }
 
  input[type="text"] {
      padding: 10px;
@@ -410,7 +394,30 @@
      outline: none;
      overflow-y: auto;
      white-space: pre-wrap;
- }
+  
+  /* 👇 Add these lines */
+  max-height: 400px;        /* Editor stops growing after this height */
+  overflow-y: auto;         /* Scroll appears inside */
+  scrollbar-width: thin;    /* Slim scrollbar for Firefox */
+  scrollbar-color: #38b2ac #e8f9f7; /* Custom scrollbar colors */
+}
+
+/* Optional: pretty scrollbars for Chrome/Edge */
+.editor::-webkit-scrollbar {
+  width: 8px;
+}
+.editor::-webkit-scrollbar-track {
+  background: #f1f1f1;
+  border-radius: 10px;
+}
+.editor::-webkit-scrollbar-thumb {
+  background: linear-gradient(135deg, #4fd1c5, #38b2ac);
+  border-radius: 10px;
+}
+.editor::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(135deg, #38b2ac, #319795);
+}
+
 
  .editor span.error-spell {
      text-decoration: underline wavy red;
