@@ -135,6 +135,10 @@
      gap: 20px
  }
 
+ .main-about{
+max-width:800px;margin:30px auto;padding:20px;background:#fff;border-radius:12px;box-shadow:0 6px 25px rgba(0,0,0,0.08);line-height:1.7
+ }
+
  .container {
      width: 100%;
      max-width: 800px;
@@ -314,6 +318,7 @@
   display: flex;
   align-items: center;
   gap: 6px;
+      padding: 5px 0px;
 }
 
 .copyright {

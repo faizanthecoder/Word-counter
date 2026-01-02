@@ -9,178 +9,10 @@
 
 
   <link rel="icon" type="image/png" href="logo.png">
-
+<link rel="stylesheet" href="index.css">
   <script src="index.js" defer></script>
   <script src="darkmode.js" defer></script>
 
-<style>
-body{font-family:'Segoe UI',Arial,sans-serif;margin:0;padding:0;background:linear-gradient(145deg,#e8f9f7,#d0f0ed);color:#222}
-header{display:flex;justify-content:space-between;align-items:center;background:linear-gradient(135deg,#4fd1c5,#38b2ac);color:#fff;padding:12px 25px;box-shadow:0 4px 10px rgba(0,0,0,0.2)}
-.navbar{display:flex;gap:20px}
-.navbar a{color:#fff;text-decoration:none;font-weight:500;transition:opacity .3s}
-.navbar a:hover{opacity:.8}
-main{max-width:800px;margin:30px auto;padding:20px;background:#fff;border-radius:12px;box-shadow:0 6px 25px rgba(0,0,0,0.08);line-height:1.7}
-footer{text-align:center;padding:20px;background:linear-gradient(135deg,#4fd1c5,#38b2ac);color:#fff;margin-top:40px}
-footer a{color:#fff;text-decoration:underline}
- /* 🌙 Dark Mode Styles */
-.toggle-theme {
-     padding: 6px 10px;
-     background: rgba(255, 255, 255, .25);
-     border: none;
-     border-radius: 6px;
-     color: #fff;
-     font-weight: 600;
-     cursor: pointer;
-     transition: .3s;
-     font-size: 16px;
- }
-
- .toggle-theme:hover {
-     background: rgba(255, 255, 255, .4);
- }
-
- body.dark {
-     background: linear-gradient(145deg, #1b1b1b, #242424);
-     color: #f0f0f0;
- }
-
-
- body.dark main
-{
-     background: #2b2b2b;
-     color: #f0f0f0;
-     border-color: #444;
- }
-
- body.dark header {
-    background: linear-gradient(135deg, #319795, #285e61);}
-
- body.dark button,
- body.dark .toggle-theme {
-     background: linear-gradient(135deg, #319795, #2c7a7b);
-     color: #fff;
- }
-
- body.dark footer {
-     background: linear-gradient(135deg, #319795, #285e61);
- }
- 
-
-/* Responsive Navbar */
-.menu-icon {
-  display: none;
-  font-size: 24px;
-  cursor: pointer;
-  color: #fff;
-  background: rgba(255,255,255,0.25);
-  padding: 6px 10px;
-  border-radius: 6px;
-  transition: .3s;
-}
-.menu-icon:hover {
-  background: rgba(255,255,255,0.4);
-}
-
-@media (max-width: 768px) {
-  .navbar {
-    position: absolute;
-    top: 60px;
-    left: 0;
-    width: 100%;
-    background: linear-gradient(135deg,#4fd1c5,#38b2ac);
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-    padding: 15px 0;
-    display: none;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    z-index: 999;
-    animation: slideDown .3s ease forwards;
-  }
-
-  .navbar.active {
-    display: flex;
-  }
-
-  .menu-icon {
-    display: block;
-  }
-
-  header {
-    position: relative;
-    flex-wrap: wrap;
-  }
-
-  .toggle-theme {
-    order: 3;
-    margin-top: 10px;
-  }
-}
-
-@keyframes slideDown {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-footer {
-  background: linear-gradient(135deg, #4fd1c5, #38b2ac);
-  color: #fff;
-  padding: 20px 10% 0px 10%;
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-  text-align: center;
-}
-
-.footer-container {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 40px;
-}
-
-.footer-section {
-  flex: 1;
-  min-width: 220px;
-}
-
-.footer-section h4 {
-  margin-bottom: 10px;
-  font-size: 18px;
-  color: #fff;
-  border-bottom: 2px solid rgba(255,255,255,0.3);
-  display: inline-block;
-  padding-bottom: 5px;
-}
-
-.footer-section a {
-  display: flex;
-  justify-content: center;
-  color: #fff;
-  align-items: center;
-  text-decoration: none;
-  margin: 6px 0;
-  font-weight: 500;
-  transition: all 0.3s ease;
-  padding: 4px;
-}
-
-.footer-section a:hover {
-  color: #e6fdfb;
-  transform: translateX(3px);
-}
-
-.common {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.copyright {
-  border-top: 1px solid rgba(255,255,255,0.2);
-  padding: 20px;
-  font-size: 16px;
-}
-</style>
 
 
 </head>
@@ -202,31 +34,63 @@ footer {
   <button class="toggle-theme">🌙 Dark Mode</button>
 </header>
 
-
-<main>
+<section class="main-about">
   <h1>About CountIt4U</h1>
-  <p><strong>CountIt4U</strong> is a free, intelligent, and easy-to-use online writing assistant designed for students, content creators, and professionals who want precision in their words. We built this tool to simplify the writing process by combining key functions — word counting, character tracking, keyword analysis, and instant grammar support — in one clean interface.</p>
-  
-  <p>CountIt4U helps users track their writing progress while maintaining quality and readability. Whether you're preparing an essay, an email, a blog post, or a research paper, this tool ensures that every word counts — literally. You can view total words, characters, spaces, keyword density, and estimated reading time in real-time.</p>
-  
+
+  <p>
+    <strong>CountIt4U</strong> is a free, browser-based word counter and writing assistant created to help students,
+    writers, bloggers, and professionals write with clarity and confidence. Our goal is simple: to provide accurate,
+    fast, and privacy-friendly writing tools that anyone can use without downloads or subscriptions.
+  </p>
+
+  <p>
+    Whether you are working on an essay, blog post, email, report, or social media content, CountIt4U helps you
+    analyze your text in real time. From word and character counts to keyword density and reading-time estimates,
+    everything updates instantly as you type.
+  </p>
+
   <h2>Our Mission</h2>
-  <p>Our mission is to empower writers, students, and professionals to express their ideas more clearly and efficiently. We believe everyone should have access to smart, ad-supported tools that improve productivity without compromising privacy. That’s why <strong>CountIt4U</strong> runs completely in your browser — your data stays private, always.</p>
-  
-  <h2>Key Features</h2>
-  <ul>
-    <li>Real-time word, character, and space counting</li>
-    <li>Keyword density and frequency tracking</li>
-    <li>Built-in dictionary and meaning lookup</li>
-    <li>Auto-correct for spelling improvement</li>
-    <li>Dark mode for comfortable night writing</li>
-    <li>Responsive design — works perfectly on phones and desktops</li>
+  <p>
+    Our mission is to make writing tools accessible to everyone. We believe that powerful writing assistance should
+    not be locked behind expensive software or complicated sign-ups. CountIt4U is designed to stay simple,
+    transparent, and useful — while respecting user privacy at all times.
+  </p>
+
+  <h2>What We Offer</h2>
+  <ul style="padding-left: 20px;">
+    <li>Accurate real-time word, character, and space counting</li>
+    <li>Keyword density and frequency analysis for SEO-friendly writing</li>
+    <li>Reading and speaking time estimation</li>
+    <li>Spelling and basic grammar assistance</li>
+    <li>Built-in dictionary and word lookup</li>
+    <li>Dark mode for comfortable long writing sessions</li>
+    <li>Fully responsive design for mobile, tablet, and desktop users</li>
   </ul>
-  
-  <h2>Why We Built It</h2>
-  <p>Writing is both an art and a skill, but not everyone has access to expensive editing tools. CountIt4U was made to bridge that gap — providing powerful text analysis, grammar help, and writing insight completely free. We continuously enhance our algorithms to make it more accurate, accessible, and user-friendly.</p>
-  
-  <p>CountIt4U is proudly created by <strong>Faizan the Coder</strong> — a passionate developer and student exploring web technologies, AI integration, and open-source creativity.</p>
-</main>
+
+  <h2>Privacy & Transparency</h2>
+  <p>
+    CountIt4U operates directly in your browser. Your text is not uploaded, stored, or shared on external servers.
+    Any optional local saving happens only within your own browser. We are committed to transparency and user trust.
+  </p>
+
+  <p>
+    To support ongoing development and server costs, CountIt4U may display advertisements that comply with Google
+    AdSense policies. These ads help keep the tool free for everyone while maintaining a clean and safe user experience.
+  </p>
+
+  <h2>Who We Are</h2>
+  <p>
+    CountIt4U is developed and maintained by <strong>Faizan</strong>, a student and web developer passionate about
+    building useful, lightweight, and accessible web tools. The project is continuously improved based on user
+    feedback, performance testing, and modern web standards.
+  </p>
+
+  <p>
+    If you have suggestions, questions, or feedback, feel free to reach out through our
+    <a href="contact.html">Contact Us</a> page. We value every user and actively work to improve this platform.
+  </p>
+</section>
+
 
 <footer>
     <div class="footer-container">
