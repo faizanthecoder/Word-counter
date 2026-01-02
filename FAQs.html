@@ -8,178 +8,11 @@
 <link rel="canonical" href="https://countit4u.fun/blog/faqs.html">
 
   <link rel="icon" type="image/png" href="logo.png">
-  
+  <link rel="stylesheet" href="index.css">
   <script src="index.js" defer></script>
   <script src="darkmode.js" defer></script>
 
-<style>
-body{font-family:'Segoe UI',Arial,sans-serif;margin:0;padding:0;background:linear-gradient(145deg,#e8f9f7,#d0f0ed);color:#222}
-header{display:flex;justify-content:space-between;align-items:center;background:linear-gradient(135deg,#4fd1c5,#38b2ac);color:#fff;padding:12px 25px;box-shadow:0 4px 10px rgba(0,0,0,0.2)}
-.navbar{display:flex;gap:20px}
-.navbar a{color:#fff;text-decoration:none;font-weight:500;transition:opacity .3s}
-.navbar a:hover{opacity:.8}
-main{max-width:800px;margin:30px auto;padding:20px;background:#fff;border-radius:12px;box-shadow:0 6px 25px rgba(0,0,0,0.08);line-height:1.7}
-footer{text-align:center;padding:20px;background:linear-gradient(135deg,#4fd1c5,#38b2ac);color:#fff;margin-top:40px}
-footer a{color:#fff;text-decoration:underline}
- /* 🌙 Dark Mode Styles */
-.toggle-theme {
-     padding: 6px 10px;
-     background: rgba(255, 255, 255, .25);
-     border: none;
-     border-radius: 6px;
-     color: #fff;
-     font-weight: 600;
-     cursor: pointer;
-     transition: .3s;
-     font-size: 16px;
- }
 
- .toggle-theme:hover {
-     background: rgba(255, 255, 255, .4);
- }
-
- body.dark {
-     background: linear-gradient(145deg, #1b1b1b, #242424);
-     color: #f0f0f0;
- }
-
-
- body.dark main
-{
-     background: #2b2b2b;
-     color: #f0f0f0;
-     border-color: #444;
- }
-
- body.dark header {
-    background: linear-gradient(135deg, #319795, #285e61);}
-
- body.dark button,
- body.dark .toggle-theme {
-     background: linear-gradient(135deg, #319795, #2c7a7b);
-     color: #fff;
- }
-
- body.dark footer {
-     background: linear-gradient(135deg, #319795, #285e61);
- }
- 
-
-/* Responsive Navbar */
-.menu-icon {
-  display: none;
-  font-size: 24px;
-  cursor: pointer;
-  color: #fff;
-  background: rgba(255,255,255,0.25);
-  padding: 6px 10px;
-  border-radius: 6px;
-  transition: .3s;
-}
-.menu-icon:hover {
-  background: rgba(255,255,255,0.4);
-}
-
-@media (max-width: 768px) {
-  .navbar {
-    position: absolute;
-    top: 60px;
-    left: 0;
-    width: 100%;
-    background: linear-gradient(135deg,#4fd1c5,#38b2ac);
-    flex-direction: column;
-    align-items: center;
-    gap: 15px;
-    padding: 15px 0;
-    display: none;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-    z-index: 999;
-    animation: slideDown .3s ease forwards;
-  }
-
-  .navbar.active {
-    display: flex;
-  }
-
-  .menu-icon {
-    display: block;
-  }
-
-  header {
-    position: relative;
-    flex-wrap: wrap;
-  }
-
-  .toggle-theme {
-    order: 3;
-    margin-top: 10px;
-  }
-}
-
-@keyframes slideDown {
-  from { opacity: 0; transform: translateY(-10px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-footer {
-  background: linear-gradient(135deg, #4fd1c5, #38b2ac);
-  color: #fff;
-  padding: 20px 10% 0px 10%;
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-  text-align: center;
-}
-
-.footer-container {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 40px;
-}
-
-.footer-section {
-  flex: 1;
-  min-width: 220px;
-}
-
-.footer-section h4 {
-  margin-bottom: 10px;
-  font-size: 18px;
-  color: #fff;
-  border-bottom: 2px solid rgba(255,255,255,0.3);
-  display: inline-block;
-  padding-bottom: 5px;
-}
-
-.footer-section a {
-  display: flex;
-  justify-content: center;
-  color: #fff;
-  align-items: center;
-  text-decoration: none;
-  margin: 6px 0;
-  font-weight: 500;
-  transition: all 0.3s ease;
-  padding: 4px;
-}
-
-.footer-section a:hover {
-  color: #e6fdfb;
-  transform: translateX(3px);
-}
-
-.common {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-}
-
-.copyright {
-  border-top: 1px solid rgba(255,255,255,0.2);
-  padding: 20px;
-  font-size: 16px;
-}
-</style>
 </head>
 <body>
 <header>
@@ -200,13 +33,13 @@ footer {
 </header>
 
 
-<main>
+<section class="main-about">
   <h1>Frequently Asked Questions</h1>
 
   <div class="faq">
     <h2>1. What is CountIt4U?</h2>
     <p>CountIt4U is a free, web-based writing assistant designed to help writers, students, and content creators. It provides:</p>
-    <ul>
+    <ul style="padding-left: 20px;">
       <li>Word, character, and space count.</li>
       <li>Reading and speaking time estimates.</li>
       <li>Keyword density analysis.</li>
@@ -222,7 +55,7 @@ footer {
   <div class="faq">
     <h2>2. How do I count words, characters, and spaces?</h2>
     <p>Simply type or paste text into the editor. Counts update automatically in real time:</p>
-    <ul>
+    <ul style="padding-left: 20px;">
       <li><strong>Words:</strong> Total number of words separated by spaces or punctuation.</li>
       <li><strong>Characters:</strong> Includes letters, numbers, and punctuation.</li>
       <li><strong>Spaces:</strong> Counts all spaces in the text.</li>
@@ -233,7 +66,7 @@ footer {
   <div class="faq">
     <h2>3. How do I highlight and replace specific words?</h2>
     <p>Use the search bar below the editor to find any word:</p>
-    <ul>
+    <ul style="padding-left: 20px;">
       <li>All matches are highlighted automatically in the editor.</li>
       <li>The total occurrences are displayed next to the search bar.</li>
       <li>To replace, type the new word in the replacement box and click "Replace All Highlighted".</li>
@@ -244,7 +77,7 @@ footer {
   <div class="faq">
     <h2>4. What is the Fix All feature?</h2>
     <p>"Fix All" automatically corrects spelling and grammar issues:</p>
-    <ul>
+    <ul style="padding-left: 20px;">
       <li>Analyzes your entire text using a reliable language checking API.</li>
       <li>Suggests the most accurate corrections for spelling, grammar, and punctuation.</li>
       <li>Corrected text replaces the old text in the editor while keeping formatting intact.</li>
@@ -255,7 +88,7 @@ footer {
   <div class="faq">
     <h2>5. How do I save my text?</h2>
     <p>Click the "💾 Save Text" button:</p>
-    <ul>
+    <ul style="padding-left: 20px;">
       <li>Your text is saved in the browser's local storage.</li>
       <li>You can close the browser and return later; the text will still be there.</li>
       <li>To remove saved text, click "🧹 Clear Text".</li>
@@ -265,7 +98,7 @@ footer {
   <div class="faq">
     <h2>6. Can I use CountIt4U offline?</h2>
     <p>Yes! Most features run entirely in your browser:</p>
-    <ul>
+    <ul style="padding-left: 20px;">
       <li>Word/character counts, search & replace, highlighting, and dark/light mode work offline.</li>
       <li>Spellcheck and grammar suggestions require an internet connection since they rely on the language API.</li>
     </ul>
@@ -274,7 +107,7 @@ footer {
   <div class="faq">
     <h2>7. How does dark mode work?</h2>
     <p>Click the "🌙 Dark Mode" button to toggle between dark and light themes:</p>
-    <ul>
+    <ul style="padding-left: 20px;">
       <li>The website remembers your selection using local storage.</li>
       <li>Dark mode is easier on the eyes, especially at night or long writing sessions.</li>
     </ul>
@@ -283,7 +116,7 @@ footer {
   <div class="faq">
     <h2>8. Can I look up word meanings?</h2>
     <p>Yes! Use the built-in dictionary:</p>
-    <ul>
+    <ul style="padding-left: 20px;">
       <li>Type any word into the dictionary input box.</li>
       <li>Definitions, synonyms, and usage examples appear immediately.</li>
       <li>This helps expand your vocabulary and ensures proper word usage.</li>
@@ -293,7 +126,7 @@ footer {
   <div class="faq">
     <h2>9. How is reading and speaking time calculated?</h2>
     <p>Reading and speaking times help estimate how long your content takes:</p>
-    <ul>
+    <ul style="padding-left: 20px;">
       <li><strong>Reading:</strong> Calculated at approximately 200 words per minute.</li>
       <li><strong>Speaking:</strong> Calculated at approximately 150 words per minute.</li>
       <li>These metrics help students, writers, and speakers plan presentations or assignments.</li>
@@ -303,7 +136,7 @@ footer {
   <div class="faq">
     <h2>10. Is my text stored or shared?</h2>
     <p>No. Your privacy is protected:</p>
-    <ul>
+    <ul style="padding-left: 20px;">
       <li>All text editing, counting, and highlighting is processed locally in your browser.</li>
       <li>Nothing is sent to external servers unless you manually save it.</li>
       <li>This ensures your writing remains private and secure.</li>
@@ -313,14 +146,14 @@ footer {
   <div class="faq">
     <h2>11. Can I use CountIt4U for essays, blogs, or reports?</h2>
     <p>Absolutely. CountIt4U is versatile:</p>
-    <ul>
+    <ul style="padding-left: 20px;">
       <li>Students can use it for assignments and essays.</li>
       <li>Bloggers can track word counts and SEO keywords.</li>
       <li>Professionals can proofread reports, proposals, and presentations.</li>
     </ul>
   </div>
 
-</main>
+</section>
 <footer>
     <div class="footer-container">
       <div class="footer-section pages">

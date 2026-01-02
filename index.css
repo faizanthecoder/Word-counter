@@ -135,9 +135,16 @@
      gap: 20px
  }
 
- .main-about{
-max-width:800px;margin:30px auto;padding:20px;background:#fff;border-radius:12px;box-shadow:0 6px 25px rgba(0,0,0,0.08);line-height:1.7
+ .main-about {
+     max-width: 800px;
+     margin: 30px auto;
+     padding: 20px;
+     background: #fff;
+     border-radius: 12px;
+     box-shadow: 0 6px 25px rgba(0, 0, 0, 0.08);
+     line-height: 1.7;
  }
+
 
  .container {
      width: 100%;
@@ -156,6 +163,7 @@ max-width:800px;margin:30px auto;padding:20px;background:#fff;border-radius:12px
      font-size: 16px;
      border-radius: 8px;
      border: 1px solid #bcdad6;
+         /* border: 1px solid #38403f; */
      margin-top: 10px;
      transition: .3s;
      background-color: #ffffff;
@@ -267,73 +275,86 @@ max-width:800px;margin:30px auto;padding:20px;background:#fff;border-radius:12px
  }
 
  footer {
-  background: linear-gradient(135deg, #4fd1c5, #38b2ac);
-  color: #fff;
-  padding: 20px 10% 0px 10%;
-  display: flex;
-  flex-direction: column;
-  gap: 25px;
-  text-align: center;
-}
+     background: linear-gradient(135deg, #4fd1c5, #38b2ac);
+     color: #fff;
+     padding: 20px 10% 0px 10%;
+     display: flex;
+     flex-direction: column;
+     gap: 25px;
+     text-align: center;
+ }
 
-.footer-container {
-  display: flex;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 40px;
-}
+ .footer-container {
+     display: flex;
+     justify-content: space-between;
+     flex-wrap: wrap;
+     gap: 40px;
+ }
 
-.footer-section {
-  flex: 1;
-  min-width: 220px;
-}
+ .footer-section {
+     flex: 1;
+     min-width: 220px;
+ }
 
-.footer-section h4 {
-  margin-bottom: 10px;
-  font-size: 18px;
-  color: #fff;
-  border-bottom: 2px solid rgba(255,255,255,0.3);
-  display: inline-block;
-  padding-bottom: 5px;
-}
+ .footer-section h4 {
+     margin-bottom: 10px;
+     font-size: 18px;
+     color: #fff;
+     border-bottom: 2px solid rgba(255, 255, 255, 0.3);
+     display: inline-block;
+     padding-bottom: 5px;
+ }
 
-.footer-section a {
-  display: flex;
-  justify-content: center;
-  color: #fff;
-  align-items: center;
-  text-decoration: none;
-  margin: 6px 0;
-  font-weight: 500;
-  transition: all 0.3s ease;
-  padding: 4px;
-}
+ .footer-section a {
+     display: flex;
+     justify-content: center;
+     color: #fff;
+     align-items: center;
+     text-decoration: none;
+     margin: 6px 0;
+     font-weight: 500;
+     transition: all 0.3s ease;
+     padding: 4px;
+ }
 
-.footer-section a:hover {
-  color: #e6fdfb;
-  transform: translateX(3px);
-}
+ .footer-section a:hover {
+     color: #e6fdfb;
+     transform: translateX(3px);
+ }
 
-.common {
-  display: flex;
-  align-items: center;
-  gap: 6px;
-      padding: 5px 0px;
-}
+ .common {
+     display: flex;
+     align-items: center;
+     gap: 6px;
+     padding: 5px 0px;
+ }
 
-.copyright {
-  border-top: 1px solid rgba(255,255,255,0.2);
-  padding: 20px;
-  font-size: 16px;
-}
+ .copyright {
+     border-top: 1px solid rgba(255, 255, 255, 0.2);
+     padding: 20px;
+     font-size: 16px;
+ }
 
-@media (max-width: 768px) {
-  .footer-container {
-    flex-direction: column;
-    align-items: center;
-  }
-}
+ @media (max-width: 768px) {
+     .footer-container {
+         flex-direction: column;
+         align-items: center;
+     }
+ }
 
+ form {
+     display: flex;
+     flex-direction: column;
+     gap: 10px
+ }
+
+ input,
+ textarea {
+     padding: 10px;
+     font-size: 15px;
+     border: 1px solid #38403f;
+     border-radius: 8px
+ }
 
  /* 🌙 Dark Mode Styles */
  body.dark {
@@ -347,9 +368,13 @@ max-width:800px;margin:30px auto;padding:20px;background:#fff;border-radius:12px
 
  body.dark .container,
  body.dark .stats,
- body.dark input[type="text"],
+ body.dark input[type="text "],
+ body.dark input[type="email"],
+ body.dark textarea,
+ body.dark .secure,
  body.dark .editor,
  body.dark .blog-section,
+ body.dark .main-about,
  body.dark .suggestion {
      background: #2b2b2b;
      color: #f0f0f0;
@@ -357,20 +382,26 @@ max-width:800px;margin:30px auto;padding:20px;background:#fff;border-radius:12px
  }
 
  body.dark .editor,
- body.dark input[type="text"] {
+ body.dark input[type="text"],
+ body.dark input::placeholder,
+ body.dark textarea::placeholder,
+ body.dark input[type="email"],
+ body.dark textarea {
      background-color: #3b3b3b;
+         border: 1px solid #38403f;
      color: #f0f0f0;
  }
 
- body.dark main
-{
+
+ body.dark main {
      background: #2b2b2b;
      color: #f0f0f0;
      border-color: #444;
  }
 
  body.dark header {
-    background: linear-gradient(135deg, #319795, #285e61);}
+     background: linear-gradient(135deg, #319795, #285e61);
+ }
 
 
  body.dark .blog-card {
@@ -402,7 +433,8 @@ max-width:800px;margin:30px auto;padding:20px;background:#fff;border-radius:12px
      width: 100%;
      max-width: 800px;
      min-height: 250px;
-     border: 1px solid #bcdad6;
+     border: 1px solid #83b6b0;
+     
      border-radius: 10px;
      padding: 15px;
      background: #fff;
@@ -411,29 +443,36 @@ max-width:800px;margin:30px auto;padding:20px;background:#fff;border-radius:12px
      outline: none;
      overflow-y: auto;
      white-space: pre-wrap;
-  
-  /* 👇 Add these lines */
-  max-height: 400px;        /* Editor stops growing after this height */
-  overflow-y: auto;         /* Scroll appears inside */
-  scrollbar-width: thin;    /* Slim scrollbar for Firefox */
-  scrollbar-color: #38b2ac #e8f9f7; /* Custom scrollbar colors */
-}
 
-/* Optional: pretty scrollbars for Chrome/Edge */
-.editor::-webkit-scrollbar {
-  width: 8px;
-}
-.editor::-webkit-scrollbar-track {
-  background: #f1f1f1;
-  border-radius: 10px;
-}
-.editor::-webkit-scrollbar-thumb {
-  background: linear-gradient(135deg, #4fd1c5, #38b2ac);
-  border-radius: 10px;
-}
-.editor::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(135deg, #38b2ac, #319795);
-}
+     /* 👇 Add these lines */
+     max-height: 400px;
+     /* Editor stops growing after this height */
+     overflow-y: auto;
+     /* Scroll appears inside */
+     scrollbar-width: thin;
+     /* Slim scrollbar for Firefox */
+     scrollbar-color: #38b2ac #e8f9f7;
+     /* Custom scrollbar colors */
+ }
+
+ /* Optional: pretty scrollbars for Chrome/Edge */
+ .editor::-webkit-scrollbar {
+     width: 8px;
+ }
+
+ .editor::-webkit-scrollbar-track {
+     background: #f1f1f1;
+     border-radius: 10px;
+ }
+
+ .editor::-webkit-scrollbar-thumb {
+     background: linear-gradient(135deg, #4fd1c5, #38b2ac);
+     border-radius: 10px;
+ }
+
+ .editor::-webkit-scrollbar-thumb:hover {
+     background: linear-gradient(135deg, #38b2ac, #319795);
+ }
 
 
  .editor span.error-spell {
