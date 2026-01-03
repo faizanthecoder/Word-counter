@@ -344,7 +344,7 @@
 
   @media (max-width: 570px) {
      .suggestion{
-         margin: 10px;
+         margin: 0px;
      }
      .suggestion-h2{
         padding: 0px;
