@@ -349,6 +349,9 @@
      .suggestion-h2{
         padding: 0px;
      }
+     .main-about{
+        margin: 10px;
+     }
  }
    @media (min-width: 571px) {
      /* .suggestion{
