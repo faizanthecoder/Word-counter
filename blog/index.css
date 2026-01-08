@@ -25,6 +25,7 @@ header {
     color: #fff;
     text-decoration: none;
     font-weight: 500;
+    font-size: 1.2rem;
 }
 
 .navbar a:hover {
@@ -99,6 +100,13 @@ footer {
   font-size: 16px;
 }
 
+ a{
+    text-decoration: none;
+    color: #38b2ac;
+    font-weight: 600;
+ }
+
+
 /* 🌙 Dark Mode Styles */
 .toggle-theme {
     padding: 6px 10px;
@@ -120,7 +128,7 @@ body.dark {
     background: linear-gradient(145deg, #1b1b1b, #242424);
     color: #f0f0f0;
 }
-
+body.dark .active,
 body.dark header {
     background: linear-gradient(135deg, #319795, #285e61);
 }
@@ -164,7 +172,7 @@ main img{width:100%;border-radius:10px;margin-bottom:20px;}
 @media (max-width: 768px) {
     .navbar {
         position: absolute;
-        top: 60px;
+        top: 80px;
         left: 0;
         width: 100%;
         background: linear-gradient(135deg, #4fd1c5, #38b2ac);
@@ -190,7 +198,9 @@ main img{width:100%;border-radius:10px;margin-bottom:20px;}
         position: relative;
         flex-wrap: wrap;
     }
-
+.navbar a{
+    font-size: 1rem;
+} 
     .toggle-theme {
         order: 3;
         margin-top: 10px;

@@ -39,7 +39,8 @@
      color: #fff;
      text-decoration: none;
      font-weight: 500;
-     transition: opacity .3s
+     transition: opacity .3s;
+     font-size: 1.2rem;
  }
 
  .navbar a:hover {
@@ -106,7 +107,9 @@
          position: relative;
          flex-wrap: wrap;
      }
-
+.navbar a{
+    font-size: 1rem;
+}
      .toggle-theme {
          order: 3;
          margin-top: 10px;
@@ -150,7 +153,7 @@
      width: 100%;
      max-width: 800px;
      background: linear-gradient(180deg, #ffffff, #f9fdfd);
-     padding: 25px;
+     padding: 0px;
      border-radius: 14px;
      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.08);
      display: flex;
@@ -272,6 +275,12 @@
      padding: 0 10px 10px;
      font-size: 14px;
      color: #666;
+ }
+
+ a{
+    text-decoration: none;
+    color: #38b2ac;
+    font-weight: 600;
  }
 
  footer {
@@ -397,8 +406,13 @@
  body.dark .main-about,
  body.dark .suggestion {
      background: #2b2b2b;
-     color: #f0f0f0;
+     color: #f0f0f0 ;
      border-color: #444;
+ }
+
+
+ body.dark .c-b{
+    border: 2px solid #444;
  }
 
  body.dark .editor,
@@ -418,9 +432,10 @@
      color: #f0f0f0;
      border-color: #444;
  }
-
+ body.dark .active,
  body.dark header {
      background: linear-gradient(135deg, #319795, #285e61);
+     
  }
 
 
@@ -454,9 +469,8 @@
      max-width: 800px;
      min-height: 250px;
      border: 1px solid #83b6b0;
-     
      border-radius: 10px;
-     padding: 15px;
+     padding: 10px;
      background: #fff;
      font-size: 16px;
      line-height: 1.6;
@@ -475,6 +489,13 @@
      /* Custom scrollbar colors */
  }
 
+ .outer-editor{
+     margin: 10px;
+
+ }
+ .tools{
+padding: 20px;
+ }
  /* Optional: pretty scrollbars for Chrome/Edge */
  .editor::-webkit-scrollbar {
      width: 8px;
