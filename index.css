@@ -172,31 +172,317 @@
      background-color: #ffffff;
  }
 
- .count {
-     font-size: 16px;
-     font-weight: bold;
-     margin-top: 8px;
-     display: flex;
-     justify-content: space-between;
-     flex-wrap: wrap;
-     gap: 10px;
- }
+ /* 🔧 Tools Section Base */
+.tools {
+  /* margin-top: 25px; */
+  margin: 25px 20px 0px 20px;
+  background: #fff;
+  padding: 20px;
+  border-radius: 12px;
+  /* border: 1px solid #cbe9e6; */
+  border: 1px solid #83b6b0;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
+}
 
- .stats {
-     margin-top: 10px;
-     background: #ffffff;
-     padding: 12px;
-     border-radius: 10px;
-     border: 1px solid #cbe9e6;
-     font-size: 15px;
-     line-height: 1.6;
- }
+.count {
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  color: #2c7a7b;
+}
 
- mark {
-     background: #fff176;
-     padding: 0 3px;
-     border-radius: 3px;
- }
+/* ⚙️ Buttons */
+.action-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.action-buttons button {
+  background: linear-gradient(135deg, #4fd1c5, #38b2ac);
+  border: none;
+  color: #fff;
+  padding: 8px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.2s;
+}
+
+.action-buttons button:hover {
+  background: linear-gradient(135deg, #38b2ac, #319795);
+  transform: translateY(-2px);
+}
+
+/* 🧮 Stats Section */
+.stats {
+  margin-top: 20px;
+  background: #fefefe;
+  padding: 16px;
+  border-radius: 10px;
+  border: 1px solid #cbe9e6;
+  font-size: 15px;
+  line-height: 1.6;
+}
+
+
+/* 🌤 Refined Light Mode Stats Bar */
+.stats-bar {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 15px 25px;
+  padding: 15px;
+  background: linear-gradient(145deg, #f9ffff, #e8f9f7);
+  border: 1px solid #83b6b0;
+  border-radius: 14px;
+  /* border: 1px solid #c2ebe7; */
+  margin-bottom: 15px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.06),
+              inset 0 1px 0 rgba(255, 255, 255, 0.5);
+  transition: background 0.4s, box-shadow 0.4s;
+}
+
+/* Each stat pill */
+.stat-item {
+  font-weight: 600;
+  color: #2c7a7b;
+  background: linear-gradient(145deg, #f3fffe, #dbf4f2);
+  padding: 9px 15px;
+  border-radius: 8px;
+  border: 1px solid #bfe6e1;
+  transition: all 0.3s ease;
+}
+
+.stat-item:hover {
+  background: linear-gradient(145deg, #e4faf8, #c8f1ed);
+  transform: translateY(-2px);
+  box-shadow: 0 3px 6px rgba(56, 178, 172, 0.2);
+}
+
+/* 🌙 Dark Mode remains untouched (already looks great) */
+body.dark .stats-bar {
+  background: #2b2b2b;
+  border-color: #444;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+body.dark .stat-item {
+  background: rgba(49, 151, 149, 0.15);
+  color: #b2f5ea;
+}
+
+
+/* ⚙️ Action Buttons Layout */
+.action-buttons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin: 15px 0 25px;
+}
+
+.action-buttons button {
+  background: linear-gradient(135deg, #4fd1c5, #38b2ac);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 8px 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.action-buttons button:hover {
+  background: linear-gradient(135deg, #38b2ac, #319795);
+  transform: translateY(-2px);
+}
+
+body.dark .action-buttons button {
+  background: linear-gradient(135deg, #319795, #2c7a7b);
+}
+
+/* 🧭 Responsive Layout */
+@media (max-width: 700px) {
+  .stats-bar {
+    flex-direction: column;
+    align-items: center;
+  }
+  .stat-item {
+    width: 80%;
+    text-align: center;
+  }
+}
+
+/* ✨ Extra Stats */
+.extra-stats {
+  display: flex;
+  justify-content: center;
+  gap: 18px;
+  flex-wrap: wrap;
+  margin-top: 12px;
+  font-weight: 500;
+}
+
+.extra-stats p {
+  background: rgba(79, 209, 197, 0.15);
+  padding: 8px 14px;
+  border-radius: 8px;
+  transition: 0.3s;
+}
+
+.extra-stats p:hover {
+  background: rgba(56, 178, 172, 0.25);
+}
+
+/* 🎯 Goal System */
+.goal-container {
+  margin-top: 22px;
+  text-align: center;
+}
+
+.goal-container label {
+  font-weight: 600;
+  color: #2c7a7b;
+  margin-right: 8px;
+}
+
+#goalInput {
+  padding: 6px 10px;
+  border: 1px solid #bcdad6;
+  border-radius: 6px;
+  outline: none;
+  width: 120px;
+  text-align: center;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+#goalInput:focus {
+  border-color: #38b2ac;
+  box-shadow: 0 0 5px rgba(56, 178, 172, 0.4);
+}
+
+/* Progress Bar */
+.goal-progress {
+  width: 100%;
+  height: 8px;
+  background: #e0f7f5;
+  border-radius: 6px;
+  margin-top: 10px;
+  overflow: hidden;
+}
+.goal-fill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #e53e3e, #f6ad55, #38b2ac);
+  background-size: 200% 100%;
+  transition: width 0.5s ease, background-position 1s ease;
+  border-radius: 6px;
+  animation: moveGradient 3s linear infinite;
+  box-shadow: 0 0 8px rgba(56, 178, 172, 0.5);
+}
+
+/* 🔥 Smooth Gradient Animation */
+@keyframes moveGradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  100% {
+    background-position: 100% 50%;
+  }
+}
+
+#goalStatus {
+  margin-top: 10px;
+  font-weight: 600;
+  color: #319795;
+}
+
+/* 🔍 Find & Replace */
+.find-replace {
+  margin-top: 25px;
+}
+
+#searchWord,
+#replaceWord,
+#dictInput {
+  width: 100%;
+  max-width: 350px;
+  display: block;
+  margin: 10px auto;
+  padding: 8px 12px;
+  border: 1px solid #bcdad6;
+  border-radius: 6px;
+  outline: none;
+  font-size: 15px;
+  transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+#searchWord:focus,
+#replaceWord:focus,
+#dictInput:focus {
+  border-color: #38b2ac;
+  box-shadow: 0 0 5px rgba(56, 178, 172, 0.4);
+}
+
+.highlight-box {
+  background: #f9fafa;
+  border: 1px dashed #bcdad6;
+  padding: 12px;
+  border-radius: 8px;
+  min-height: 100px;
+  white-space: pre-wrap;
+  color: #333;
+}
+
+.replace-tools {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+/* 🌙 Dark Mode */
+body.dark .tools {
+  background: #2b2b2b;
+  border-color: #444;
+}
+
+body.dark .count span {
+  color: #b2f5ea;
+}
+
+body.dark .action-buttons button {
+  background: linear-gradient(135deg, #319795, #2c7a7b);
+}
+
+body.dark .stats {
+  background: #2b2b2b;
+  border-color: #444;
+}
+
+body.dark #goalInput {
+  background: #2c2c2c;
+  color: #fff;
+  border-color: #3d7c7a;
+}
+
+body.dark #goalStatus {
+  color: #81e6d9;
+}
+
+body.dark .highlight-box {
+  background: #3a3a3a;
+  color: #eee;
+  border-color: #555;
+}
+
 
  button {
      margin-top: 10px;
