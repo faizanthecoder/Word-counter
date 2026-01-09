@@ -77,7 +77,143 @@
  .menu-icon:hover {
      background: rgba(255, 255, 255, 0.4);
  }
+ .outer-editor{
+ margin: 20px;
+ 
+ }
 
+ 
+ /* ✏️ New spellcheck styles */
+ .editor {
+     width: 100%;
+     max-width: 800px;
+     min-height: 250px;
+     border: 1px solid #83b6b0;
+     border-radius: 10px;
+     padding: 10px;
+     background: #fff;
+     font-size: 16px;
+     line-height: 1.6;
+     outline: none;
+     overflow-y: auto;
+     white-space: pre-wrap;
+
+     /* 👇 Add these lines */
+     max-height: 400px;
+     /* Editor stops growing after this height */
+     overflow-y: auto;
+     /* Scroll appears inside */
+     scrollbar-width: thin;
+     /* Slim scrollbar for Firefox */
+     scrollbar-color: #38b2ac #e8f9f7;
+     /* Custom scrollbar colors */
+ }
+
+ .tools{
+     padding: 20px;
+    }
+    /* Optional: pretty scrollbars for Chrome/Edge */
+ .editor::-webkit-scrollbar {
+     width: 8px;
+ }
+
+ .editor::-webkit-scrollbar-track {
+     background: #f1f1f1;
+     border-radius: 10px;
+ }
+
+ .editor::-webkit-scrollbar-thumb {
+     background: linear-gradient(135deg, #4fd1c5, #38b2ac);
+     border-radius: 10px;
+ }
+
+ .editor::-webkit-scrollbar-thumb:hover {
+     background: linear-gradient(135deg, #38b2ac, #319795);
+    }
+    
+
+ .editor span.error-spell {
+     text-decoration: underline wavy red;
+     cursor: pointer;
+ }
+
+ .editor span.error-grammar {
+     text-decoration: underline wavy blue;
+     cursor: pointer;
+ }
+
+ .tooltip {
+     position: absolute;
+     background: rgba(40, 40, 40, 0.95);
+     backdrop-filter: blur(6px);
+     color: #fff;
+     padding: 10px 12px;
+     border-radius: 8px;
+     font-size: 14px;
+     z-index: 100;
+     max-width: 260px;
+     box-shadow: 0 4px 12px rgba(0, 0, 0, .25);
+     display: none;
+     opacity: 0;
+     transition: opacity .25s ease;
+ }
+
+ .tooltip.visible {
+     display: block;
+     opacity: 1;
+ }
+
+ .tooltip ul {
+     margin: 8px 0 0;
+     padding: 0;
+     list-style: none;
+    }
+
+ .tooltip li {
+     padding: 4px 0;
+     cursor: pointer;
+     border-radius: 4px;
+     transition: .2s;
+ }
+
+ .tooltip li:hover {
+     background: rgba(255, 255, 255, 0.15);
+    }
+    
+    .buttons {
+     display: flex;
+     gap: 10px;
+     margin-top: 15px;
+    }
+
+ button {
+     padding: 10px 15px;
+     font-size: 15px;
+     background: linear-gradient(135deg, #4fd1c5, #38b2ac);
+     color: #fff;
+     border: none;
+     border-radius: 8px;
+     cursor: pointer;
+     transition: .3s;
+ }
+
+ button:hover {
+     transform: translateY(-2px);
+     box-shadow: 0 4px 10px rgba(56, 178, 172, 0.4);
+ }
+
+ .toast {
+     position: fixed;
+     bottom: 20px;
+     right: 20px;
+     background: #333;
+     color: #fff;
+     padding: 10px 15px;
+     border-radius: 6px;
+     opacity: 0;
+     transition: .3s;
+     pointer-events: none;
+ }
  @media (max-width: 768px) {
      .navbar {
          position: absolute;
@@ -99,6 +235,9 @@
          display: flex;
      }
 
+ .outer-editor{
+    margin: 10px;
+ }
      .menu-icon {
          display: block;
      }
@@ -313,7 +452,10 @@ body.dark .action-buttons button {
   .stats-bar {
     flex-direction: column;
     align-items: center;
+    border: none;
+box-shadow: 1px 11px 14px rgb(0 0 0 / 31%), inset 0 1px 0 rgba(255, 255, 255, 0.5);
   }
+  
   .stat-item {
     width: 80%;
     text-align: center;
@@ -747,140 +889,4 @@ body.dark .highlight-box {
 
  body.dark footer {
      background: linear-gradient(135deg, #319795, #285e61);
- }
-
- /* ✏️ New spellcheck styles */
- .editor {
-     width: 100%;
-     max-width: 800px;
-     min-height: 250px;
-     border: 1px solid #83b6b0;
-     border-radius: 10px;
-     padding: 10px;
-     background: #fff;
-     font-size: 16px;
-     line-height: 1.6;
-     outline: none;
-     overflow-y: auto;
-     white-space: pre-wrap;
-
-     /* 👇 Add these lines */
-     max-height: 400px;
-     /* Editor stops growing after this height */
-     overflow-y: auto;
-     /* Scroll appears inside */
-     scrollbar-width: thin;
-     /* Slim scrollbar for Firefox */
-     scrollbar-color: #38b2ac #e8f9f7;
-     /* Custom scrollbar colors */
- }
-
- .outer-editor{
-     margin: 10px;
-
- }
- .tools{
-padding: 20px;
- }
- /* Optional: pretty scrollbars for Chrome/Edge */
- .editor::-webkit-scrollbar {
-     width: 8px;
- }
-
- .editor::-webkit-scrollbar-track {
-     background: #f1f1f1;
-     border-radius: 10px;
- }
-
- .editor::-webkit-scrollbar-thumb {
-     background: linear-gradient(135deg, #4fd1c5, #38b2ac);
-     border-radius: 10px;
- }
-
- .editor::-webkit-scrollbar-thumb:hover {
-     background: linear-gradient(135deg, #38b2ac, #319795);
- }
-
-
- .editor span.error-spell {
-     text-decoration: underline wavy red;
-     cursor: pointer;
- }
-
- .editor span.error-grammar {
-     text-decoration: underline wavy blue;
-     cursor: pointer;
- }
-
- .tooltip {
-     position: absolute;
-     background: rgba(40, 40, 40, 0.95);
-     backdrop-filter: blur(6px);
-     color: #fff;
-     padding: 10px 12px;
-     border-radius: 8px;
-     font-size: 14px;
-     z-index: 100;
-     max-width: 260px;
-     box-shadow: 0 4px 12px rgba(0, 0, 0, .25);
-     display: none;
-     opacity: 0;
-     transition: opacity .25s ease;
- }
-
- .tooltip.visible {
-     display: block;
-     opacity: 1;
- }
-
- .tooltip ul {
-     margin: 8px 0 0;
-     padding: 0;
-     list-style: none;
- }
-
- .tooltip li {
-     padding: 4px 0;
-     cursor: pointer;
-     border-radius: 4px;
-     transition: .2s;
- }
-
- .tooltip li:hover {
-     background: rgba(255, 255, 255, 0.15);
- }
-
- .buttons {
-     display: flex;
-     gap: 10px;
-     margin-top: 15px;
- }
-
- button {
-     padding: 10px 15px;
-     font-size: 15px;
-     background: linear-gradient(135deg, #4fd1c5, #38b2ac);
-     color: #fff;
-     border: none;
-     border-radius: 8px;
-     cursor: pointer;
-     transition: .3s;
- }
-
- button:hover {
-     transform: translateY(-2px);
-     box-shadow: 0 4px 10px rgba(56, 178, 172, 0.4);
- }
-
- .toast {
-     position: fixed;
-     bottom: 20px;
-     right: 20px;
-     background: #333;
-     color: #fff;
-     padding: 10px 15px;
-     border-radius: 6px;
-     opacity: 0;
-     transition: .3s;
-     pointer-events: none;
  }
