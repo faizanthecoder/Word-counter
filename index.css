@@ -460,15 +460,19 @@ body.dark .action-buttons button {
 /* 🧭 Responsive Layout */
 @media (max-width: 700px) {
   .stats-bar {
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
+    gap: 10px 10px;
+  padding: 10px;
     border: none;
 box-shadow: 1px 11px 14px rgb(0 0 0 / 31%), inset 0 1px 0 rgba(255, 255, 255, 0.5);
   }
   
   .stat-item {
-    width: 80%;
+    /* width: 80%; */
     text-align: center;
+  padding: 2px 10px;
+
   }
 }
 

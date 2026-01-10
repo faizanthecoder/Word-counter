@@ -38,36 +38,63 @@ document.addEventListener("DOMContentLoaded", () => {
   // 🕓 Footer Year
   if (year) year.textContent = new Date().getFullYear();
 
-  // ✍️ Update Counts
-  function updateCounts() {
-    const text = editor.innerText.trim();
-    const words = text === "" ? 0 : text.split(/\s+/).length;
-    const chars = text.length;
-    const spaces = (text.match(/ /g) || []).length;
-    const sentences = (text.match(/[.!?]+(\s|$)/g) || []).length;
-    const paragraphs = text.split(/\n+/).filter(p => p.trim() !== "").length;
+// ✍️ Update Counts (clean + accurate)
+function updateCounts() {
+  // 1️⃣ Clean HTML (remove tags, collapse spaces)
+  const cleanText = editor.innerHTML
+    .replace(/<[^>]*>/g, '')   // remove all HTML tags
+    .replace(/&nbsp;/g, ' ')   // replace non-breaking spaces
+    .replace(/\s+/g, ' ')      // collapse multiple spaces
+    .trim();
 
-    wordCountEl.textContent = words;
-    charCountEl.textContent = chars;
-    spaceCountEl.textContent = spaces;
-    document.getElementById("sentenceCount").textContent = sentences;
-    document.getElementById("paragraphCount").textContent = paragraphs;
+  // 2️⃣ Word count
+  const words = cleanText === "" ? 0 : cleanText.split(/\b[\s,.:;!?()"'`]+/).filter(Boolean).length;
 
-    updateTimes(words);
-    updateKeywords(text);
-    updateReadingLevel(text, words, sentences);
-    checkGoal(words);
+  // 3️⃣ Character counts
+  const charsWithSpaces = cleanText.length;
+  const charsWithoutSpaces = cleanText.replace(/\s/g, '').length;
+  const spaces = (cleanText.match(/ /g) || []).length;
 
-    localStorage.setItem("savedText", text);
-  }
+  // 4️⃣ Sentence & paragraph counts
+  const sentences = (cleanText.match(/[.!?]+(\s|$)/g) || []).length;
+  const paragraphs = cleanText.split(/\n+/).filter(p => p.trim() !== "").length;
 
-  // ⏱️ Reading & Speaking Time
-  function updateTimes(words) {
-    const readSec = Math.round(words / 3.33);
-    const speakSec = Math.round(words / 2.5);
-    readTimeEl.textContent = `${readSec}s`;
-    speakTimeEl.textContent = `${speakSec}s`;
-  }
+  // 5️⃣ Update DOM
+  wordCountEl.textContent = words;
+  // charCountEl.textContent = charsWithSpaces; // for old compatibility
+  document.getElementById("charCountWithSpaces").textContent = charsWithSpaces;
+  document.getElementById("charCountWithoutSpaces").textContent = charsWithoutSpaces;
+  spaceCountEl.textContent = spaces;
+  document.getElementById("sentenceCount").textContent = sentences;
+  document.getElementById("paragraphCount").textContent = paragraphs;
+
+  // 6️⃣ Update extras
+  updateTimes(words);
+  updateKeywords(cleanText);
+  updateReadingLevel(cleanText, words, sentences);
+  checkGoal(words);
+
+  // 7️⃣ Save text locally
+  localStorage.setItem("savedText", cleanText);
+}
+
+// ⏱️ Reading & Speaking Time (minutes + seconds)
+function updateTimes(words) {
+  // Reading speed: 200 wpm (≈3.33 words/s)
+  // Speaking speed: 130 wpm (≈2.17 words/s)
+  const readSec = Math.round(words / (200 / 60));   // words ÷ (words per min / 60)
+  const speakSec = Math.round(words / (130 / 60));
+
+  readTimeEl.textContent = formatTime(readSec);
+  speakTimeEl.textContent = formatTime(speakSec);
+}
+
+function formatTime(seconds) {
+  if (seconds < 60) return `${seconds}s`;
+  const minutes = Math.floor(seconds / 60);
+  const secs = seconds % 60;
+  return secs === 0 ? `${minutes}m` : `${minutes}m ${secs}s`;
+}
 
   // 🔍 Keyword Density
   function updateKeywords(text) {
