@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+  <!-- Core Pages -->
+  <url>
+    <loc>https://countit4u.fun/</loc>
+    <lastmod>2026-01-12</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url><loc>https://countit4u.fun/about.html</loc></url>
+  <url><loc>https://countit4u.fun/contact.html</loc></url>
+  <url><loc>https://countit4u.fun/privacy.html</loc></url>
+  <url><loc>https://countit4u.fun/terms&conditions.html</loc></url>
+  <url><loc>https://countit4u.fun/FAQs.html</loc></url>
+
+  <!-- Blog Pages -->
+  <url><loc>https://countit4u.fun/blog/how-to-write-an-essay.html</loc><lastmod>2025-12-20</lastmod></url>
+  <url><loc>https://countit4u.fun/blog/grammar-tips.html</loc><lastmod>2025-12-25</lastmod></url>
+  <url><loc>https://countit4u.fun/blog/improve-writing-speed.html</loc><lastmod>2025-12-28</lastmod></url>
+  <url><loc>https://countit4u.fun/blog/writing-for-seo.html</loc><lastmod>2026-01-12</lastmod></url>
+  <url><loc>https://countit4u.fun/blog/creative-writing-guide.html</loc><lastmod>2026-01-10</lastmod></url>
+  <url><loc>https://countit4u.fun/blog/avoiding-plagiarism.html</loc></url>
+  <url><loc>https://countit4u.fun/blog/resume-writing.html</loc></url>
+  <url><loc>https://countit4u.fun/blog/story-writing.html</loc></url>
+  <url><loc>https://countit4u.fun/blog/academic-writing.html</loc></url>
+  <url><loc>https://countit4u.fun/blog/editing-proofreading.html</loc></url>
+  <url><loc>https://countit4u.fun/blog/common-writing-mistakes.html</loc></url>
+  <url><loc>https://countit4u.fun/blog/content-writing-for-beginners.html</loc></url>
+  <url><loc>https://countit4u.fun/blog/email-writing-guide.html</loc></url>
+  <url><loc>https://countit4u.fun/blog/essay-introduction.html</loc></url>
+  <url><loc>https://countit4u.fun/blog/formal-vs-informal-writing.html</loc></url>
+  <url><loc>https://countit4u.fun/blog/grammar-rules.html</loc></url>
+  <url><loc>https://countit4u.fun/blog/how-to-improve-vocabulary.html</loc></url>
+  <url><loc>https://countit4u.fun/blog/how-to-write-a-conclusion.html</loc></url>
+  <url><loc>https://countit4u.fun/blog/paragraph-writing.html</loc></url>
+  <url><loc>https://countit4u.fun/blog/proofreading-checklist.html</loc></url>
+  <url><loc>https://countit4u.fun/blog/tutorial.html</loc></url>
+  <url><loc>https://countit4u.fun/blog/writing-habit.html</loc></url>
+  <url><loc>https://countit4u.fun/blog/writing-tone-and-style.html</loc><lastmod>2026-01-12</lastmod></url>
+
+</urlset>
