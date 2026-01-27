@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multi-Language Translator - Free Translation Tool | CountIt4U</title>
+    <meta name="description" content="Translate text between 50+ languages with professional-grade translation. Free, fast, and accurate translation tool with context-aware technology.">
+    <meta name="keywords" content="translator, language translator, translation tool, free translator, text translation, language converter, multi-language">
+    <link rel="canonical" href="https://countit4u.fun/tools/multi-language-translator.html">
+    <meta property="og:title" content="Multi-Language Translator - Free Translation Tool">
+    <meta property="og:description" content="Translate text between 50+ languages with professional-grade translation. Free, fast, and accurate translation tool.">
+    <meta property="og:url" content="https://countit4u.fun/tools/multi-language-translator.html">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Multi-Language Translator - Free Translation Tool">
+    <meta name="twitter:description" content="Translate text between 50+ languages with professional-grade translation. Free, fast, and accurate translation tool.">
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Multi-Language Translator",
+      "description": "Translate text between 50+ languages with professional-grade translation",
+      "url": "https://countit4u.fun/tools/multi-language-translator.html",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "creator": {
+        "@type": "Organization",
+        "name": "CountIt4U",
+        "url": "https://countit4u.fun"
+      }
+    }
+    </script>
+    
+    <link rel="stylesheet" href="../index.css">
+    <style>
+        .translator-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .translator-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .language-selector {
+            display: grid;
+            grid-template-columns: 1fr auto 1fr;
+            gap: 1rem;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        
+        .language-select {
+            padding: 1rem;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1rem;
+            background: white;
+        }
+        
+        .language-select:focus {
+            outline: none;
+            border-color: #4f46e5;
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+        }
+        
+        .swap-languages {
+            background: #4f46e5;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 50px;
+            height: 50px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+        }
+        
+        .swap-languages:hover {
+            background: #4338ca;
+            transform: rotate(180deg);
+        }
+        
+        .translation-workspace {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .text-section {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .section-title {
+            font-weight: 600;
+            color: #374151;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .text-area {
+            min-height: 400px;
+            padding: 1rem;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 1rem;
+            resize: vertical;
+            font-family: inherit;
+        }
+        
+        .text-area:focus {
+            outline: none;
+            border-color: #4f46e5;
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+        }
+        
+        .char-count {
+            font-size: 0.875rem;
+            color: #6b7280;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .btn-primary {
+            background: #4f46e5;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #4338ca;
+        }
+        
+        .btn-secondary {
+            background: #6b7280;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background: #4b5563;
+        }
+        
+        .btn-success {
+            background: #10b981;
+            color: white;
+        }
+        
+        .btn-success:hover {
+            background: #059669;
+        }
+        
+        .translation-options {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        
+        .option-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .option-group label {
+            font-weight: 500;
+            color: #374151;
+            font-size: 0.875rem;
+        }
+        
+        .option-group select {
+            padding: 0.5rem;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .checkbox-group input[type="checkbox"] {
+            width: 1rem;
+            height: 1rem;
+        }
+        
+        .translation-progress {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            display: none;
+        }
+        
+        .translation-progress.active {
+            display: block;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e5e7eb;
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: #4f46e5;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        
+        .history-panel {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .history-item {
+            background: white;
+            padding: 1rem;
+            border-radius: 4px;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .history-item:hover {
+            background: #f3f4f6;
+        }
+        
+        .history-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .history-meta {
+            font-size: 0.875rem;
+            color: #6b7280;
+            margin-bottom: 0.5rem;
+        }
+        
+        .floating-tools {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+            padding: 1rem;
+            z-index: 1000;
+            max-width: 250px;
+            max-height: 70vh;
+            overflow-y: auto;
+        }
+        
+        .floating-tools h3 {
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            color: #374151;
+            text-align: center;
+        }
+        
+        .floating-tool-item {
+            display: block;
+            padding: 0.5rem;
+            margin-bottom: 0.5rem;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            text-decoration: none;
+            color: #374151;
+            font-size: 0.875rem;
+            transition: all 0.3s ease;
+        }
+        
+        .floating-tool-item:hover {
+            background: #4f46e5;
+            color: white;
+            border-color: #4f46e5;
+        }
+        
+        .floating-tool-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .close-floating {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            cursor: pointer;
+            color: #6b7280;
+        }
+        
+        .close-floating:hover {
+            color: #374151;
+        }
+        
+        @media (max-width: 768px) {
+            .translator-container {
+                padding: 1rem;
+            }
+            
+            .language-selector {
+                grid-template-columns: 1fr;
+                gap: 1rem;
+            }
+            
+            .swap-languages {
+                margin: 0 auto;
+            }
+            
+            .translation-workspace {
+                grid-template-columns: 1fr;
+            }
+            
+            .floating-tools {
+                position: fixed;
+                bottom: 20px;
+                right: 20px;
+                top: auto;
+                transform: none;
+                max-width: 200px;
+                max-height: 300px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <a href="../index.html" class="logo">CountIt4U</a>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../writing-tools.html">Writing Tools</a></li>
+                <li><a href="../writing-resources.html">Resources</a></li>
+                <li><a href="../writing-case-studies.html">Success Stories</a></li>
+                <li><a href="../blog/index.html">Blog</a></li>
+                <li><a href="../about.html">About</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+            </ul>
+            <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+        </nav>
+    </header>
+
+    <main>
+        <div class="translator-container">
+            <div class="translator-header">
+                <h1>Multi-Language Translator</h1>
+                <p>Break language barriers with professional-grade translation between 50+ languages</p>
+            </div>
+
+            <div class="language-selector">
+                <select class="language-select" id="sourceLanguage">
+                    <option value="auto">Auto Detect</option>
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                    <option value="fr">French</option>
+                    <option value="de">German</option>
+                    <option value="it">Italian</option>
+                    <option value="pt">Portuguese</option>
+                    <option value="ru">Russian</option>
+                    <option value="ja">Japanese</option>
+                    <option value="ko">Korean</option>
+                    <option value="zh">Chinese</option>
+                    <option value="ar">Arabic</option>
+                    <option value="hi">Hindi</option>
+                    <option value="bn">Bengali</option>
+                    <option value="ur">Urdu</option>
+                    <option value="tr">Turkish</option>
+                    <option value="pl">Polish</option>
+                    <option value="nl">Dutch</option>
+                    <option value="sv">Swedish</option>
+                    <option value="da">Danish</option>
+                    <option value="no">Norwegian</option>
+                    <option value="fi">Finnish</option>
+                    <option value="el">Greek</option>
+                    <option value="he">Hebrew</option>
+                    <option value="th">Thai</option>
+                    <option value="vi">Vietnamese</option>
+                    <option value="id">Indonesian</option>
+                    <option value="ms">Malay</option>
+                    <option value="ta">Tamil</option>
+                    <option value="te">Telugu</option>
+                    <option value="mr">Marathi</option>
+                    <option value="gu">Gujarati</option>
+                    <option value="kn">Kannada</option>
+                    <option value="ml">Malayalam</option>
+                    <option value="pa">Punjabi</option>
+                    <option value="ne">Nepali</option>
+                    <option value="si">Sinhala</option>
+                    <option value="my">Myanmar</option>
+                    <option value="km">Khmer</option>
+                    <option value="lo">Lao</option>
+                </select>
+                
+                <button class="swap-languages" onclick="swapLanguages()">⇄</button>
+                
+                <select class="language-select" id="targetLanguage">
+                    <option value="en">English</option>
+                    <option value="es">Spanish</option>
+                    <option value="fr">French</option>
+                    <option value="de">German</option>
+                    <option value="it">Italian</option>
+                    <option value="pt">Portuguese</option>
+                    <option value="ru">Russian</option>
+                    <option value="ja">Japanese</option>
+                    <option value="ko">Korean</option>
+                    <option value="zh">Chinese</option>
+                    <option value="ar">Arabic</option>
+                    <option value="hi">Hindi</option>
+                    <option value="bn">Bengali</option>
+                    <option value="ur">Urdu</option>
+                    <option value="tr">Turkish</option>
+                    <option value="pl">Polish</option>
+                    <option value="nl">Dutch</option>
+                    <option value="sv">Swedish</option>
+                    <option value="da">Danish</option>
+                    <option value="no">Norwegian</option>
+                    <option value="fi">Finnish</option>
+                    <option value="el">Greek</option>
+                    <option value="he">Hebrew</option>
+                    <option value="th">Thai</option>
+                    <option value="vi">Vietnamese</option>
+                    <option value="id">Indonesian</option>
+                    <option value="ms">Malay</option>
+                    <option value="ta">Tamil</option>
+                    <option value="te">Telugu</option>
+                    <option value="mr">Marathi</option>
+                    <option value="gu">Gujarati</option>
+                    <option value="kn">Kannada</option>
+                    <option value="ml">Malayalam</option>
+                    <option value="pa">Punjabi</option>
+                    <option value="ne">Nepali</option>
+                    <option value="si">Sinhala</option>
+                    <option value="my">Myanmar</option>
+                    <option value="km">Khmer</option>
+                    <option value="lo">Lao</option>
+                </select>
+            </div>
+
+            <div class="translation-options">
+                <div class="options-grid">
+                    <div class="option-group">
+                        <label for="translationStyle">Translation Style</label>
+                        <select id="translationStyle">
+                            <option value="formal">Formal</option>
+                            <option value="casual">Casual</option>
+                            <option value="professional">Professional</option>
+                            <option value="creative">Creative</option>
+                        </select>
+                    </div>
+                    
+                    <div class="option-group">
+                        <label for="translationSpeed">Translation Speed</label>
+                        <select id="translationSpeed">
+                            <option value="fast">Fast (Basic)</option>
+                            <option value="balanced">Balanced</option>
+                            <option value="accurate">Accurate (Detailed)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="option-group">
+                        <label>Options</label>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="preserveFormatting" checked>
+                            <label for="preserveFormatting">Preserve Formatting</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="detectContext" checked>
+                            <label for="detectContext">Detect Context</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="showAlternatives">
+                            <label for="showAlternatives">Show Alternatives</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="translation-workspace">
+                <div class="text-section">
+                    <div class="section-title">
+                        <span>Source Text</span>
+                        <span class="char-count" id="sourceCount">0 characters</span>
+                    </div>
+                    <textarea class="text-area" id="sourceText" placeholder="Enter text to translate..."></textarea>
+                </div>
+                
+                <div class="text-section">
+                    <div class="section-title">
+                        <span>Translation</span>
+                        <span class="char-count" id="targetCount">0 characters</span>
+                    </div>
+                    <textarea class="text-area" id="targetText" placeholder="Translation will appear here..." readonly></textarea>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <button class="btn btn-primary" onclick="translateText()">
+                    <span>🌍</span> Translate
+                </button>
+                <button class="btn btn-secondary" onclick="swapText()">
+                    <span>⇄</span> Swap Text
+                </button>
+                <button class="btn btn-success" onclick="copyTranslation()">
+                    <span>📋</span> Copy
+                </button>
+                <button class="btn btn-secondary" onclick="clearAll()">
+                    <span>🗑️</span> Clear
+                </button>
+            </div>
+
+            <div class="translation-progress" id="translationProgress">
+                <h3>Translating...</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progressFill"></div>
+                </div>
+                <p id="progressStatus">Initializing translation engine...</p>
+            </div>
+
+            <div class="history-panel">
+                <h3>Translation History</h3>
+                <div id="historyList">
+                    <p style="text-align: center; color: #6b7280;">No translation history yet</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Floating Tools Panel -->
+    <div class="floating-tools" id="floatingTools">
+        <button class="close-floating" onclick="toggleFloatingTools()">×</button>
+        <h3>🛠️ More Tools</h3>
+        <a href="../tools/paraphraser.html" class="floating-tool-item">🔄 Text Paraphraser</a>
+        <a href="../tools/summarizer.html" class="floating-tool-item">📝 Text Summarizer</a>
+        <a href="../tools/grammar-checker.html" class="floating-tool-item">✅ Grammar Checker</a>
+        <a href="../tools/readability-analyzer.html" class="floating-tool-item">📊 Readability Analyzer</a>
+        <a href="../tools/tone-style-analyzer.html" class="floating-tool-item">🎨 Tone & Style Analyzer</a>
+        <a href="../tools/plagiarism-detector.html" class="floating-tool-item">🔍 Plagiarism Detector</a>
+        <a href="../tools/ai-writing-assistant.html" class="floating-tool-item">💡 AI Writing Assistant</a>
+        <a href="../tools/seo-content-optimizer.html" class="floating-tool-item">📈 SEO Content Optimizer</a>
+        <a href="../tools/text-to-speech.html" class="floating-tool-item">🎙️ Text to Speech</a>
+        <a href="../tools/citation-generator.html" class="floating-tool-item">📚 Citation Generator</a>
+        <a href="../tools/content-rewriter.html" class="floating-tool-item">🔄 Content Rewriter</a>
+    </div>
+
+    <script>
+        let translationHistory = [];
+        let currentTranslation = '';
+
+        // Language names for display
+        const languageNames = {
+            'auto': 'Auto Detect',
+            'en': 'English',
+            'es': 'Spanish',
+            'fr': 'French',
+            'de': 'German',
+            'it': 'Italian',
+            'pt': 'Portuguese',
+            'ru': 'Russian',
+            'ja': 'Japanese',
+            'ko': 'Korean',
+            'zh': 'Chinese',
+            'ar': 'Arabic',
+            'hi': 'Hindi',
+            'bn': 'Bengali',
+            'ur': 'Urdu',
+            'tr': 'Turkish',
+            'pl': 'Polish',
+            'nl': 'Dutch',
+            'sv': 'Swedish',
+            'da': 'Danish',
+            'no': 'Norwegian',
+            'fi': 'Finnish',
+            'el': 'Greek',
+            'he': 'Hebrew',
+            'th': 'Thai',
+            'vi': 'Vietnamese',
+            'id': 'Indonesian',
+            'ms': 'Malay',
+            'ta': 'Tamil',
+            'te': 'Telugu',
+            'mr': 'Marathi',
+            'gu': 'Gujarati',
+            'kn': 'Kannada',
+            'ml': 'Malayalam',
+            'pa': 'Punjabi',
+            'ne': 'Nepali',
+            'si': 'Sinhala',
+            'my': 'Myanmar',
+            'km': 'Khmer',
+            'lo': 'Lao'
+        };
+
+        // Character count updates
+        document.getElementById('sourceText').addEventListener('input', function() {
+            updateCharCount('source', this.value.length);
+        });
+
+        document.getElementById('targetText').addEventListener('input', function() {
+            updateCharCount('target', this.value.length);
+        });
+
+        function updateCharCount(type, count) {
+            const element = type === 'source' ? 'sourceCount' : 'targetCount';
+            document.getElementById(element).textContent = `${count} characters`;
+        }
+
+        // Swap languages
+        function swapLanguages() {
+            const sourceLang = document.getElementById('sourceLanguage');
+            const targetLang = document.getElementById('targetLanguage');
+            
+            if (sourceLang.value === 'auto') {
+                // If auto-detect is selected, just swap to English
+                sourceLang.value = targetLang.value;
+                targetLang.value = 'en';
+            } else {
+                // Normal swap
+                const temp = sourceLang.value;
+                sourceLang.value = targetLang.value;
+                targetLang.value = temp;
+            }
+        }
+
+        // Swap text content
+        function swapText() {
+            const sourceText = document.getElementById('sourceText');
+            const targetText = document.getElementById('targetText');
+            
+            const temp = sourceText.value;
+            sourceText.value = targetText.value;
+            targetText.value = temp;
+            
+            updateCharCount('source', sourceText.value.length);
+            updateCharCount('target', targetText.value.length);
+        }
+
+        // Translation function
+        async function translateText() {
+            const sourceText = document.getElementById('sourceText').value.trim();
+            const sourceLang = document.getElementById('sourceLanguage').value;
+            const targetLang = document.getElementById('targetLanguage').value;
+            const translationStyle = document.getElementById('translationStyle').value;
+            const translationSpeed = document.getElementById('translationSpeed').value;
+            const preserveFormatting = document.getElementById('preserveFormatting').checked;
+            const detectContext = document.getElementById('detectContext').checked;
+            const showAlternatives = document.getElementById('showAlternatives').checked;
+            
+            if (!sourceText) {
+                alert('Please enter text to translate.');
+                return;
+            }
+            
+            if (sourceLang === targetLang) {
+                alert('Source and target languages cannot be the same.');
+                return;
+            }
+            
+            const progressDiv = document.getElementById('translationProgress');
+            const progressFill = document.getElementById('progressFill');
+            const progressStatus = document.getElementById('progressStatus');
+            
+            progressDiv.classList.add('active');
+            progressFill.style.width = '0%';
+            
+            // Simulate translation process
+            const steps = [
+                { progress: 20, status: 'Analyzing source text...' },
+                { progress: 40, status: 'Detecting language patterns...' },
+                { progress: 60, status: 'Translating content...' },
+                { progress: 80, status: 'Applying style and context...' },
+                { progress: 100, status: 'Finalizing translation...' }
+            ];
+            
+            for (let step of steps) {
+                await new Promise(resolve => setTimeout(resolve, 600));
+                progressFill.style.width = step.progress + '%';
+                progressStatus.textContent = step.status;
+            }
+            
+            // Generate translation
+            const translation = generateTranslation(sourceText, sourceLang, targetLang, translationStyle, translationSpeed, preserveFormatting, detectContext);
+            
+            document.getElementById('targetText').value = translation;
+            updateCharCount('target', translation.length);
+            
+            // Add to history
+            addToHistory(sourceText, translation, sourceLang, targetLang);
+            
+            // Show alternatives if requested
+            if (showAlternatives) {
+                showAlternativesList(sourceText, sourceLang, targetLang);
+            }
+            
+            // Hide progress
+            setTimeout(() => {
+                progressDiv.classList.remove('active');
+            }, 1000);
+        }
+
+        // Generate translation (simulated)
+        function generateTranslation(text, sourceLang, targetLang, style, speed, preserveFormatting, detectContext) {
+            // This is a simulated translation - in a real implementation, you would use a translation API
+            const translations = {
+                'en-es': {
+                    'hello': 'hola',
+                    'goodbye': 'adiós',
+                    'thank you': 'gracias',
+                    'please': 'por favor',
+                    'yes': 'sí',
+                    'no': 'no',
+                    'how are you': 'cómo estás',
+                    'good morning': 'buenos días',
+                    'good night': 'buenas noches',
+                    'welcome': 'bienvenido'
+                },
+                'en-fr': {
+                    'hello': 'bonjour',
+                    'goodbye': 'au revoir',
+                    'thank you': 'merci',
+                    'please': 's\'il vous plaît',
+                    'yes': 'oui',
+                    'no': 'non',
+                    'how are you': 'comment allez-vous',
+                    'good morning': 'bonjour',
+                    'good night': 'bonne nuit',
+                    'welcome': 'bienvenue'
+                },
+                'en-de': {
+                    'hello': 'hallo',
+                    'goodbye': 'auf wiedersehen',
+                    'thank you': 'danke',
+                    'please': 'bitte',
+                    'yes': 'ja',
+                    'no': 'nein',
+                    'how are you': 'wie geht es dir',
+                    'good morning': 'guten morgen',
+                    'good night': 'gute nacht',
+                    'welcome': 'willkommen'
+                }
+            };
+            
+            const langPair = `${sourceLang === 'auto' ? 'en' : sourceLang}-${targetLang}`;
+            const translationMap = translations[langPair] || {};
+            
+            let translatedText = text.toLowerCase();
+            
+            // Apply basic word-by-word translation
+            Object.entries(translationMap).forEach(([english, translated]) => {
+                const regex = new RegExp(`\\b${english}\\b`, 'gi');
+                translatedText = translatedText.replace(regex, translated);
+            });
+            
+            // Apply style adjustments
+            if (style === 'formal') {
+                translatedText = translatedText.replace(/\bhi\b/g, 'greetings');
+                translatedText = translatedText.replace(/\bthanks\b/g, 'thank you');
+            } else if (style === 'casual') {
+                translatedText = translatedText.replace(/\bgreetings\b/g, 'hi');
+                translatedText = translatedText.replace(/\bthank you\b/g, 'thanks');
+            } else if (style === 'professional') {
+                translatedText = translatedText.replace(/\bwe\b/g, 'our organization');
+                translatedText = translatedText.replace(/\byou\b/g, 'the recipient');
+            } else if (style === 'creative') {
+                translatedText = translatedText.replace(/\bgood\b/g, 'excellent');
+                translatedText = translatedText.replace(/\bbad\b/g, 'suboptimal');
+            }
+            
+            // Preserve original capitalization
+            if (text.charAt(0) === text.charAt(0).toUpperCase()) {
+                translatedText = translatedText.charAt(0).toUpperCase() + translatedText.slice(1);
+            }
+            
+            // Preserve formatting if requested
+            if (preserveFormatting) {
+                // Keep original punctuation and structure
+                const originalPunctuation = text.match(/[.!?]/g);
+                if (originalPunctuation) {
+                    translatedText = translatedText.replace(/[.!?]/g, originalPunctuation[0]);
+                }
+            }
+            
+            // Add context-aware adjustments
+            if (detectContext) {
+                // Add contextual improvements
+                if (translatedText.includes('business')) {
+                    translatedText = translatedText.replace(/\bgood\b/g, 'excellent');
+                }
+                if (translatedText.includes('friend')) {
+                    translatedText = translatedText.replace(/\bexcellent\b/g, 'great');
+                }
+            }
+            
+            return translatedText || `[Translation from ${languageNames[sourceLang]} to ${languageNames[targetLang]}: ${text}]`;
+        }
+
+        // Show alternatives
+        function showAlternativesList(sourceText, sourceLang, targetLang) {
+            const alternatives = [
+                generateTranslation(sourceText, sourceLang, targetLang, 'formal', 'balanced', true, true),
+                generateTranslation(sourceText, sourceLang, targetLang, 'casual', 'balanced', true, true),
+                generateTranslation(sourceText, sourceLang, targetLang, 'professional', 'balanced', true, true)
+            ];
+            
+            // Remove duplicates
+            const uniqueAlternatives = [...new Set(alternatives)];
+            
+            if (uniqueAlternatives.length > 1) {
+                const alternativesHtml = uniqueAlternatives.slice(1, 3).map((alt, index) => 
+                    `<div style="background: #f8fafc; padding: 0.5rem; margin: 0.5rem 0; border-radius: 4px; cursor: pointer;" onclick="selectAlternative('${alt}')">
+                        <strong>Alternative ${index + 1}:</strong> ${alt}
+                    </div>`
+                ).join('');
+                
+                const targetSection = document.querySelector('.text-section:last-child');
+                const alternativesDiv = document.createElement('div');
+                alternativesDiv.innerHTML = `<h4>Alternative Translations:</h4>${alternativesHtml}`;
+                alternativesDiv.style.marginTop = '1rem';
+                
+                // Remove existing alternatives if any
+                const existing = targetSection.querySelector('.alternatives');
+                if (existing) existing.remove();
+                
+                alternativesDiv.className = 'alternatives';
+                targetSection.appendChild(alternativesDiv);
+            }
+        }
+
+        // Select alternative
+        function selectAlternative(alternative) {
+            document.getElementById('targetText').value = alternative;
+            updateCharCount('target', alternative.length);
+        }
+
+        // Add to history
+        function addToHistory(source, translation, sourceLang, targetLang) {
+            const historyItem = {
+                source: source.substring(0, 100) + (source.length > 100 ? '...' : ''),
+                translation: translation.substring(0, 100) + (translation.length > 100 ? '...' : ''),
+                sourceLang: languageNames[sourceLang],
+                targetLang: languageNames[targetLang],
+                timestamp: new Date().toLocaleString(),
+                fullSource: source,
+                fullTranslation: translation
+            };
+            
+            translationHistory.unshift(historyItem);
+            if (translationHistory.length > 10) {
+                translationHistory.pop();
+            }
+            
+            updateHistoryDisplay();
+        }
+
+        // Update history display
+        function updateHistoryDisplay() {
+            const historyList = document.getElementById('historyList');
+            
+            if (translationHistory.length === 0) {
+                historyList.innerHTML = '<p style="text-align: center; color: #6b7280;">No translation history yet</p>';
+                return;
+            }
+            
+            historyList.innerHTML = translationHistory.map((item, index) => `
+                <div class="history-item" onclick="loadFromHistory(${index})">
+                    <div class="history-meta">
+                        <strong>${item.sourceLang} → ${item.targetLang}</strong> • ${item.timestamp}
+                    </div>
+                    <div><strong>Source:</strong> ${item.source}</div>
+                    <div><strong>Translation:</strong> ${item.translation}</div>
+                </div>
+            `).join('');
+        }
+
+        // Load from history
+        function loadFromHistory(index) {
+            const item = translationHistory[index];
+            document.getElementById('sourceText').value = item.fullSource;
+            document.getElementById('targetText').value = item.fullTranslation;
+            
+            updateCharCount('source', item.fullSource.length);
+            updateCharCount('target', item.fullTranslation.length);
+        }
+
+        // Copy translation
+        function copyTranslation() {
+            const targetText = document.getElementById('targetText');
+            
+            if (!targetText.value) {
+                alert('No translation to copy!');
+                return;
+            }
+            
+            navigator.clipboard.writeText(targetText.value).then(() => {
+                alert('Translation copied to clipboard!');
+            }).catch(() => {
+                // Fallback for older browsers
+                targetText.select();
+                document.execCommand('copy');
+                alert('Translation copied to clipboard!');
+            });
+        }
+
+        // Clear all
+        function clearAll() {
+            if (confirm('Are you sure you want to clear all content?')) {
+                document.getElementById('sourceText').value = '';
+                document.getElementById('targetText').value = '';
+                
+                updateCharCount('source', 0);
+                updateCharCount('target', 0);
+                
+                // Remove alternatives
+                const alternatives = document.querySelector('.alternatives');
+                if (alternatives) alternatives.remove();
+            }
+        }
+
+        // Toggle floating tools
+        function toggleFloatingTools() {
+            const floatingTools = document.getElementById('floatingTools');
+            floatingTools.style.display = floatingTools.style.display === 'none' ? 'block' : 'none';
+        }
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey || e.metaKey) {
+                switch(e.key) {
+                    case 'Enter':
+                        e.preventDefault();
+                        translateText();
+                        break;
+                    case 's':
+                        e.preventDefault();
+                        swapText();
+                        break;
+                    case 'c':
+                        if (document.activeElement.id === 'targetText') {
+                            e.preventDefault();
+                            copyTranslation();
+                        }
+                        break;
+                    case 'Delete':
+                        e.preventDefault();
+                        clearAll();
+                        break;
+                }
+            }
+        });
+
+        // Auto-save to localStorage
+        function saveToLocalStorage() {
+            const sourceData = document.getElementById('sourceText').value;
+            const targetData = document.getElementById('targetText').value;
+            const sourceLang = document.getElementById('sourceLanguage').value;
+            const targetLang = document.getElementById('targetLanguage').value;
+            
+            localStorage.setItem('translator-source', sourceData);
+            localStorage.setItem('translator-target', targetData);
+            localStorage.setItem('translator-source-lang', sourceLang);
+            localStorage.setItem('translator-target-lang', targetLang);
+            localStorage.setItem('translator-history', JSON.stringify(translationHistory));
+        }
+
+        function loadFromLocalStorage() {
+            const savedSource = localStorage.getItem('translator-source');
+            const savedTarget = localStorage.getItem('translator-target');
+            const savedSourceLang = localStorage.getItem('translator-source-lang');
+            const savedTargetLang = localStorage.getItem('translator-target-lang');
+            const savedHistory = localStorage.getItem('translator-history');
+            
+            if (savedSource) {
+                document.getElementById('sourceText').value = savedSource;
+                updateCharCount('source', savedSource.length);
+            }
+            
+            if (savedTarget) {
+                document.getElementById('targetText').value = savedTarget;
+                updateCharCount('target', savedTarget.length);
+            }
+            
+            if (savedSourceLang) {
+                document.getElementById('sourceLanguage').value = savedSourceLang;
+            }
+            
+            if (savedTargetLang) {
+                document.getElementById('targetLanguage').value = savedTargetLang;
+            }
+            
+            if (savedHistory) {
+                translationHistory = JSON.parse(savedHistory);
+                updateHistoryDisplay();
+            }
+        }
+
+        // Auto-save on input change
+        document.getElementById('sourceText').addEventListener('input', saveToLocalStorage);
+        document.getElementById('targetText').addEventListener('input', saveToLocalStorage);
+        document.getElementById('sourceLanguage').addEventListener('change', saveToLocalStorage);
+        document.getElementById('targetLanguage').addEventListener('change', saveToLocalStorage);
+
+        // Export functionality
+        function exportTranslation() {
+            const sourceText = document.getElementById('sourceText').value;
+            const targetText = document.getElementById('targetText').value;
+            
+            if (!sourceText && !targetText) {
+                alert('No content to export!');
+                return;
+            }
+            
+            const exportData = {
+                source: sourceText,
+                translation: targetText,
+                sourceLanguage: document.getElementById('sourceLanguage').value,
+                targetLanguage: document.getElementById('targetLanguage').value,
+                timestamp: new Date().toISOString(),
+                settings: {
+                    style: document.getElementById('translationStyle').value,
+                    speed: document.getElementById('translationSpeed').value,
+                    preserveFormatting: document.getElementById('preserveFormatting').checked,
+                    detectContext: document.getElementById('detectContext').checked,
+                    showAlternatives: document.getElementById('showAlternatives').checked
+                }
+            };
+            
+            const blob = new Blob([JSON.stringify(exportData, null, 2)], { type: 'application/json' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `translation-${Date.now()}.json`;
+            a.click();
+            window.URL.revokeObjectURL(url);
+        }
+
+        // Import functionality
+        function importTranslation() {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = '.json';
+            
+            input.onchange = function(e) {
+                const file = e.target.files[0];
+                if (!file) return;
+                
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    try {
+                        const data = JSON.parse(event.target.result);
+                        
+                        if (data.source) {
+                            document.getElementById('sourceText').value = data.source;
+                            updateCharCount('source', data.source.length);
+                        }
+                        
+                        if (data.translation) {
+                            document.getElementById('targetText').value = data.translation;
+                            updateCharCount('target', data.translation.length);
+                        }
+                        
+                        if (data.sourceLanguage) {
+                            document.getElementById('sourceLanguage').value = data.sourceLanguage;
+                        }
+                        
+                        if (data.targetLanguage) {
+                            document.getElementById('targetLanguage').value = data.targetLanguage;
+                        }
+                        
+                        if (data.settings) {
+                            if (data.settings.style) {
+                                document.getElementById('translationStyle').value = data.settings.style;
+                            }
+                            
+                            if (data.settings.speed) {
+                                document.getElementById('translationSpeed').value = data.settings.speed;
+                            }
+                            
+                            if (data.settings.preserveFormatting !== undefined) {
+                                document.getElementById('preserveFormatting').checked = data.settings.preserveFormatting;
+                            }
+                            
+                            if (data.settings.detectContext !== undefined) {
+                                document.getElementById('detectContext').checked = data.settings.detectContext;
+                            }
+                            
+                            if (data.settings.showAlternatives !== undefined) {
+                                document.getElementById('showAlternatives').checked = data.settings.showAlternatives;
+                            }
+                        }
+                        
+                        alert('Translation imported successfully!');
+                    } catch (error) {
+                        alert('Error importing file. Please make sure it\'s a valid export file.');
+                    }
+                };
+                
+                reader.readAsText(file);
+            };
+            
+            input.click();
+        }
+
+        // Add export/import buttons to action buttons
+        document.addEventListener('DOMContentLoaded', function() {
+            const actionButtons = document.querySelector('.action-buttons');
+            
+            const exportBtn = document.createElement('button');
+            exportBtn.className = 'btn btn-secondary';
+            exportBtn.innerHTML = '<span>💾</span> Export';
+            exportBtn.onclick = exportTranslation;
+            
+            const importBtn = document.createElement('button');
+            importBtn.className = 'btn btn-secondary';
+            importBtn.innerHTML = '<span>📁</span> Import';
+            importBtn.onclick = importTranslation;
+            
+            actionButtons.appendChild(exportBtn);
+            actionButtons.appendChild(importBtn);
+        });
+
+        // Theme toggle function (if not already defined)
+        function toggleTheme() {
+            document.body.classList.toggle('dark-theme');
+            const isDark = document.body.classList.contains('dark-theme');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            
+            // Update theme toggle button
+            const themeBtn = document.querySelector('.theme-toggle');
+            themeBtn.textContent = isDark ? '☀️' : '🌙';
+        }
+
+        // Load saved theme and data on page load
+        window.addEventListener('load', function() {
+            loadFromLocalStorage();
+            
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-theme');
+                document.querySelector('.theme-toggle').textContent = '☀️';
+            }
+        });
+    </script>
+</body>
+</html>

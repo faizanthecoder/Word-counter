@@ -178,6 +178,78 @@
       margin-bottom: 15px;
       display: block;
     }
+    
+    .floating-tools {
+      position: fixed;
+      right: 20px;
+      top: 50%;
+      transform: translateY(-50%);
+      background: white;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+      padding: 1rem;
+      z-index: 1000;
+      max-width: 250px;
+      max-height: 70vh;
+      overflow-y: auto;
+    }
+    
+    .floating-tools h3 {
+      font-size: 1rem;
+      margin-bottom: 1rem;
+      color: #374151;
+      text-align: center;
+    }
+    
+    .floating-tool-item {
+      display: block;
+      padding: 0.5rem;
+      margin-bottom: 0.5rem;
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 6px;
+      text-decoration: none;
+      color: #374151;
+      font-size: 0.875rem;
+      transition: all 0.3s ease;
+    }
+    
+    .floating-tool-item:hover {
+      background: #4f46e5;
+      color: white;
+      border-color: #4f46e5;
+    }
+    
+    .floating-tool-item:last-child {
+      margin-bottom: 0;
+    }
+    
+    .close-floating {
+      position: absolute;
+      top: 0.5rem;
+      right: 0.5rem;
+      background: none;
+      border: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+      color: #6b7280;
+    }
+    
+    .close-floating:hover {
+      color: #374151;
+    }
+    
+    @media (max-width: 768px) {
+      .floating-tools {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        top: auto;
+        transform: none;
+        max-width: 200px;
+        max-height: 300px;
+      }
+    }
   </style>
 
 </head>
@@ -403,6 +475,23 @@
   </div>
 </section>
 
+<!-- Floating Tools Panel -->
+<div class="floating-tools" id="floatingTools">
+    <button class="close-floating" onclick="toggleFloatingTools()">×</button>
+    <h3>🛠️ More Tools</h3>
+    <a href="../tools/paraphraser.html" class="floating-tool-item">🔄 Text Paraphraser</a>
+    <a href="../tools/summarizer.html" class="floating-tool-item">📝 Text Summarizer</a>
+    <a href="../tools/grammar-checker.html" class="floating-tool-item">✅ Grammar Checker</a>
+    <a href="../tools/readability-analyzer.html" class="floating-tool-item">📊 Readability Analyzer</a>
+    <a href="../tools/plagiarism-detector.html" class="floating-tool-item">🔍 Plagiarism Detector</a>
+    <a href="../tools/ai-writing-assistant.html" class="floating-tool-item">💡 AI Writing Assistant</a>
+    <a href="../tools/seo-content-optimizer.html" class="floating-tool-item">📈 SEO Content Optimizer</a>
+    <a href="../tools/text-to-speech.html" class="floating-tool-item">🎙️ Text to Speech</a>
+    <a href="../tools/citation-generator.html" class="floating-tool-item">📚 Citation Generator</a>
+    <a href="../tools/content-rewriter.html" class="floating-tool-item">🔄 Content Rewriter</a>
+    <a href="../tools/multi-language-translator.html" class="floating-tool-item">🌍 Multi-Language Translator</a>
+</div>
+
 <footer>
     <div class="footer-container">
       <div class="footer-section pages">
@@ -612,6 +701,12 @@ This analysis provides insights into your writing style and helps you understand
         copyResult();
       }
     });
+    
+    // Toggle floating tools
+    function toggleFloatingTools() {
+      const floatingTools = document.getElementById('floatingTools');
+      floatingTools.style.display = floatingTools.style.display === 'none' ? 'block' : 'none';
+    }
   </script>
 
 </body>
