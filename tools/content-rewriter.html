@@ -1,0 +1,1321 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Content Rewriter - Free AI Text Rewriter | CountIt4U</title>
+    <meta name="description" content="Rewrite and transform your content with AI-powered text rewriter. Create unique, engaging content while preserving meaning. Free content rewriter tool.">
+    <meta name="keywords" content="content rewriter, text rewriter, AI rewriter, paraphrase tool, content spinner, rewrite text, unique content">
+    <link rel="canonical" href="https://countit4u.fun/tools/content-rewriter.html">
+    <meta property="og:title" content="Content Rewriter - Free AI Text Rewriter">
+    <meta property="og:description" content="Rewrite and transform your content with AI-powered text rewriter. Create unique, engaging content while preserving meaning.">
+    <meta property="og:url" content="https://countit4u.fun/tools/content-rewriter.html">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Content Rewriter - Free AI Text Rewriter">
+    <meta name="twitter:description" content="Rewrite and transform your content with AI-powered text rewriter. Create unique, engaging content while preserving meaning.">
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Content Rewriter",
+      "description": "Rewrite and transform your content with AI-powered text rewriter",
+      "url": "https://countit4u.fun/tools/content-rewriter.html",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "creator": {
+        "@type": "Organization",
+        "name": "CountIt4U",
+        "url": "https://countit4u.fun"
+      }
+    }
+    </script>
+    
+    <link rel="stylesheet" href="../index.css">
+    <style>
+        .rewriter-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .rewriter-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .rewriter-mode-selector {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .mode-btn {
+            padding: 1rem;
+            border: 2px solid #e2e8f0;
+            background: white;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .mode-btn:hover {
+            border-color: #4f46e5;
+            background: #f0f9ff;
+        }
+        
+        .mode-btn.active {
+            border-color: #4f46e5;
+            background: #4f46e5;
+            color: white;
+        }
+        
+        .rewriter-workspace {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+        
+        .input-section,
+        .output-section {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .section-title {
+            font-weight: 600;
+            color: #374151;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .text-area {
+            min-height: 400px;
+            padding: 1rem;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 1rem;
+            resize: vertical;
+            font-family: inherit;
+        }
+        
+        .text-area:focus {
+            outline: none;
+            border-color: #4f46e5;
+            box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.1);
+        }
+        
+        .rewriter-options {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .options-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+        
+        .option-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+        
+        .option-group label {
+            font-weight: 500;
+            color: #374151;
+            font-size: 0.875rem;
+        }
+        
+        .option-group select,
+        .option-group input[type="range"] {
+            padding: 0.5rem;
+            border: 1px solid #d1d5db;
+            border-radius: 4px;
+        }
+        
+        .range-value {
+            text-align: center;
+            color: #6b7280;
+            font-size: 0.875rem;
+        }
+        
+        .checkbox-group {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .checkbox-group input[type="checkbox"] {
+            width: 1rem;
+            height: 1rem;
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        
+        .btn-primary {
+            background: #4f46e5;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #4338ca;
+        }
+        
+        .btn-secondary {
+            background: #6b7280;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background: #4b5563;
+        }
+        
+        .btn-success {
+            background: #10b981;
+            color: white;
+        }
+        
+        .btn-success:hover {
+            background: #059669;
+        }
+        
+        .btn-danger {
+            background: #ef4444;
+            color: white;
+        }
+        
+        .btn-danger:hover {
+            background: #dc2626;
+        }
+        
+        .stats-bar {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            padding: 0.75rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.875rem;
+            color: #6b7280;
+        }
+        
+        .rewriting-progress {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 1.5rem;
+            text-align: center;
+            display: none;
+        }
+        
+        .rewriting-progress.active {
+            display: block;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: #e5e7eb;
+            border-radius: 4px;
+            overflow: hidden;
+            margin: 1rem 0;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: #4f46e5;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        
+        .comparison-view {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            display: none;
+        }
+        
+        .comparison-view.active {
+            display: block;
+        }
+        
+        .comparison-text {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .original-text,
+        .rewritten-text {
+            padding: 1rem;
+            background: white;
+            border-radius: 4px;
+            border: 1px solid #d1d5db;
+        }
+        
+        .original-text {
+            border-left: 4px solid #ef4444;
+        }
+        
+        .rewritten-text {
+            border-left: 4px solid #10b981;
+        }
+        
+        .similarity-score {
+            text-align: center;
+            margin: 1rem 0;
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: #374151;
+        }
+        
+        .history-panel {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 2rem;
+        }
+        
+        .history-item {
+            background: white;
+            padding: 1rem;
+            border-radius: 4px;
+            margin-bottom: 0.5rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .history-item:hover {
+            background: #f3f4f6;
+        }
+        
+        .history-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .history-meta {
+            font-size: 0.875rem;
+            color: #6b7280;
+            margin-bottom: 0.5rem;
+        }
+        
+        @media (max-width: 768px) {
+            .rewriter-container {
+                padding: 1rem;
+            }
+            
+            .rewriter-workspace {
+                grid-template-columns: 1fr;
+            }
+            
+            .rewriter-mode-selector {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .comparison-text {
+                grid-template-columns: 1fr;
+            }
+            
+            .action-buttons {
+                justify-content: stretch;
+            }
+            
+            .btn {
+                flex: 1;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <a href="../index.html" class="logo">CountIt4U</a>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../writing-tools.html">Writing Tools</a></li>
+                <li><a href="../writing-resources.html">Resources</a></li>
+                <li><a href="../writing-case-studies.html">Success Stories</a></li>
+                <li><a href="../blog/index.html">Blog</a></li>
+                <li><a href="../about.html">About</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+            </ul>
+            <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+        </nav>
+    </header>
+
+    <main>
+        <div class="rewriter-container">
+            <div class="rewriter-header">
+                <h1>Content Rewriter</h1>
+                <p>Transform your content with AI-powered rewriting while preserving meaning and improving quality</p>
+            </div>
+
+            <div class="rewriter-mode-selector">
+                <button class="mode-btn active" data-mode="simple">🔄 Simple Rewrite</button>
+                <button class="mode-btn" data-mode="creative">🎨 Creative</button>
+                <button class="mode-btn" data-mode="formal">📊 Formal</button>
+                <button class="mode-btn" data-mode="casual">😊 Casual</button>
+                <button class="mode-btn" data-mode="professional">💼 Professional</button>
+                <button class="mode-btn" data-mode="seo">🔍 SEO Optimized</button>
+            </div>
+
+            <div class="rewriter-options">
+                <div class="options-grid">
+                    <div class="option-group">
+                        <label for="creativity-level">Creativity Level</label>
+                        <input type="range" id="creativity-level" min="1" max="10" value="5">
+                        <div class="range-value" id="creativity-value">5</div>
+                    </div>
+                    
+                    <div class="option-group">
+                        <label for="tone">Target Tone</label>
+                        <select id="tone">
+                            <option value="neutral">Neutral</option>
+                            <option value="positive">Positive</option>
+                            <option value="negative">Negative</option>
+                            <option value="persuasive">Persuasive</option>
+                            <option value="informative">Informative</option>
+                        </select>
+                    </div>
+                    
+                    <div class="option-group">
+                        <label for="readability">Readability Level</label>
+                        <select id="readability">
+                            <option value="simple">Simple (8th grade)</option>
+                            <option value="moderate">Moderate (10th grade)</option>
+                            <option value="advanced">Advanced (College)</option>
+                            <option value="expert">Expert (Graduate)</option>
+                        </select>
+                    </div>
+                    
+                    <div class="option-group">
+                        <label>Options</label>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="preserve-keywords" checked>
+                            <label for="preserve-keywords">Preserve Keywords</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="maintain-length" checked>
+                            <label for="maintain-length">Maintain Length</label>
+                        </div>
+                        <div class="checkbox-group">
+                            <input type="checkbox" id="improve-flow">
+                            <label for="improve-flow">Improve Flow</label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="rewriter-workspace">
+                <div class="input-section">
+                    <div class="section-title">
+                        <span>Original Content</span>
+                        <span id="input-stats">0 words | 0 characters</span>
+                    </div>
+                    <textarea class="text-area" id="input-text" placeholder="Enter your content here to rewrite it..."></textarea>
+                </div>
+                
+                <div class="output-section">
+                    <div class="section-title">
+                        <span>Rewritten Content</span>
+                        <span id="output-stats">0 words | 0 characters</span>
+                    </div>
+                    <textarea class="text-area" id="output-text" placeholder="Your rewritten content will appear here..." readonly></textarea>
+                </div>
+            </div>
+
+            <div class="action-buttons">
+                <button class="btn btn-primary" onclick="rewriteContent()">
+                    <span>🔄</span> Rewrite Content
+                </button>
+                <button class="btn btn-secondary" onclick="swapText()">
+                    <span>⇄</span> Swap
+                </button>
+                <button class="btn btn-success" onclick="copyOutput()">
+                    <span>📋</span> Copy
+                </button>
+                <button class="btn btn-danger" onclick="clearAll()">
+                    <span>🗑️</span> Clear All
+                </button>
+            </div>
+
+            <div class="rewriting-progress" id="rewriting-progress">
+                <h3>Rewriting your content...</h3>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="progress-fill"></div>
+                </div>
+                <p id="progress-status">Analyzing content...</p>
+            </div>
+
+            <div class="comparison-view" id="comparison-view">
+                <h3>Content Comparison</h3>
+                <div class="similarity-score" id="similarity-score">Similarity: 0%</div>
+                <div class="comparison-text">
+                    <div class="original-text">
+                        <h4>Original</h4>
+                        <p id="comparison-original"></p>
+                    </div>
+                    <div class="rewritten-text">
+                        <h4>Rewritten</h4>
+                        <p id="comparison-rewritten"></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="history-panel">
+                <h3>Rewriting History</h3>
+                <div id="history-list">
+                    <p style="text-align: center; color: #6b7280;">No rewriting history yet</p>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>CountIt4U</h3>
+                <p>Your trusted writing companion for academic and professional success.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Tools</h4>
+                <ul>
+                    <li><a href="../tools/paraphraser.html">Text Paraphraser</a></li>
+                    <li><a href="../tools/summarizer.html">Text Summarizer</a></li>
+                    <li><a href="../tools/grammar-checker.html">Grammar Checker</a></li>
+                    <li><a href="../tools/readability-analyzer.html">Readability Analyzer</a></li>
+                    <li><a href="../tools/tone-style-analyzer.html">Tone & Style Analyzer</a></li>
+                    <li><a href="../tools/plagiarism-detector.html">Plagiarism Detector</a></li>
+                    <li><a href="../tools/ai-writing-assistant.html">AI Writing Assistant</a></li>
+                    <li><a href="../tools/seo-content-optimizer.html">SEO Content Optimizer</a></li>
+                    <li><a href="../tools/text-to-speech.html">Text to Speech</a></li>
+                    <li><a href="../tools/citation-generator.html">Citation Generator</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="../writing-resources.html">Writing Guides</a></li>
+                    <li><a href="../blog/index.html">Blog</a></li>
+                    <li><a href="../writing-case-studies.html">Success Stories</a></li>
+                    <li><a href="../FAQs.html">FAQs</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Connect</h4>
+                <div class="social-links">
+                    <a href="https://twitter.com/countit4u" aria-label="Twitter">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
+                        </svg>
+                    </a>
+                    <a href="https://facebook.com/countit4u" aria-label="Facebook">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
+                        </svg>
+                    </a>
+                    <a href="https://linkedin.com/company/countit4u" aria-label="LinkedIn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"></path>
+                            <circle cx="4" cy="4" r="2"></circle>
+                        </svg>
+                    </a>
+                </div>
+                <p>&copy; 2024 CountIt4U. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+        <script>
+        let currentMode = 'simple';
+        let rewritingHistory = [];
+
+        // Mode selection
+        document.querySelectorAll('.mode-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                currentMode = this.dataset.mode;
+            });
+        });
+
+        // Creativity level slider
+        document.getElementById('creativity-level').addEventListener('input', function() {
+            document.getElementById('creativity-value').textContent = this.value;
+        });
+
+        // Input text stats
+        document.getElementById('input-text').addEventListener('input', function() {
+            updateInputStats();
+        });
+
+        function updateInputStats() {
+            const text = document.getElementById('input-text').value;
+            const words = text.trim() ? text.trim().split(/\s+/).length : 0;
+            const characters = text.length;
+            document.getElementById('input-stats').textContent = `${words} words | ${characters} characters`;
+        }
+
+        function updateOutputStats() {
+            const text = document.getElementById('output-text').value;
+            const words = text.trim() ? text.trim().split(/\s+/).length : 0;
+            const characters = text.length;
+            document.getElementById('output-stats').textContent = `${words} words | ${characters} characters`;
+        }
+
+        async function rewriteContent() {
+            const inputText = document.getElementById('input-text').value.trim();
+            
+            if (!inputText) {
+                alert('Please enter some text to rewrite.');
+                return;
+            }
+
+            const progressDiv = document.getElementById('rewriting-progress');
+            const progressFill = document.getElementById('progress-fill');
+            const progressStatus = document.getElementById('progress-status');
+            
+            progressDiv.classList.add('active');
+            progressFill.style.width = '0%';
+            
+            // Simulate rewriting process
+            const steps = [
+                { progress: 20, status: 'Analyzing content structure...' },
+                { progress: 40, status: 'Identifying key phrases...' },
+                { progress: 60, status: 'Generating alternative phrasing...' },
+                { progress: 80, status: 'Optimizing for readability...' },
+                { progress: 100, status: 'Finalizing rewrite...' }
+            ];
+
+            for (let step of steps) {
+                await new Promise(resolve => setTimeout(resolve, 500));
+                progressFill.style.width = step.progress + '%';
+                progressStatus.textContent = step.status;
+            }
+
+            // Generate rewritten content
+            const rewrittenText = generateRewrite(inputText);
+            
+            document.getElementById('output-text').value = rewrittenText;
+            updateOutputStats();
+            
+            // Add to history
+            addToHistory(inputText, rewrittenText);
+            
+            // Show comparison
+            showComparison(inputText, rewrittenText);
+            
+            // Hide progress
+            setTimeout(() => {
+                progressDiv.classList.remove('active');
+            }, 1000);
+        }
+
+        function generateRewrite(text) {
+            const creativityLevel = parseInt(document.getElementById('creativity-level').value);
+            const tone = document.getElementById('tone').value;
+            const readability = document.getElementById('readability').value;
+            const preserveKeywords = document.getElementById('preserve-keywords').checked;
+            const maintainLength = document.getElementById('maintain-length').checked;
+            const improveFlow = document.getElementById('improve-flow').checked;
+
+            // Extract keywords if preservation is enabled
+            let keywords = [];
+            if (preserveKeywords) {
+                keywords = extractKeywords(text);
+            }
+
+            // Apply different rewriting strategies based on mode
+            let rewritten = text;
+            
+            switch(currentMode) {
+                case 'simple':
+                    rewritten = simpleRewrite(text, creativityLevel);
+                    break;
+                case 'creative':
+                    rewritten = creativeRewrite(text, creativityLevel);
+                    break;
+                case 'formal':
+                    rewritten = formalRewrite(text, creativityLevel);
+                    break;
+                case 'casual':
+                    rewritten = casualRewrite(text, creativityLevel);
+                    break;
+                case 'professional':
+                    rewritten = professionalRewrite(text, creativityLevel);
+                    break;
+                case 'seo':
+                    rewritten = seoRewrite(text, creativityLevel, keywords);
+                    break;
+            }
+
+            // Apply tone adjustments
+            rewritten = applyTone(rewritten, tone);
+            
+            // Apply readability adjustments
+            rewritten = applyReadability(rewritten, readability);
+            
+            // Improve flow if requested
+            if (improveFlow) {
+                rewritten = improveFlow(rewritten);
+            }
+            
+            // Maintain length if requested
+            if (maintainLength) {
+                rewritten = adjustLength(rewritten, text.length);
+            }
+
+            return rewritten;
+        }
+
+        function simpleRewrite(text, creativity) {
+            const synonyms = {
+                'good': ['excellent', 'great', 'wonderful', 'fantastic'],
+                'bad': ['poor', 'terrible', 'awful', 'dreadful'],
+                'big': ['large', 'huge', 'enormous', 'massive'],
+                'small': ['tiny', 'little', 'compact', 'miniature'],
+                'important': ['crucial', 'vital', 'essential', 'significant'],
+                'help': ['assist', 'support', 'aid', 'contribute'],
+                'show': ['demonstrate', 'illustrate', 'reveal', 'display'],
+                'make': ['create', 'produce', 'generate', 'develop'],
+                'use': ['utilize', 'employ', 'apply', 'leverage'],
+                'get': ['obtain', 'acquire', 'receive', 'secure']
+            };
+
+            let rewritten = text;
+            const words = text.split(/\s+/);
+            
+            words.forEach((word, index) => {
+                const cleanWord = word.toLowerCase().replace(/[^\w]/g, '');
+                if (synonyms[cleanWord] && Math.random() < creativity / 10) {
+                    const synonym = synonyms[cleanWord][Math.floor(Math.random() * synonyms[cleanWord].length)];
+                    rewritten = rewritten.replace(new RegExp(`\\b${word}\\b`, 'gi'), synonym);
+                }
+            });
+
+            return rewritten;
+        }
+
+        function creativeRewrite(text, creativity) {
+            let rewritten = text;
+            
+            // Change sentence structure
+            const sentences = rewritten.split(/[.!?]+/);
+            rewritten = sentences.map(sentence => {
+                if (sentence.trim() && Math.random() < creativity / 10) {
+                    const words = sentence.trim().split(/\s+/);
+                    if (words.length > 5) {
+                        const midPoint = Math.floor(words.length / 2);
+                        return words.slice(midPoint).concat(words.slice(0, midPoint)).join(' ');
+                    }
+                }
+                return sentence;
+            }).join('. ');
+            
+            return rewritten;
+        }
+
+        function formalRewrite(text, creativity) {
+            const informalToFormal = {
+                "can't": "cannot", "won't": "will not", "don't": "do not",
+                "isn't": "is not", "aren't": "are not", "wasn't": "was not",
+                "weren't": "were not", "haven't": "have not", "hasn't": "has not",
+                "hadn't": "had not", "shouldn't": "should not", "wouldn't": "would not",
+                "couldn't": "could not", "mightn't": "might not", "mustn't": "must not",
+                "let's": "let us", "gonna": "going to", "wanna": "want to",
+                "gotta": "got to", "kinda": "kind of", "sorta": "sort of",
+                "yeah": "yes", "nope": "no"
+            };
+
+            let rewritten = text;
+            Object.entries(informalToFormal).forEach(([informal, formal]) => {
+                const regex = new RegExp(`\\b${informal}\\b`, 'gi');
+                rewritten = rewritten.replace(regex, formal);
+            });
+
+            return rewritten;
+        }
+
+        function casualRewrite(text, creativity) {
+            const formalToCasual = {
+                "consequently": "so", "therefore": "so", "however": "but",
+                "furthermore": "also", "moreover": "also", "additionally": "also",
+                "utilize": "use", "assist": "help", "demonstrate": "show",
+                "sufficient": "enough", "numerous": "many", "various": "different",
+                "significant": "big", "substantial": "large", "approximately": "about",
+                "regarding": "about", "concerning": "about"
+            };
+
+            let rewritten = text;
+            Object.entries(formalToCasual).forEach(([formal, casual]) => {
+                const regex = new RegExp(`\\b${formal}\\b`, 'gi');
+                rewritten = rewritten.replace(regex, casual);
+            });
+
+            return rewritten;
+        }
+
+        function professionalRewrite(text, creativity) {
+            const professionalTerms = {
+                "think": "consider", "show": "demonstrate", "help": "facilitate",
+                "make": "implement", "do": "execute", "try": "attempt",
+                "look": "examine", "find": "identify", "change": "modify",
+                "improve": "enhance", "start": "initiate", "finish": "complete",
+                "plan": "strategy", "idea": "concept", "problem": "challenge",
+                "solution": "resolution"
+            };
+
+            let rewritten = text;
+            Object.entries(professionalTerms).forEach(([common, professional]) => {
+                const regex = new RegExp(`\\b${common}\\b`, 'gi');
+                rewritten = rewritten.replace(regex, professional);
+            });
+
+            return rewritten;
+        }
+
+        function seoRewrite(text, creativity, keywords) {
+            let rewritten = text;
+            
+            // Ensure keywords are present
+            keywords.forEach(keyword => {
+                if (!rewritten.toLowerCase().includes(keyword.toLowerCase())) {
+                    const sentences = rewritten.split('. ');
+                    if (sentences.length > 1) {
+                        const insertIndex = Math.floor(sentences.length / 2);
+                        sentences[insertIndex] += ` ${keyword}`;
+                        rewritten = sentences.join('. ');
+                    }
+                }
+            });
+
+            return rewritten;
+        }
+
+        function applyTone(text, tone) {
+            switch(tone) {
+                case 'positive':
+                    const positiveWords = ['excellent', 'wonderful', 'fantastic', 'amazing', 'great'];
+                    return enhanceWithWords(text, positiveWords);
+                case 'negative':
+                    const negativeWords = ['poor', 'terrible', 'awful', 'disappointing', 'inadequate'];
+                    return enhanceWithWords(text, negativeWords);
+                case 'persuasive':
+                    const persuasiveWords = ['clearly', 'obviously', 'undoubtedly', 'certainly', 'definitely'];
+                    return enhanceWithWords(text, persuasiveWords);
+                case 'informative':
+                    const informativeWords = ['specifically', 'notably', 'importantly', 'significantly', 'particularly'];
+                    return enhanceWithWords(text, informativeWords);
+                default:
+                    return text;
+            }
+        }
+
+        function enhanceWithWords(text, words) {
+            const sentences = text.split('. ');
+            return sentences.map(sentence => {
+                if (sentence.trim() && Math.random() < 0.3) {
+                    const word = words[Math.floor(Math.random() * words.length)];
+                    return sentence.replace(/^(.{1,20})/, `$1 ${word},`);
+                }
+                return sentence;
+            }).join('. ');
+        }
+
+        function applyReadability(text, readability) {
+            switch(readability) {
+                case 'simple':
+                    return simplifyText(text);
+                case 'advanced':
+                    return complexifyText(text);
+                default:
+                    return text;
+            }
+        }
+
+        function simplifyText(text) {
+            const complexToSimple = {
+                'utilize': 'use', 'demonstrate': 'show', 'facilitate': 'help',
+                'implement': 'do', 'subsequently': 'then', 'consequently': 'so',
+                'nevertheless': 'still', 'furthermore': 'also', 'moreover': 'also',
+                'therefore': 'so'
+            };
+
+            let simplified = text;
+            Object.entries(complexToSimple).forEach(([complex, simple]) => {
+                const regex = new RegExp(`\\b${complex}\\b`, 'gi');
+                simplified = simplified.replace(regex, simple);
+            });
+
+            return simplified;
+        }
+
+        function complexifyText(text) {
+            const simpleToComplex = {
+                'use': 'utilize', 'show': 'demonstrate', 'help': 'facilitate',
+                'do': 'implement', 'then': 'subsequently', 'so': 'consequently',
+                'still': 'nevertheless', 'also': 'furthermore'
+            };
+
+            let complexified = text;
+            Object.entries(simpleToComplex).forEach(([simple, complex]) => {
+                const regex = new RegExp(`\\b${simple}\\b`, 'gi');
+                complexified = complexified.replace(regex, complex);
+            });
+
+            return complexified;
+        }
+
+        function improveFlow(text) {
+            const transitions = ['however', 'therefore', 'furthermore', 'moreover', 'consequently', 'additionally'];
+            const sentences = text.split('. ');
+            
+            return sentences.map((sentence, index) => {
+                if (index > 0 && index < sentences.length - 1 && Math.random() < 0.3) {
+                    const transition = transitions[Math.floor(Math.random() * transitions.length)];
+                    return `${transition}, ${sentence}`;
+                }
+                return sentence;
+            }).join('. ');
+        }
+
+        function adjustLength(text, targetLength) {
+            const currentLength = text.length;
+            const ratio = targetLength / currentLength;
+            
+            if (ratio > 1.2) {
+                return expandText(text, ratio);
+            } else if (ratio < 0.8) {
+                return condenseText(text, ratio);
+            }
+            
+            return text;
+        }
+
+        function expandText(text, ratio) {
+            const descriptiveWords = ['very', 'quite', 'rather', 'somewhat', 'extremely'];
+            const words = text.split(/\s+/);
+            const targetWords = Math.floor(words.length * ratio);
+            
+            let expanded = text;
+            while (expanded.split(/\s+/).length < targetWords) {
+                const word = descriptiveWords[Math.floor(Math.random() * descriptiveWords.length)];
+                const insertIndex = Math.floor(Math.random() * words.length);
+                words.splice(insertIndex, 0, word);
+                expanded = words.join(' ');
+            }
+            
+            return expanded;
+        }
+
+        function condenseText(text, ratio) {
+            const words = text.split(/\s+/);
+            const targetWords = Math.floor(words.length * ratio);
+            
+            return words.slice(0, targetWords).join(' ');
+        }
+
+        function extractKeywords(text) {
+            // Simple keyword extraction - extract words with 4+ characters
+            const words = text.toLowerCase().match(/\b[a-z]{4,}\b/g) || [];
+            return [...new Set(words)].slice(0, 5); // Return unique keywords, max 5
+        }
+
+        function calculateSimilarity(text1, text2) {
+            // Simple similarity calculation based on common words
+            const words1 = new Set(text1.toLowerCase().match(/\b\w+\b/g) || []);
+            const words2 = new Set(text2.toLowerCase().match(/\b\w+\b/g) || []);
+            
+            const intersection = new Set([...words1].filter(word => words2.has(word)));
+            const union = new Set([...words1, ...words2]);
+            
+            return Math.round((intersection.size / union.size) * 100);
+        }
+
+                function showComparison(original, rewritten) {
+            const comparisonDiv = document.getElementById('comparison-view');
+            const similarityScore = calculateSimilarity(original, rewritten);
+            
+            document.getElementById('comparison-original').textContent = original;
+            document.getElementById('comparison-rewritten').textContent = rewritten;
+            document.getElementById('similarity-score').textContent = `Similarity: ${similarityScore}%`;
+            
+            comparisonDiv.classList.add('active');
+        }
+
+        function addToHistory(original, rewritten) {
+            const historyItem = {
+                original: original.substring(0, 100) + (original.length > 100 ? '...' : ''),
+                rewritten: rewritten.substring(0, 100) + (rewritten.length > 100 ? '...' : ''),
+                mode: currentMode,
+                timestamp: new Date().toLocaleString(),
+                fullOriginal: original,
+                fullRewritten: rewritten
+            };
+            
+            rewritingHistory.unshift(historyItem);
+            if (rewritingHistory.length > 10) {
+                rewritingHistory.pop();
+            }
+            
+            updateHistoryDisplay();
+        }
+
+        function updateHistoryDisplay() {
+            const historyList = document.getElementById('history-list');
+            
+            if (rewritingHistory.length === 0) {
+                historyList.innerHTML = '<p style="text-align: center; color: #6b7280;">No rewriting history yet</p>';
+                return;
+            }
+            
+            historyList.innerHTML = rewritingHistory.map((item, index) => `
+                <div class="history-item" onclick="loadFromHistory(${index})">
+                    <div class="history-meta">
+                        <strong>${item.mode.charAt(0).toUpperCase() + item.mode.slice(1)} Mode</strong> • ${item.timestamp}
+                    </div>
+                    <div><strong>Original:</strong> ${item.original}</div>
+                    <div><strong>Rewritten:</strong> ${item.rewritten}</div>
+                </div>
+            `).join('');
+        }
+
+        function loadFromHistory(index) {
+            const item = rewritingHistory[index];
+            document.getElementById('input-text').value = item.fullOriginal;
+            document.getElementById('output-text').value = item.fullRewritten;
+            
+            // Set the mode
+            document.querySelectorAll('.mode-btn').forEach(btn => {
+                btn.classList.remove('active');
+                if (btn.dataset.mode === item.mode) {
+                    btn.classList.add('active');
+                }
+            });
+            currentMode = item.mode;
+            
+            updateInputStats();
+            updateOutputStats();
+            
+            // Show comparison
+            showComparison(item.fullOriginal, item.fullRewritten);
+        }
+
+        function swapText() {
+            const inputText = document.getElementById('input-text');
+            const outputText = document.getElementById('output-text');
+            
+            const temp = inputText.value;
+            inputText.value = outputText.value;
+            outputText.value = temp;
+            
+            updateInputStats();
+            updateOutputStats();
+        }
+
+        function copyOutput() {
+            const outputText = document.getElementById('output-text');
+            
+            if (!outputText.value) {
+                alert('No content to copy!');
+                return;
+            }
+            
+            navigator.clipboard.writeText(outputText.value).then(() => {
+                alert('Content copied to clipboard!');
+            }).catch(() => {
+                // Fallback for older browsers
+                outputText.select();
+                document.execCommand('copy');
+                alert('Content copied to clipboard!');
+            });
+        }
+
+        function clearAll() {
+            if (confirm('Are you sure you want to clear all content?')) {
+                document.getElementById('input-text').value = '';
+                document.getElementById('output-text').value = '';
+                document.getElementById('comparison-view').classList.remove('active');
+                
+                updateInputStats();
+                updateOutputStats();
+            }
+        }
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', function(e) {
+            if (e.ctrlKey || e.metaKey) {
+                switch(e.key) {
+                    case 'Enter':
+                        e.preventDefault();
+                        rewriteContent();
+                        break;
+                    case 's':
+                        e.preventDefault();
+                        swapText();
+                        break;
+                    case 'c':
+                        if (document.activeElement.id === 'output-text') {
+                            e.preventDefault();
+                            copyOutput();
+                        }
+                        break;
+                    case 'Delete':
+                        e.preventDefault();
+                        clearAll();
+                        break;
+                }
+            }
+        });
+
+        // Auto-save to localStorage
+        function saveToLocalStorage() {
+            const inputData = document.getElementById('input-text').value;
+            const outputData = document.getElementById('output-text').value;
+            
+            localStorage.setItem('rewriter-input', inputData);
+            localStorage.setItem('rewriter-output', outputData);
+            localStorage.setItem('rewriter-mode', currentMode);
+            localStorage.setItem('rewriter-history', JSON.stringify(rewritingHistory));
+        }
+
+        function loadFromLocalStorage() {
+            const savedInput = localStorage.getItem('rewriter-input');
+            const savedOutput = localStorage.getItem('rewriter-output');
+            const savedMode = localStorage.getItem('rewriter-mode');
+            const savedHistory = localStorage.getItem('rewriter-history');
+            
+            if (savedInput) {
+                document.getElementById('input-text').value = savedInput;
+                updateInputStats();
+            }
+            
+            if (savedOutput) {
+                document.getElementById('output-text').value = savedOutput;
+                updateOutputStats();
+            }
+            
+            if (savedMode) {
+                document.querySelectorAll('.mode-btn').forEach(btn => {
+                    btn.classList.remove('active');
+                    if (btn.dataset.mode === savedMode) {
+                        btn.classList.add('active');
+                    }
+                });
+                currentMode = savedMode;
+            }
+            
+            if (savedHistory) {
+                rewritingHistory = JSON.parse(savedHistory);
+                updateHistoryDisplay();
+            }
+        }
+
+        // Auto-save on input change
+        document.getElementById('input-text').addEventListener('input', saveToLocalStorage);
+        document.getElementById('output-text').addEventListener('input', saveToLocalStorage);
+
+        // Load saved data on page load
+        window.addEventListener('load', function() {
+            loadFromLocalStorage();
+            
+            // Set today's date for any date inputs if needed
+            const today = new Date().toISOString().split('T')[0];
+            const dateInputs = document.querySelectorAll('input[type="date"]');
+            dateInputs.forEach(input => {
+                if (!input.value) {
+                    input.value = today;
+                }
+            });
+        });
+
+        // Export functionality
+        function exportContent() {
+            const inputText = document.getElementById('input-text').value;
+            const outputText = document.getElementById('output-text').value;
+            
+            if (!inputText && !outputText) {
+                alert('No content to export!');
+                return;
+            }
+            
+            const exportData = {
+                original: inputText,
+                rewritten: outputText,
+                mode: currentMode,
+                timestamp: new Date().toISOString(),
+                settings: {
+                    creativity: document.getElementById('creativity-level').value,
+                    tone: document.getElementById('tone').value,
+                    readability: document.getElementById('readability').value,
+                    preserveKeywords: document.getElementById('preserve-keywords').checked,
+                    maintainLength: document.getElementById('maintain-length').checked,
+                    improveFlow: document.getElementById('improve-flow').checked
+                }
+            };
+            
+            const blob = new Blob([JSON.stringify(exportData, null, 2)], { type: 'application/json' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `content-rewrite-${Date.now()}.json`;
+            a.click();
+            window.URL.revokeObjectURL(url);
+        }
+
+        // Import functionality
+        function importContent() {
+            const input = document.createElement('input');
+            input.type = 'file';
+            input.accept = '.json';
+            
+            input.onchange = function(e) {
+                const file = e.target.files[0];
+                if (!file) return;
+                
+                const reader = new FileReader();
+                reader.onload = function(event) {
+                    try {
+                        const data = JSON.parse(event.target.result);
+                        
+                        if (data.original) {
+                            document.getElementById('input-text').value = data.original;
+                            updateInputStats();
+                        }
+                        
+                        if (data.rewritten) {
+                            document.getElementById('output-text').value = data.rewritten;
+                            updateOutputStats();
+                        }
+                        
+                        if (data.mode) {
+                            document.querySelectorAll('.mode-btn').forEach(btn => {
+                                btn.classList.remove('active');
+                                if (btn.dataset.mode === data.mode) {
+                                    btn.classList.add('active');
+                                }
+                            });
+                            currentMode = data.mode;
+                        }
+                        
+                        if (data.settings) {
+                            if (data.settings.creativity) {
+                                document.getElementById('creativity-level').value = data.settings.creativity;
+                                document.getElementById('creativity-value').textContent = data.settings.creativity;
+                            }
+                            
+                            if (data.settings.tone) {
+                                document.getElementById('tone').value = data.settings.tone;
+                            }
+                            
+                            if (data.settings.readability) {
+                                document.getElementById('readability').value = data.settings.readability;
+                            }
+                            
+                            if (data.settings.preserveKeywords !== undefined) {
+                                document.getElementById('preserve-keywords').checked = data.settings.preserveKeywords;
+                            }
+                            
+                            if (data.settings.maintainLength !== undefined) {
+                                document.getElementById('maintain-length').checked = data.settings.maintainLength;
+                            }
+                            
+                            if (data.settings.improveFlow !== undefined) {
+                                document.getElementById('improve-flow').checked = data.settings.improveFlow;
+                            }
+                        }
+                        
+                        alert('Content imported successfully!');
+                    } catch (error) {
+                        alert('Error importing file. Please make sure it\'s a valid export file.');
+                    }
+                };
+                
+                reader.readAsText(file);
+            };
+            
+            input.click();
+        }
+
+        // Add export/import buttons to action buttons
+        document.addEventListener('DOMContentLoaded', function() {
+            const actionButtons = document.querySelector('.action-buttons');
+            
+            const exportBtn = document.createElement('button');
+            exportBtn.className = 'btn btn-secondary';
+            exportBtn.innerHTML = '<span>💾</span> Export';
+            exportBtn.onclick = exportContent;
+            
+            const importBtn = document.createElement('button');
+            importBtn.className = 'btn btn-secondary';
+            importBtn.innerHTML = '<span>📁</span> Import';
+            importBtn.onclick = importContent;
+            
+            actionButtons.appendChild(exportBtn);
+            actionButtons.appendChild(importBtn);
+        });
+
+        // Theme toggle function (if not already defined)
+        function toggleTheme() {
+            document.body.classList.toggle('dark-theme');
+            const isDark = document.body.classList.contains('dark-theme');
+            localStorage.setItem('theme', isDark ? 'dark' : 'light');
+            
+            // Update theme toggle button
+            const themeBtn = document.querySelector('.theme-toggle');
+            themeBtn.textContent = isDark ? '☀️' : '🌙';
+        }
+
+        // Load saved theme
+        window.addEventListener('load', function() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'dark') {
+                document.body.classList.add('dark-theme');
+                document.querySelector('.theme-toggle').textContent = '☀️';
+            }
+        });
+    </script>
+</body>
+</html>

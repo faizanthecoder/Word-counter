@@ -1,0 +1,707 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Readability Analyzer - Free Text Readability Tool | CountIt4U</title>
+<link rel="canonical" href="https://countit4u.fun/tools/readability-analyzer.html">
+<meta name="description" content="Free readability analyzer that evaluates your text for reading level, clarity, and comprehension. Improve content accessibility with detailed readability metrics.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "Readability Analyzer",
+  "description": "Free readability analysis tool",
+  "url": "https://countit4u.fun/tools/readability-analyzer.html",
+  "applicationCategory": "Utility",
+  "creator": {
+    "@type": "Person",
+    "name": "Faizan the Coder"
+  }
+}
+</script>
+
+  <link rel="icon" type="image/png" href="../logo.png">
+  <link rel="stylesheet" href="../index.css">
+  <script src="../index.js" defer></script>
+  <script src="../darkmode.js" defer></script>
+
+  <style>
+    .analyzer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    .tool-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    
+    .input-section {
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      margin-bottom: 30px;
+    }
+    
+    .text-input {
+      width: 100%;
+      height: 300px;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 15px;
+      font-size: 16px;
+      resize: vertical;
+      transition: border-color 0.3s ease;
+    }
+    
+    .text-input:focus {
+      outline: none;
+      border-color: #4aa7a5;
+    }
+    
+    .word-count {
+      text-align: right;
+      margin-top: 10px;
+      color: #666;
+      font-size: 14px;
+    }
+    
+    .analyze-btn {
+      background: linear-gradient(135deg, #4aa7a5 0%, #2d8b85 100%);
+      color: white;
+      border: none;
+      padding: 15px 40px;
+      border-radius: 25px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 16px;
+      display: block;
+      margin: 20px auto;
+    }
+    
+    .analyze-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+    
+    .results-section {
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      margin-bottom: 30px;
+      display: none;
+    }
+    
+    .score-display {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    
+    .readability-score {
+      font-size: 48px;
+      font-weight: bold;
+      color: #4aa7a5;
+      margin-bottom: 10px;
+    }
+    
+    .score-label {
+      font-size: 18px;
+      color: #666;
+    }
+    
+    .metrics-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+    
+    .metric-card {
+      background: #f8f9fa;
+      border-radius: 10px;
+      padding: 20px;
+    }
+    
+    .metric-title {
+      font-weight: bold;
+      margin-bottom: 15px;
+      color: #333;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .progress-bar {
+      width: 100%;
+      height: 20px;
+      background: #e0e0e0;
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 10px 0;
+    }
+    
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #4aa7a5, #2d8b85);
+      transition: width 0.5s ease;
+    }
+    
+    .progress-fill.good {
+      background: linear-gradient(90deg, #4caf50, #45a049);
+    }
+    
+    .progress-fill.warning {
+      background: linear-gradient(90deg, #ff9800, #f57c00);
+    }
+    
+    .progress-fill.poor {
+      background: linear-gradient(90deg, #f44336, #d32f2f);
+    }
+    
+    .grade-display {
+      background: #e8f5e8;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 30px;
+      text-align: center;
+    }
+    
+    .grade-level {
+      font-size: 36px;
+      font-weight: bold;
+      color: #4aa7a5;
+      margin-bottom: 10px;
+    }
+    
+    .recommendations {
+      background: #e8f5e8;
+      border-radius: 10px;
+      padding: 20px;
+      margin-top: 20px;
+    }
+    
+    .recommendation-item {
+      margin: 10px 0;
+      padding: 10px;
+      background: white;
+      border-radius: 5px;
+      border-left: 4px solid #4aa7a5;
+    }
+    
+    .features-section {
+      background: #f8f9fa;
+      padding: 40px;
+      border-radius: 15px;
+      margin-bottom: 30px;
+    }
+    
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+    
+    .feature-card {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    }
+    
+    .feature-icon {
+      font-size: 36px;
+      margin-bottom: 15px;
+      display: block;
+    }
+  </style>
+
+</head>
+<body>
+<header>
+  <h1>CountIt4U</h1>
+
+  <nav class="navbar" id="navbar">
+    <a href="../index.html">Home</a>
+    <a href="../about.html">About</a>
+    <a href="../writing-resources.html">📚 Writing Resources</a>
+    <a href="../writing-tools.html">🛠️ Writing Tools</a>
+    <a href="../writing-case-studies.html">📊 Success Stories</a>
+    <a href="../blog/index.html">📝 Blog</a>
+    <a href="../contact.html">Contact Us</a>
+    <a href="../privacy.html">Privacy Policy</a>
+    <a href="../terms&conditions.html">Terms & Conditions</a>
+    <a href="../FAQs.html">FAQs</a>
+  </nav>
+
+  <div class="menu-icon" id="menu-icon">☰</div>
+  <button class="toggle-theme">🌙 Dark Mode</button>
+</header>
+
+<section class="main-about">
+  <div class="analyzer-container">
+    <div class="tool-header">
+      <h1>Readability Analyzer</h1>
+      <p><em>Analyze your text for reading level, clarity, and comprehension with advanced readability metrics</em></p>
+      
+      <p>
+        Our comprehensive readability analyzer evaluates your text using multiple proven formulas and metrics to determine how easily your content can be understood by different audiences. From grade level assessment to sentence complexity analysis, our tool provides actionable insights to help you create more accessible and effective content for your target readers.
+      </p>
+    </div>
+
+    <div class="input-section">
+      <h3>📝 Enter Your Text</h3>
+      <textarea class="text-input" id="textInput" placeholder="Enter or paste your text here for readability analysis..."></textarea>
+      
+      <div class="word-count">
+        <span id="wordCount">0 words</span> • <span id="charCount">0 characters</span> • <span id="sentenceCount">0 sentences</span>
+      </div>
+      
+      <button class="analyze-btn" id="analyzeBtn">🔍 Analyze Readability</button>
+    </div>
+
+    <div id="resultsSection" class="results-section">
+      <div class="score-display">
+        <div class="readability-score" id="readabilityScore">0</div>
+        <div class="score-label">Overall Readability Score</div>
+        <p id="scoreDescription">Analyzing your content...</p>
+      </div>
+
+      <div class="grade-display">
+        <h3>🎓 Reading Level Assessment</h3>
+        <div class="grade-level" id="gradeLevel">-</div>
+        <p id="gradeDescription">Determining appropriate reading level...</p>
+      </div>
+
+      <div class="metrics-grid">
+        <div class="metric-card">
+          <div class="metric-title">
+            <span>📊</span> Flesch-Kincaid Grade Level
+          </div>
+          <p><strong>Score:</strong> <span id="fleschScore">-</span></p>
+          <div class="progress-bar">
+            <div class="progress-fill" id="fleschBar" style="width: 0%"></div>
+          </div>
+          <p><strong>Interpretation:</strong> <span id="fleschInterpretation">-</span></p>
+        </div>
+        
+        <div class="metric-card">
+          <div class="metric-title">
+            <span>📖</span> Flesch Reading Ease
+          </div>
+          <p><strong>Score:</strong> <span id="readingEase">-</span></p>
+          <div class="progress-bar">
+            <div class="progress-fill" id="easeBar" style="width: 0%"></div>
+          </div>
+          <p><strong>Difficulty:</strong> <span id="easeDifficulty">-</span></p>
+        </div>
+        
+        <div class="metric-card">
+          <div class="metric-title">
+            <span>🎯</span> Gunning Fog Index
+          </div>
+          <p><strong>Score:</strong> <span id="gunningFog">-</span></p>
+          <div class="progress-bar">
+            <div class="progress-fill" id="fogBar" style="width: 0%"></div>
+          </div>
+          <p><strong>Education Level:</strong> <span id="fogEducation">-</span></p>
+        </div>
+        
+        <div class="metric-card">
+          <div class="metric-title">
+            <span>📏</span> Sentence Analysis
+          </div>
+          <p><strong>Average Length:</strong> <span id="avgSentenceLength">-</span></p>
+          <p><strong>Longest Sentence:</strong> <span id="longestSentence">-</span></p>
+          <p><strong>Shortest Sentence:</strong> <span id="shortestSentence">-</span></p>
+        </div>
+        
+        <div class="metric-card">
+          <div class="metric-title">
+            <span>📝</span> Word Analysis
+          </div>
+          <p><strong>Average Words per Sentence:</strong> <span id="avgWordsPerSentence">-</span></p>
+          <p><strong>Complex Words:</strong> <span id="complexWords">-</span></p>
+          <p><strong>Syllables per Word:</strong> <span id="syllablesPerWord">-</span></p>
+        </div>
+        
+        <div class="metric-card">
+          <div class="metric-title">
+            <span>👥</span> Audience Analysis
+          </div>
+          <p><strong>Recommended Age:</strong> <span id="recommendedAge">-</span></p>
+          <p><strong>Comprehension Level:</strong> <span id="comprehensionLevel">-</span></p>
+          <p><strong>Accessibility:</strong> <span id="accessibility">-</span></p>
+        </div>
+      </div>
+
+      <div class="recommendations">
+        <h3>💡 Readability Recommendations</h3>
+        <div id="recommendationsList">
+          <div class="recommendation-item">
+            <strong>For Better Readability:</strong> Consider breaking down complex sentences and using simpler vocabulary where appropriate.
+          </div>
+          <div class="recommendation-item">
+            <strong>For Target Audience:</strong> Adjust your writing style to match the reading level of your intended readers.
+          </div>
+          <div class="recommendation-item">
+            <strong>For Content Quality:</strong> Use shorter sentences and paragraphs to improve comprehension and engagement.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="features-section">
+      <h2>Advanced Readability Analysis Features</h2>
+      <p>Our comprehensive analyzer evaluates multiple dimensions of text readability to provide actionable insights for content improvement.</p>
+      
+      <div class="features-grid">
+        <div class="feature-card">
+          <span class="feature-icon">📊</span>
+          <h3>Multiple Readability Formulas</h3>
+          <p>Uses industry-standard formulas including Flesch-Kincaid, Gunning Fog, and SMOG for comprehensive analysis</p>
+        </div>
+        
+        <div class="feature-card">
+          <span class="feature-icon">🎓</span>
+          <h3>Grade Level Assessment</h3>
+          <p>Determines the appropriate grade level for your content to ensure it matches your target audience</p>
+        </div>
+        
+        <div class="feature-card">
+          <span class="feature-icon">📏</span>
+          <h3>Sentence Structure Analysis</h3>
+          <p>Analyzes sentence length, complexity, and variety to identify areas for improvement</p>
+        </div>
+        
+        <div class="feature-card">
+          <span class="feature-icon">📖</span>
+          <h3>Reading Ease Evaluation</h3>
+          <p>Evaluates how easy your text is to read and understand on a standardized scale</p>
+        </div>
+        
+        <div class="feature-card">
+          <span class="feature-icon">🔒</span>
+          <h3>100% Privacy</h3>
+          <p>All analysis happens in your browser - your text never leaves your device or gets stored anywhere</p>
+        </div>
+        
+        <div class="feature-card">
+          <span class="feature-icon">⚡</span>
+          <h3>Instant Results</h3>
+          <p>Get immediate readability analysis without waiting for server processing or uploads</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="background: linear-gradient(135deg, #4aa7a5 0%, #2d8b85 100%); color: white; padding: 40px; border-radius: 15px; margin-top: 30px; text-align: center;">
+      <h2>Improve Your Content Today</h2>
+      <p>Make your content more accessible and engaging with better readability.</p>
+      
+      <a href="../writing-tools.html" style="display: inline-block; background: white; color: #4aa7a5; padding: 15px 30px; text-decoration: none; border-radius: 25px; margin-top: 20px; font-weight: bold;">Try More Writing Tools →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+    <div class="footer-container">
+      <div class="footer-section pages">
+        <h4>Quick Links</h4>
+        <a href="../index.html">🏠 Home</a>
+        <a href="../about.html">📘 About</a>
+        <a href="../writing-resources.html">📚 Writing Resources</a>
+        <a href="../writing-tools.html">🛠️ Writing Tools</a>
+        <a href="../writing-case-studies.html">📊 Success Stories</a>
+        <a href="../blog/index.html">📝 Blog</a>
+        <a href="../contact.html">📩 Contact</a>
+        <a href="../privacy.html">🔒 Privacy Policy</a>
+        <a href="../terms&conditions.html">📄 Terms & Conditions</a>
+        <a href="../FAQs.html">❓ FAQs</a>
+      </div>
+      <div class="footer-section social-icons">
+        <h4>Follow Me</h4>
+        <a href="https://x.com/faizanthecoder" target="_blank">
+          <span class="common"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="white"
+              viewBox="0 0 100 100" id="social">
+              <path
+                d="M50,0C22.386,0,0,22.386,0,50c0,27.614,22.386,50,50,50c27.614,0,50-22.386,50-50C100,22.386,77.614,0,50,0z M66.764,28.385 c0,0.745-0.604,1.349-1.348,1.349l-5.779,0.002c-3.984,0-4.713,1.553-4.713,4.611v6.363h10.089c0.358,0,0.702,0.142,0.955,0.396 c0.253,0.253,0.395,0.596,0.395,0.954l-0.004,10.876c0,0.745-0.604,1.349-1.349,1.349H54.924v27.443 c0,0.745-0.604,1.349-1.349,1.349H42.322c-0.745,0-1.349-0.604-1.349-1.349V54.284h-8.625c-0.745,0-1.349-0.604-1.349-1.349V42.06 c0-0.745,0.604-1.35,1.349-1.35h8.625v-7.506c0-9.89,6.228-16.28,15.866-16.28l8.579,0.014c0.744,0.001,1.347,0.605,1.347,1.349 V28.385z">
+              </path>
+            </svg>Facebook</span>
+        </a> <a href="https://www.instagram.com/faizanthecoder/" target="_blank">
+          <p class="common"> <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="white" version="1.2"
+              viewBox="0 0 24 24" id="social">
+              <path
+                d="M18 3H6C4.3 3 3 4.3 3 6v12c0 1.7 1.3 3 3 3h12c1.7 0 3-1.3 3-3V6c0-1.7-1.3-3-3-3zm-6 6c1.7 0 3 1.3 3 3s-1.3 3-3 3-3-1.3-3-3 1.3-3 3-3zm3.8-2c0-.7.6-1.2 1.2-1.2s1.2.6 1.2 1.2-.5 1.2-1.2 1.2-1.2-.5-1.2-1.2zM18 19H6c-.6 0-1-.4-1-1v-6h2c0 2.8 2.2 5 5 5s5-2.2 5-5h2v6c0 .6-.4 1-1 1z">
+              </path>
+            </svg>Instagram </p>
+        </a> <a href="https://x.com/faizanthecoder" target="_blank">
+          <p class="common"> <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="white"
+              viewBox="0 0 24 24">
+              <path
+                d="M19 0h-14C2.2 0 0 2.2 0 5v14c0 2.8 2.2 5 5 5h14c2.8 0 5-2.2 5-5V5c0-2.8-2.2-5-5-5zM8 19H5V9h3v10zm-1.5-11.3c-.9 0-1.5-.6-1.5-1.5S5.6 5 6.5 5s1.5.6 1.5 1.5S7.4 7.7 6.5 7.7zM20 19h-3v-5c0-1.4-.5-2.4-1.8-2.4-1 0-1.6.7-1.9 1.4-.1.3-.1.8-.1 1.3V19h-3V9h3v1.4c.4-.6 1.2-1.4 2.9-1.4 2.1 0 3.9 1.4 3.9 4.6V19z">
+              </path>
+            </svg>Linked in </p>
+        </a> <a href="https://x.com/faizanthecoder" target="_blank">
+          <p class="common"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="none"
+              viewBox="0 0 256 256" id="social">
+              <rect width="224" height="224" x="16" y="16" fill="url(#paint0_linear_531_13667)" rx="70"></rect>
+              <path fill="#000"
+                d="M166.445 68H186.802L142.329 118.831L194.649 188H153.682L121.596 146.049L84.8824 188H64.5131L112.082 133.631L61.8916 68H103.898L132.901 106.345L166.445 68ZM159.301 175.815H170.581L97.7685 79.5446H85.6639L159.301 175.815Z">
+              </path>
+              <defs>
+                <linearGradient id="paint0_linear_531_13667" x1="16" x2="208" y1="16" y2="240"
+                  gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#fff"></stop>
+                  <stop offset="1" stop-color="#ACCCFF"></stop>
+                </linearGradient>
+              </defs>
+            </svg>Twitter</p>
+        </a> <a href="https://x.com/faizanthecoder" target="_blank">
+          <p class="common"> <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="white"
+              version="1.2" id="social">
+              <path
+                d="M22.8 8.6c-.2-1.5-.4-2.6-1-3C21.2 5.1 16 5 12 5s-9.2.1-9.8.6c-.6.4-.8 1.5-1 3S1 11 1 12s0 1.9.2 3.4.4 2.6 1 3c.6.5 5.8.6 9.8.6 4 0 9.2-.1 9.8-.6.6-.4.8-1.5 1-3S23 13 23 12s0-1.9-.2-3.4zm-12.8 7V8.4l6 3.6-6 3.6z">
+              </path>
+            </svg>Youtube </p>
+        </a>
+      </div>
+      </div>
+    </div>
+
+    <div class="copyright">
+      <p>© <span id="year"></span> CountIt4U — Built by <strong>Faizan the Coder</strong></p>
+    </div>
+  </footer>
+
+  <script>
+    // Readability Analyzer functionality
+    const textInput = document.getElementById('textInput');
+    const wordCount = document.getElementById('wordCount');
+    const charCount = document.getElementById('charCount');
+    const sentenceCount = document.getElementById('sentenceCount');
+    const analyzeBtn = document.getElementById('analyzeBtn');
+    const resultsSection = document.getElementById('resultsSection');
+    
+    // Word and character count
+    function updateCounts() {
+      const text = textInput.value;
+      const words = text.trim().split(/\s+/).filter(word => word.length > 0);
+      const sentences = text.split(/[.!?]+/).filter(s => s.trim().length > 0);
+      
+      wordCount.textContent = `${words.length} words`;
+      charCount.textContent = `${text.length} characters`;
+      sentenceCount.textContent = `${sentences.length} sentences`;
+    }
+    
+    textInput.addEventListener('input', updateCounts);
+    
+    // Readability analysis function
+    function analyzeReadability() {
+      const text = textInput.value.trim();
+      if (!text) {
+        alert('Please enter some text to analyze.');
+        return;
+      }
+      
+      performReadabilityAnalysis(text);
+      
+      // Show results
+      resultsSection.style.display = 'block';
+      resultsSection.scrollIntoView({ behavior: 'smooth' });
+    }
+    
+    function performReadabilityAnalysis(text) {
+      const words = text.trim().split(/\s+/).filter(word => word.length > 0);
+      const sentences = text.split(/[.!?]+/).filter(s => s.trim().length > 0);
+      const totalWords = words.length;
+      const totalSentences = sentences.length;
+      
+      // Calculate basic metrics
+      const avgWordsPerSentence = totalWords / totalSentences;
+      
+      // Count syllables (simplified)
+      let totalSyllables = 0;
+      words.forEach(word => {
+        totalSyllables += countSyllables(word);
+      });
+      const avgSyllablesPerWord = totalSyllables / totalWords;
+      
+      // Flesch-Kincaid Grade Level
+      const fleschKincaid = 0.39 * avgWordsPerSentence + 11.8 * avgSyllablesPerWord - 15.59;
+      
+      // Flesch Reading Ease
+      const fleschReadingEase = 206.835 - 1.015 * avgWordsPerSentence - 84.6 * avgSyllablesPerWord;
+      
+      // Gunning Fog Index
+      const complexWords = words.filter(word => countSyllables(word) >= 3).length;
+      const gunningFog = 0.4 * (avgWordsPerSentence + 100 * (complexWords / totalWords));
+      
+      // Update display
+      updateReadabilityScores(fleschKincaid, fleschReadingEase, gunningFog, avgWordsPerSentence, complexWords, avgSyllablesPerWord);
+      generateRecommendations(fleschKincaid, fleschReadingEase, gunningFog, avgWordsPerSentence);
+    }
+    
+    function countSyllables(word) {
+      word = word.toLowerCase();
+      if (word.length <= 3) return 1;
+      
+      let syllables = 0;
+      const vowels = 'aeiouy';
+      
+      // Count vowel groups
+      let previousWasVowel = false;
+      for (let i = 0; i < word.length; i++) {
+        const isVowel = vowels.includes(word[i]);
+        if (isVowel && !previousWasVowel) {
+          syllables++;
+        }
+        previousWasVowel = isVowel;
+      }
+      
+      // Adjust for silent e
+      if (word.endsWith('e') && syllables > 1) {
+        syllables--;
+      }
+      
+      return Math.max(1, syllables);
+    }
+    
+    function updateReadabilityScores(fleschKincaid, fleschReadingEase, gunningFog, avgWordsPerSentence, complexWords, avgSyllablesPerWord) {
+      // Overall score (average of normalized scores)
+      const overallScore = Math.round(100 - (fleschKincaid - 8) * 5);
+      document.getElementById('readabilityScore').textContent = Math.max(0, Math.min(100, overallScore));
+      
+      // Grade level
+      document.getElementById('gradeLevel').textContent = `Grade ${Math.round(fleschKincaid)}`;
+      
+      let scoreDescription = 'Good readability';
+      if (overallScore >= 80) {
+        scoreDescription = 'Excellent readability';
+      } else if (overallScore < 60) {
+        scoreDescription = 'Needs improvement';
+      }
+      document.getElementById('scoreDescription').textContent = scoreDescription;
+      
+      // Flesch-Kincaid
+      document.getElementById('fleschScore').textContent = fleschKincaid.toFixed(1);
+      document.getElementById('fleschBar').style.width = Math.min(100, fleschKincaid * 5) + '%';
+      
+      let fleschInterpretation = 'College level';
+      if (fleschKincaid <= 6) {
+        fleschInterpretation = 'Elementary school';
+      } else if (fleschKincaid <= 8) {
+        fleschInterpretation = 'Middle school';
+      } else if (fleschKincaid <= 10) {
+        fleschInterpretation = 'High school';
+      } else if (fleschKincaid <= 12) {
+        fleschInterpretation = 'High school graduate';
+      }
+      document.getElementById('fleschInterpretation').textContent = fleschInterpretation;
+      
+      // Flesch Reading Ease
+      document.getElementById('readingEase').textContent = fleschReadingEase.toFixed(1);
+      document.getElementById('easeBar').style.width = Math.max(0, Math.min(100, fleschReadingEase)) + '%';
+      
+      let easeDifficulty = 'Difficult';
+      if (fleschReadingEase >= 90) {
+        easeDifficulty = 'Very Easy';
+      } else if (fleschReadingEase >= 80) {
+        easeDifficulty = 'Easy';
+      } else if (fleschReadingEase >= 70) {
+        easeDifficulty = 'Fairly Easy';
+      } else if (fleschReadingEase >= 60) {
+        easeDifficulty = 'Standard';
+      } else if (fleschReadingEase >= 50) {
+        easeDifficulty = 'Fairly Difficult';
+      } else if (fleschReadingEase >= 30) {
+        easeDifficulty = 'Difficult';
+      }
+      document.getElementById('easeDifficulty').textContent = easeDifficulty;
+      
+      // Gunning Fog
+      document.getElementById('gunningFog').textContent = gunningFog.toFixed(1);
+      document.getElementById('fogBar').style.width = Math.min(100, gunningFog * 4) + '%';
+      
+      let fogEducation = 'College graduate';
+      if (gunningFog <= 6) {
+        fogEducation = '6th grade';
+      } else if (gunningFog <= 8) {
+        fogEducation = '8th grade';
+      } else if (gunningFog <= 10) {
+        fogEducation = '10th grade';
+      } else if (gunningFog <= 12) {
+        fogEducation = '12th grade';
+      }
+      document.getElementById('fogEducation').textContent = fogEducation;
+      
+      // Sentence analysis
+      document.getElementById('avgWordsPerSentence').textContent = avgWordsPerSentence.toFixed(1);
+      document.getElementById('complexWords').textContent = complexWords;
+      document.getElementById('syllablesPerWord').textContent = avgSyllablesPerWord.toFixed(1);
+      
+      // Audience analysis
+      const recommendedAge = Math.round(fleschKincaid + 6);
+      document.getElementById('recommendedAge').textContent = `${recommendedAge}+ years`;
+      
+      let comprehensionLevel = 'Good';
+      if (fleschReadingEase >= 80) {
+        comprehensionLevel = 'Excellent';
+      } else if (fleschReadingEase < 50) {
+        comprehensionLevel = 'Challenging';
+      }
+      document.getElementById('comprehensionLevel').textContent = comprehensionLevel;
+      
+      let accessibility = 'High';
+      if (fleschKincaid <= 8) {
+        accessibility = 'Very High';
+      } else if (fleschKincaid > 12) {
+        accessibility = 'Moderate';
+      }
+      document.getElementById('accessibility').textContent = accessibility;
+    }
+    
+    function generateRecommendations(fleschKincaid, fleschReadingEase, gunningFog, avgWordsPerSentence) {
+      const recommendations = [];
+      
+      if (fleschKincaid > 12) {
+        recommendations.push('<strong>Grade Level:</strong> Your content is written at a college level. Consider simplifying vocabulary and sentence structure for broader accessibility.');
+      }
+      
+      if (fleschReadingEase < 50) {
+        recommendations.push('<strong>Reading Ease:</strong> Your text is difficult to read. Try using shorter sentences and simpler words to improve comprehension.');
+      }
+      
+      if (avgWordsPerSentence > 20) {
+        recommendations.push('<strong>Sentence Length:</strong> Your sentences are quite long. Break them down to improve readability and engagement.');
+      }
+      
+      if (gunningFog > 15) {
+        recommendations.push('<strong>Complexity:</strong> Your content requires advanced education to understand. Consider your target audience and adjust accordingly.');
+      }
+      
+      // Update recommendations list
+      const recommendationsList = document.getElementById('recommendationsList');
+      recommendationsList.innerHTML = recommendations.map(rec => 
+        `<div class="recommendation-item">${rec}</div>`
+      ).join('');
+    }
+    
+    // Event listeners
+    analyzeBtn.addEventListener('click', analyzeReadability);
+    
+    // Keyboard shortcuts
+    textInput.addEventListener('keydown', (e) => {
+      if (e.ctrlKey && e.key === 'Enter') {
+        analyzeReadability();
+      }
+    });
+  </script>
+
+</body>
+</html>

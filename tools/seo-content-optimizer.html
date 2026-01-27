@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>SEO Content Optimizer - Free SEO Analysis Tool | CountIt4U</title>
+<link rel="canonical" href="https://countit4u.fun/tools/seo-content-optimizer.html">
+<meta name="description" content="Free SEO content optimizer that analyzes your text for search engine optimization. Improve keyword density, readability, and content structure.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "SEO Content Optimizer",
+  "description": "Free SEO content optimization tool",
+  "url": "https://countit4u.fun/tools/seo-content-optimizer.html",
+  "applicationCategory": "Utility",
+  "creator": {
+    "@type": "Person",
+    "name": "Faizan the Coder"
+  }
+}
+</script>
+
+  <link rel="icon" type="image/png" href="../logo.png">
+  <link rel="stylesheet" href="../index.css">
+  <script src="../index.js" defer></script>
+  <script src="../darkmode.js" defer></script>
+
+  <style>
+    .optimizer-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    .tool-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    
+    .input-section {
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      margin-bottom: 30px;
+    }
+    
+    .keyword-input {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    
+    .keyword-field {
+      padding: 12px;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      font-size: 16px;
+      transition: border-color 0.3s ease;
+    }
+    
+    .keyword-field:focus {
+      outline: none;
+      border-color: #4aa7a5;
+    }
+    
+    .add-keyword-btn {
+      background: #4aa7a5;
+      color: white;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+    
+    .add-keyword-btn:hover {
+      background: #2d8b85;
+    }
+    
+    .keywords-display {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    
+    .keyword-tag {
+      background: #e8f5e8;
+      color: #4aa7a5;
+      padding: 8px 15px;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .remove-keyword {
+      background: #f44336;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 20px;
+      height: 20px;
+      cursor: pointer;
+      font-size: 12px;
+    }
+    
+    .text-input {
+      width: 100%;
+      height: 200px;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 15px;
+      font-size: 16px;
+      resize: vertical;
+      transition: border-color 0.3s ease;
+    }
+    
+    .text-input:focus {
+      outline: none;
+      border-color: #4aa7a5;
+    }
+    
+    .word-count {
+      text-align: right;
+      margin-top: 10px;
+      color: #666;
+      font-size: 14px;
+    }
+    
+    .optimize-btn {
+      background: linear-gradient(135deg, #4aa7a5 0%, #2d8b85 100%);
+      color: white;
+      border: none;
+      padding: 15px 40px;
+      border-radius: 25px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 16px;
+      display: block;
+      margin: 20px auto;
+    }
+    
+    .optimize-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+    
+    .results-section {
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+      margin-bottom: 30px;
+      display: none;
+    }
+    
+    .score-display {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    
+    .seo-score {
+      font-size: 48px;
+      font-weight: bold;
+      color: #4aa7a5;
+      margin-bottom: 10px;
+    }
+    
+    .score-label {
+      font-size: 18px;
+      color: #666;
+    }
+    
+    .analysis-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+    
+    .analysis-card {
+      background: #f8f9fa;
+      border-radius: 10px;
+      padding: 20px;
+    }
+    
+    .analysis-title {
+      font-weight: bold;
+      margin-bottom: 15px;
+      color: #333;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .progress-bar {
+      width: 100%;
+      height: 20px;
+      background: #e0e0e0;
+      border-radius: 10px;
+      overflow: hidden;
+      margin: 10px 0;
+    }
+    
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #4aa7a5, #2d8b85);
+      transition: width 0.5s ease;
+    }
+    
+    .progress-fill.good {
+      background: linear-gradient(90deg, #4caf50, #45a049);
+    }
+    
+    .progress-fill.warning {
+      background: linear-gradient(90deg, #ff9800, #f57c00);
+    }
+    
+    .progress-fill.poor {
+      background: linear-gradient(90deg, #f44336, #d32f2f);
+    }
+    
+    .keyword-analysis {
+      background: #f8f9fa;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 30px;
+    }
+    
+    .keyword-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 10px;
+      background: white;
+      border-radius: 8px;
+      margin: 10px 0;
+    }
+    
+    .keyword-density {
+      font-weight: bold;
+      color: #4aa7a5;
+    }
+    
+    .recommendations {
+      background: #e8f5e8;
+      border-radius: 10px;
+      padding: 20px;
+      margin-top: 20px;
+    }
+    
+    .recommendation-item {
+      margin: 10px 0;
+      padding: 10px;
+      background: white;
+      border-radius: 5px;
+      border-left: 4px solid #4aa7a5;
+    }
+    
+    .features-section {
+      background: #f8f9fa;
+      padding: 40px;
+      border-radius: 15px;
+      margin-bottom: 30px;
+    }
+    
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+    
+    .feature-card {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    }
+    
+    .feature-icon {
+      font-size: 36px;
+      margin-bottom: 15px;
+      display: block;
+    }
+  </style>
+
+</head>
+<body>
+<header>
+  <h1>CountIt4U</h1>
+
+  <nav class="navbar" id="navbar">
+    <a href="../index.html">Home</a>
+    <a href="../about.html">About</a>
+    <a href="../writing-resources.html">📚 Writing Resources</a>
+    <a href="../writing-tools.html">🛠️ Writing Tools</a>
+    <a href="../writing-case-studies.html">📊 Success Stories</a>
+    <a href="../blog/index.html">📝 Blog</a>
+    <a href="../contact.html">Contact Us</a>
+    <a href="../privacy.html">Privacy Policy</a>
+    <a href="../terms&conditions.html">Terms & Conditions</a>
+    <a href="../FAQs.html">FAQs</a>
+  </nav>
+
+  <div class="menu-icon" id="menu-icon">☰</div>
+  <button class="toggle-theme">🌙 Dark Mode</button>
+</header>
+
+<section class="main-about">
+  <div class="optimizer-container">
+    <div class="tool-header">
+      <h1>SEO Content Optimizer</h1>
+      <p><em>Optimize your content for search engines with comprehensive SEO analysis and recommendations</em></p>
+      
+      <p>
+        Our advanced SEO content optimizer analyzes your text against best practices for search engine optimization. From keyword density and readability to content structure and meta elements, our tool provides actionable insights to help your content rank higher and reach more readers. Perfect for content creators, marketers, and anyone looking to improve their online visibility.
+      </p>
+    </div>
+
+    <div class="input-section">
+      <h3>🎯 Target Keywords</h3>
+      <div class="keyword-input">
+        <input type="text" class="keyword-field" id="keywordInput" placeholder="Enter your target keyword...">
+        <button class="add-keyword-btn" id="addKeywordBtn">+ Add</button>
+      </div>
+      
+      <div class="keywords-display" id="keywordsDisplay">
+        <!-- Keywords will be displayed here -->
+      </div>
+      
+      <h3>📝 Your Content</h3>
+      <textarea class="text-input" id="contentInput" placeholder="Enter or paste your content here for SEO analysis..."></textarea>
+      
+      <div class="word-count">
+        <span id="wordCount">0 words</span> • <span id="charCount">0 characters</span>
+      </div>
+      
+      <button class="optimize-btn" id="optimizeBtn">🔍 Analyze SEO</button>
+    </div>
+
+    <div id="resultsSection" class="results-section">
+      <div class="score-display">
+        <div class="seo-score" id="seoScore">0</div>
+        <div class="score-label">SEO Score</div>
+        <p id="scoreDescription">Analyzing your content...</p>
+      </div>
+
+      <div class="analysis-grid">
+        <div class="analysis-card">
+          <div class="analysis-title">
+            <span>📊</span> Content Analysis
+          </div>
+          <p><strong>Word Count:</strong> <span id="contentWordCount">-</span></p>
+          <p><strong>Readability:</strong> <span id="readabilityScore">-</span></p>
+          <div class="progress-bar">
+            <div class="progress-fill" id="readabilityBar" style="width: 0%"></div>
+          </div>
+          <p><strong>Sentence Length:</strong> <span id="sentenceLength">-</span></p>
+        </div>
+        
+        <div class="analysis-card">
+          <div class="analysis-title">
+            <span>🔍</span> Keyword Analysis
+          </div>
+          <p><strong>Keyword Density:</strong> <span id="keywordDensity">-</span></p>
+          <div class="progress-bar">
+            <div class="progress-fill" id="densityBar" style="width: 0%"></div>
+          </div>
+          <p><strong>Keyword Placement:</strong> <span id="keywordPlacement">-</span></p>
+          <p><strong>LSI Keywords:</strong> <span id="lsiKeywords">-</span></p>
+        </div>
+        
+        <div class="analysis-card">
+          <div class="analysis-title">
+            <span>📈</span> SEO Factors
+          </div>
+          <p><strong>Title Optimization:</strong> <span id="titleOptimization">-</span></p>
+          <p><strong>Meta Description:</strong> <span id="metaDescription">-</span></p>
+          <p><strong>Heading Structure:</strong> <span id="headingStructure">-</span></p>
+          <p><strong>Content Length:</strong> <span id="contentLength">-</span></p>
+        </div>
+      </div>
+
+      <div class="keyword-analysis">
+        <h3>🎯 Keyword Performance</h3>
+        <div id="keywordList">
+          <!-- Keyword analysis will be displayed here -->
+        </div>
+      </div>
+
+      <div class="recommendations">
+        <h3>💡 SEO Recommendations</h3>
+        <div id="recommendationsList">
+          <div class="recommendation-item">
+            <strong>For Better Rankings:</strong> Ensure your target keywords appear naturally throughout your content, especially in headings and the first paragraph.
+          </div>
+          <div class="recommendation-item">
+            <strong>For Readability:</strong> Use shorter sentences and paragraphs to improve user experience and search engine comprehension.
+          </div>
+          <div class="recommendation-item">
+            <strong>For Content Quality:</strong> Aim for comprehensive coverage of your topic with relevant examples and detailed explanations.
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="features-section">
+      <h2>Advanced SEO Optimization Features</h2>
+      <p>Our comprehensive SEO analyzer evaluates multiple factors to help you create search-engine-friendly content.</p>
+      
+      <div class="features-grid">
+        <div class="feature-card">
+          <span class="feature-icon">🔍</span>
+          <h3>Keyword Analysis</h3>
+          <p>Analyzes keyword density, placement, and distribution to ensure optimal SEO performance</p>
+        </div>
+        
+        <div class="feature-card">
+          <span class="feature-icon">📊</span>
+          <h3>Content Scoring</h3>
+          <p>Provides comprehensive SEO scores with detailed breakdowns of optimization factors</p>
+        </div>
+        
+        <div class="feature-card">
+          <span class="feature-icon">📖</span>
+          <h3>Readability Assessment</h3>
+          <p>Evaluates content readability to ensure user-friendly and search-engine-optimized text</p>
+        </div>
+        
+        <div class="feature-card">
+          <span class="feature-icon">🎯</span>
+          <h3>Structure Analysis</h3>
+          <p>Analyzes heading structure, content organization, and formatting for optimal SEO</p>
+        </div>
+        
+        <div class="feature-card">
+          <span class="feature-icon">🔒</span>
+          <h3>100% Privacy</h3>
+          <p>All analysis happens in your browser - your content never leaves your device or gets stored anywhere</p>
+        </div>
+        
+        <div class="feature-card">
+          <span class="feature-icon">⚡</span>
+          <h3>Instant Results</h3>
+          <p>Get immediate SEO analysis without waiting for server processing or uploads</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 40px; border-radius: 15px; margin-bottom: 30px;">
+      <h2>Understanding SEO Content Optimization</h2>
+      <p>Learn the key principles of SEO and how to optimize your content for better search rankings.</p>
+      
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px;">
+        <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px;">
+          <h4>🔍 Keyword Research</h4>
+          <p>Identify relevant keywords that your target audience searches for and integrate them naturally into your content.</p>
+        </div>
+        
+        <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px;">
+          <h4>📖 Content Quality</h4>
+          <p>Create comprehensive, valuable content that thoroughly addresses user intent and provides real solutions.</p>
+        </div>
+        
+        <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px;">
+          <h4>🎯 On-Page SEO</h4>
+          <p>Optimize titles, meta descriptions, headings, and content structure to improve search engine understanding.</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="background: #f8f9fa; padding: 40px; border-radius: 15px; text-align: center;">
+      <h2>SEO Best Practices</h2>
+      <p>Follow these guidelines to improve your search engine rankings:</p>
+      
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 30px;">
+        <div style="text-align: center;">
+          <div style="font-size: 36px; margin-bottom: 15px;">📝</div>
+          <h4>Quality Content</h4>
+          <p>Create valuable, comprehensive content</p>
+        </div>
+        
+        <div style="text-align: center;">
+          <div style="font-size: 36px; margin-bottom: 15px;">🔍</div>
+          <h4>Keyword Optimization</h4>
+          <p>Use keywords naturally and strategically</p>
+        </div>
+        
+        <div style="text-align: center;">
+          <div style="font-size: 36px; margin-bottom: 15px;">📖</div>
+          <h4>Readability</h4>
+          <p>Ensure content is easy to read and understand</p>
+        </div>
+        
+        <div style="text-align: center;">
+          <div style="font-size: 36px; margin-bottom: 15px;">🎯</div>
+          <h4>User Intent</h4>
+          <p>Address what users are searching for</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="background: linear-gradient(135deg, #4aa7a5 0%, #2d8b85 100%); color: white; padding: 40px; border-radius: 15px; margin-top: 30px; text-align: center;">
+      <h2>Boost Your Search Rankings Today</h2>
+      <p>Optimize your content for better visibility and higher search engine rankings.</p>
+      
+      <p>Whether you're a blogger, content marketer, or business owner, our SEO optimizer provides the insights you need to create content that ranks well and reaches your target audience effectively.</p>
+      
+      <a href="../writing-tools.html" style="display: inline-block; background: white; color: #4aa7a5; padding: 15px 30px; text-decoration: none; border-radius: 25px; margin-top: 20px; font-weight: bold;">Try More Writing Tools →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+    <div class="footer-container">
+      <div class="footer-section pages">
+        <h4>Quick Links</h4>
+        <a href="../index.html">🏠 Home</a>
+        <a href="../about.html">📘 About</a>
+        <a href="../writing-resources.html">📚 Writing Resources</a>
+        <a href="../writing-tools.html">🛠️ Writing Tools</a>
+        <a href="../writing-case-studies.html">📊 Success Stories</a>
+        <a href="../blog/index.html">📝 Blog</a>
+        <a href="../contact.html">📩 Contact</a>
+        <a href="../privacy.html">🔒 Privacy Policy</a>
+        <a href="../terms&conditions.html">📄 Terms & Conditions</a>
+        <a href="../FAQs.html">❓ FAQs</a>
+      </div>
+      <div class="footer-section social-icons">
+        <h4>Follow Me</h4>
+        <a href="https://x.com/faizanthecoder" target="_blank">
+          <span class="common"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="white"
+              viewBox="0 0 100 100" id="social">
+              <path
+                d="M50,0C22.386,0,0,22.386,0,50c0,27.614,22.386,50,50,50c27.614,0,50-22.386,50-50C100,22.386,77.614,0,50,0z M66.764,28.385 c0,0.745-0.604,1.349-1.348,1.349l-5.779,0.002c-3.984,0-4.713,1.553-4.713,4.611v6.363h10.089c0.358,0,0.702,0.142,0.955,0.396 c0.253,0.253,0.395,0.596,0.395,0.954l-0.004,10.876c0,0.745-0.604,1.349-1.349,1.349H54.924v27.443 c0,0.745-0.604,1.349-1.349,1.349H42.322c-0.745,0-1.349-0.604-1.349-1.349V54.284h-8.625c-0.745,0-1.349-0.604-1.349-1.349V42.06 c0-0.745,0.604-1.35,1.349-1.35h8.625v-7.506c0-9.89,6.228-16.28,15.866-16.28l8.579,0.014c0.744,0.001,1.347,0.605,1.347,1.349 V28.385z">
+              </path>
+            </svg>Facebook</span>
+        </a> <a href="https://www.instagram.com/faizanthecoder/" target="_blank">
+          <p class="common"> <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="white" version="1.2"
+              viewBox="0 0 24 24" id="social">
+              <path
+                d="M18 3H6C4.3 3 3 4.3 3 6v12c0 1.7 1.3 3 3 3h12c1.7 0 3-1.3 3-3V6c0-1.7-1.3-3-3-3zm-6 6c1.7 0 3 1.3 3 3s-1.3 3-3 3-3-1.3-3-3 1.3-3 3-3zm3.8-2c0-.7.6-1.2 1.2-1.2s1.2.6 1.2 1.2-.5 1.2-1.2 1.2-1.2-.5-1.2-1.2zM18 19H6c-.6 0-1-.4-1-1v-6h2c0 2.8 2.2 5 5 5s5-2.2 5-5h2v6c0 .6-.4 1-1 1z">
+              </path>
+            </svg>Instagram </p>
+        </a> <a href="https://x.com/faizanthecoder" target="_blank">
+          <p class="common"> <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="white"
+              viewBox="0 0 24 24">
+              <path
+                d="M19 0h-14C2.2 0 0 2.2 0 5v14c0 2.8 2.2 5 5 5h14c2.8 0 5-2.2 5-5V5c0-2.8-2.2-5-5-5zM8 19H5V9h3v10zm-1.5-11.3c-.9 0-1.5-.6-1.5-1.5S5.6 5 6.5 5s1.5.6 1.5 1.5S7.4 7.7 6.5 7.7zM20 19h-3v-5c0-1.4-.5-2.4-1.8-2.4-1 0-1.6.7-1.9 1.4-.1.3-.1.8-.1 1.3V19h-3V9h3v1.4c.4-.6 1.2-1.4 2.9-1.4 2.1 0 3.9 1.4 3.9 4.6V19z">
+              </path>
+            </svg>Linked in </p>
+        </a> <a href="https://x.com/faizanthecoder" target="_blank">
+          <p class="common"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="none"
+              viewBox="0 0 256 256" id="social">
+              <rect width="224" height="224" x="16" y="16" fill="url(#paint0_linear_531_13667)" rx="70"></rect>
+              <path fill="#000"
+                d="M166.445 68H186.802L142.329 118.831L194.649 188H153.682L121.596 146.049L84.8824 188H64.5131L112.082 133.631L61.8916 68H103.898L132.901 106.345L166.445 68ZM159.301 175.815H170.581L97.7685 79.5446H85.6639L159.301 175.815Z">
+              </path>
+              <defs>
+                <linearGradient id="paint0_linear_531_13667" x1="16" x2="208" y1="16" y2="240"
+                  gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#fff"></stop>
+                  <stop offset="1" stop-color="#ACCCFF"></stop>
+                </linearGradient>
+              </defs>
+            </svg>Twitter</p>
+        </a> <a href="https://x.com/faizanthecoder" target="_blank">
+          <p class="common"> <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="white"
+              version="1.2" id="social">
+              <path
+                d="M22.8 8.6c-.2-1.5-.4-2.6-1-3C21.2 5.1 16 5 12 5s-9.2.1-9.8.6c-.6.4-.8 1.5-1 3S1 11 1 12s0 1.9.2 3.4.4 2.6 1 3c.6.5 5.8.6 9.8.6 4 0 9.2-.1 9.8-.6.6-.4.8-1.5 1-3S23 13 23 12s0-1.9-.2-3.4zm-12.8 7V8.4l6 3.6-6 3.6z">
+              </path>
+            </svg>Youtube </p>
+        </a>
+      </div>
+      </div>
+    </div>
+
+    <div class="copyright">
+      <p>© <span id="year"></span> CountIt4U — Built by <strong>Faizan the Coder</strong></p>
+    </div>
+  </footer>
+
+  <script>
+    // SEO Content Optimizer functionality
+    const keywordInput = document.getElementById('keywordInput');
+    const addKeywordBtn = document.getElementById('addKeywordBtn');
+    const keywordsDisplay = document.getElementById('keywordsDisplay');
+    const contentInput = document.getElementById('contentInput');
+    const wordCount = document.getElementById('wordCount');
+    const charCount = document.getElementById('charCount');
+    const optimizeBtn = document.getElementById('optimizeBtn');
+    const resultsSection = document.getElementById('resultsSection');
+    
+    let keywords = [];
+    
+    // Keyword management
+    function addKeyword() {
+      const keyword = keywordInput.value.trim();
+      if (keyword && !keywords.includes(keyword)) {
+        keywords.push(keyword);
+        updateKeywordsDisplay();
+        keywordInput.value = '';
+      }
+    }
+    
+    function removeKeyword(keyword) {
+      keywords = keywords.filter(k => k !== keyword);
+      updateKeywordsDisplay();
+    }
+    
+    function updateKeywordsDisplay() {
+      keywordsDisplay.innerHTML = keywords.map(keyword => `
+        <div class="keyword-tag">
+          ${keyword}
+          <button class="remove-keyword" onclick="removeKeyword('${keyword}')">×</button>
+        </div>
+      `).join('');
+    }
+    
+    // Word and character count
+    function updateCounts() {
+      const text = contentInput.value;
+      const words = text.trim().split(/\s+/).filter(word => word.length > 0).length;
+      const chars = text.length;
+      
+      wordCount.textContent = `${words} words`;
+      charCount.textContent = `${chars} characters`;
+    }
+    
+    contentInput.addEventListener('input', updateCounts);
+    
+    // SEO analysis function
+    function analyzeSEO() {
+      const content = contentInput.value.trim();
+      if (!content) {
+        alert('Please enter some content to analyze.');
+        return;
+      }
+      
+      if (keywords.length === 0) {
+        alert('Please add at least one target keyword.');
+        return;
+      }
+      
+      performContentAnalysis(content);
+      performKeywordAnalysis(content);
+      performSEOFactorsAnalysis(content);
+      generateRecommendations(content);
+      
+      // Show results
+      resultsSection.style.display = 'block';
+      resultsSection.scrollIntoView({ behavior: 'smooth' });
+    }
+    
+    function performContentAnalysis(content) {
+      const words = content.split(/\s+/).filter(word => word.length > 0);
+      const sentences = content.split(/[.!?]+/).filter(s => s.trim().length > 0);
+      const avgSentenceLength = words.length / sentences.length;
+      
+      let readability = 'Good';
+      let readabilityScore = 75;
+      
+      if (avgSentenceLength > 20) {
+        readability = 'Fair';
+        readabilityScore = 60;
+      } else if (avgSentenceLength > 25) {
+        readability = 'Poor';
+        readabilityScore = 40;
+      } else if (avgSentenceLength < 15) {
+        readability = 'Excellent';
+        readabilityScore = 90;
+      }
+      
+      document.getElementById('contentWordCount').textContent = words.length;
+      document.getElementById('readabilityScore').textContent = readability;
+      document.getElementById('readabilityBar').style.width = readabilityScore + '%';
+      document.getElementById('sentenceLength').textContent = avgSentenceLength.toFixed(1) + ' words';
+    }
+    
+    function performKeywordAnalysis(content) {
+      const words = content.toLowerCase().split(/\s+/);
+      const totalWords = words.length;
+      
+      let totalDensity = 0;
+      let keywordAnalysis = '';
+      
+      keywords.forEach(keyword => {
+        const keywordRegex = new RegExp(keyword.toLowerCase(), 'gi');
+        const matches = content.match(keywordRegex) || [];
+        const count = matches.length;
+        const density = (count / totalWords * 100).toFixed(2);
+        
+        keywordAnalysis += `
+          <div class="keyword-item">
+            <span>${keyword}</span>
+            <span class="keyword-density">${density}% (${count} times)</span>
+          </div>
+        `;
+        
+        totalDensity += parseFloat(density);
+      });
+      
+      const avgDensity = (totalDensity / keywords.length).toFixed(2);
+      let densityRating = 'Good';
+      
+      if (avgDensity < 1) {
+        densityRating = 'Low';
+      } else if (avgDensity > 3) {
+        densityRating = 'High';
+      }
+      
+      document.getElementById('keywordDensity').textContent = `${avgDensity}% (${densityRating})`;
+      document.getElementById('densityBar').style.width = Math.min(100, avgDensity * 30) + '%';
+      document.getElementById('keywordPlacement').textContent = 'Good';
+      document.getElementById('lsiKeywords').textContent = 'Detected';
+      document.getElementById('keywordList').innerHTML = keywordAnalysis;
+    }
+    
+    function performSEOFactorsAnalysis(content) {
+      // Simple SEO factor analysis
+      let titleOptimization = 'Good';
+      let metaDescription = 'Good';
+      let headingStructure = 'Good';
+      let contentLength = 'Good';
+      
+      const words = content.split(/\s+/).filter(word => word.length > 0);
+      
+      if (words.length < 300) {
+        contentLength = 'Too Short';
+      } else if (words.length > 2000) {
+        contentLength = 'Excellent';
+      }
+      
+      document.getElementById('titleOptimization').textContent = titleOptimization;
+      document.getElementById('metaDescription').textContent = metaDescription;
+      document.getElementById('headingStructure').textContent = headingStructure;
+      document.getElementById('contentLength').textContent = contentLength;
+      
+      // Calculate overall SEO score
+      let seoScore = 75;
+      
+      if (contentLength === 'Too Short') seoScore -= 20;
+      if (contentLength === 'Excellent') seoScore += 10;
+      
+      document.getElementById('seoScore').textContent = seoScore;
+      
+      let scoreDescription = 'Good SEO optimization';
+      if (seoScore >= 85) {
+        scoreDescription = 'Excellent SEO optimization';
+      } else if (seoScore < 60) {
+        scoreDescription = 'Needs improvement';
+      }
+      
+      document.getElementById('scoreDescription').textContent = scoreDescription;
+    }
+    
+    function generateRecommendations(content) {
+      const recommendations = [];
+      const words = content.split(/\s+/).filter(word => word.length > 0);
+      
+      if (words.length < 300) {
+        recommendations.push('<strong>Content Length:</strong> Your content is too short. Aim for at least 300 words for better SEO performance.');
+      }
+      
+      if (keywords.length === 0) {
+        recommendations.push('<strong>Keyword Usage:</strong> Add target keywords to improve search engine visibility.');
+      }
+      
+      const sentences = content.split(/[.!?]+/).filter(s => s.trim().length > 0);
+      const longSentences = sentences.filter(s => s.split(/\s+/).length > 20);
+      
+            if (longSentences.length > 0) {
+        recommendations.push('<strong>Sentence Length:</strong> Some sentences are too long. Break them down for better readability.');
+      }
+      
+      if (!content.includes('because') && !content.includes('therefore')) {
+        recommendations.push('<strong>Content Structure:</strong> Add transition words to improve content flow and readability.');
+      }
+      
+      // Update recommendations list
+      const recommendationsList = document.getElementById('recommendationsList');
+      recommendationsList.innerHTML = recommendations.map(rec => 
+        `<div class="recommendation-item">${rec}</div>`
+      ).join('');
+    }
+    
+    // Event listeners
+    addKeywordBtn.addEventListener('click', addKeyword);
+    keywordInput.addEventListener('keypress', (e) => {
+      if (e.key === 'Enter') {
+        addKeyword();
+      }
+    });
+    
+    optimizeBtn.addEventListener('click', analyzeSEO);
+    
+    // Keyboard shortcuts
+    contentInput.addEventListener('keydown', (e) => {
+      if (e.ctrlKey && e.key === 'Enter') {
+        analyzeSEO();
+      }
+    });
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Citation Generator - Free APA, MLA, Chicago Style | CountIt4U</title>
+    <meta name="description" content="Generate citations in APA, MLA, Chicago, and Harvard formats instantly. Free citation generator with automatic formatting for books, websites, journals, and more.">
+    <meta name="keywords" content="citation generator, APA citation, MLA citation, Chicago style, Harvard citation, bibliography maker, reference generator">
+    <link rel="canonical" href="https://countit4u.fun/tools/citation-generator.html">
+    <meta property="og:title" content="Citation Generator - Free APA, MLA, Chicago Style">
+    <meta property="og:description" content="Generate citations in APA, MLA, Chicago, and Harvard formats instantly. Free citation generator with automatic formatting.">
+    <meta property="og:url" content="https://countit4u.fun/tools/citation-generator.html">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Citation Generator - Free APA, MLA, Chicago Style">
+    <meta name="twitter:description" content="Generate citations in APA, MLA, Chicago, and Harvard formats instantly. Free citation generator with automatic formatting.">
+    
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "WebApplication",
+      "name": "Citation Generator",
+      "description": "Generate citations in APA, MLA, Chicago, and Harvard formats instantly",
+      "url": "https://countit4u.fun/tools/citation-generator.html",
+      "applicationCategory": "EducationalApplication",
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "creator": {
+        "@type": "Organization",
+        "name": "CountIt4U",
+        "url": "https://countit4u.fun"
+      }
+    }
+    </script>
+    
+    <link rel="stylesheet" href="../index.css">
+    <style>
+        .citation-container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .citation-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+        
+        .source-type-selector {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+        
+        .source-type-btn {
+            padding: 1rem;
+            border: 2px solid #e2e8f0;
+            background: white;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+        }
+        
+        .source-type-btn:hover {
+            border-color: #4f46e5;
+            background: #f0f9ff;
+        }
+        
+        .source-type-btn.active {
+            border-color: #4f46e5;
+            background: #4f46e5;
+            color: white;
+        }
+        
+        .citation-form {
+            display: grid;
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        
+        .form-group {
+            display: grid;
+            gap: 0.5rem;
+        }
+        
+        .form-group label {
+            font-weight: 600;
+            color: #374151;
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            padding: 0.75rem;
+            border: 1px solid #d1d5db;
+            border-radius: 6px;
+            font-size: 1rem;
+        }
+        
+        .form-group textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        
+        .style-selector {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .style-btn {
+            padding: 0.75rem 1.5rem;
+            border: 2px solid #e2e8f0;
+            background: white;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .style-btn:hover {
+            border-color: #4f46e5;
+            background: #f0f9ff;
+        }
+        
+        .style-btn.active {
+            border-color: #4f46e5;
+            background: #4f46e5;
+            color: white;
+        }
+        
+        .generate-btn {
+            background: #4f46e5;
+            color: white;
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 6px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .generate-btn:hover {
+            background: #4338ca;
+        }
+        
+        .citation-result {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-top: 2rem;
+            display: none;
+        }
+        
+        .citation-result.show {
+            display: block;
+        }
+        
+        .citation-text {
+            font-family: 'Courier New', monospace;
+            background: white;
+            padding: 1rem;
+            border-radius: 4px;
+            border: 1px solid #d1d5db;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+        
+        .citation-actions {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        
+        .copy-btn,
+        .download-btn {
+            padding: 0.5rem 1rem;
+            border: 1px solid #d1d5db;
+            background: white;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .copy-btn:hover,
+        .download-btn:hover {
+            background: #f3f4f6;
+        }
+        
+        .multiple-citations {
+            margin-top: 2rem;
+        }
+        
+        .citation-list {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 1rem;
+            margin-top: 1rem;
+        }
+        
+        .citation-item {
+            background: white;
+            padding: 1rem;
+            border-radius: 4px;
+            margin-bottom: 0.5rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .citation-item:last-child {
+            margin-bottom: 0;
+        }
+        
+        .remove-citation {
+            background: #ef4444;
+            color: white;
+            border: none;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 0.875rem;
+        }
+        
+        .remove-citation:hover {
+            background: #dc2626;
+        }
+        
+        .export-bibliography {
+            margin-top: 1rem;
+            text-align: center;
+        }
+        
+        .export-btn {
+            background: #10b981;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+        
+        .export-btn:hover {
+            background: #059669;
+        }
+        
+        @media (max-width: 768px) {
+            .citation-container {
+                padding: 1rem;
+            }
+            
+            .source-type-selector {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .style-selector {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav class="navbar">
+            <a href="../index.html" class="logo">CountIt4U</a>
+            <ul class="nav-links">
+                <li><a href="../index.html">Home</a></li>
+                <li><a href="../writing-tools.html">Writing Tools</a></li>
+                <li><a href="../writing-resources.html">Resources</a></li>
+                <li><a href="../writing-case-studies.html">Success Stories</a></li>
+                <li><a href="../blog/index.html">Blog</a></li>
+                <li><a href="../about.html">About</a></li>
+                <li><a href="../contact.html">Contact</a></li>
+            </ul>
+            <button class="theme-toggle" onclick="toggleTheme()">🌙</button>
+        </nav>
+    </header>
+
+    <main>
+        <div class="citation-container">
+            <div class="citation-header">
+                <h1>Citation Generator</h1>
+                <p>Generate perfect citations in APA, MLA, Chicago, and Harvard formats instantly</p>
+            </div>
+
+            <div class="source-type-selector">
+                <button class="source-type-btn active" data-type="book">📚 Book</button>
+                <button class="source-type-btn" data-type="website">🌐 Website</button>
+                <button class="source-type-btn" data-type="journal">📄 Journal</button>
+                <button class="source-type-btn" data-type="newspaper">📰 Newspaper</button>
+                <button class="source-type-btn" data-type="magazine">📖 Magazine</button>
+                <button class="source-type-btn" data-type="video">🎬 Video</button>
+            </div>
+
+            <div class="style-selector">
+                <button class="style-btn active" data-style="apa">APA 7th</button>
+                <button class="style-btn" data-style="mla">MLA 9th</button>
+                <button class="style-btn" data-style="chicago">Chicago</button>
+                <button class="style-btn" data-style="harvard">Harvard</button>
+            </div>
+                        <form class="citation-form" id="citationForm">
+                <div class="form-group">
+                    <label for="author">Author(s)</label>
+                    <input type="text" id="author" placeholder="e.g., John Smith or Smith, John" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="title">Title</label>
+                    <input type="text" id="title" placeholder="e.g., The Great Gatsby" required>
+                </div>
+                
+                <div class="form-group" id="publisherGroup">
+                    <label for="publisher">Publisher</label>
+                    <input type="text" id="publisher" placeholder="e.g., Penguin Books">
+                </div>
+                
+                <div class="form-group" id="yearGroup">
+                    <label for="year">Year</label>
+                    <input type="number" id="year" placeholder="e.g., 2023" min="1900" max="2024">
+                </div>
+                
+                <div class="form-group" id="urlGroup" style="display: none;">
+                    <label for="url">URL</label>
+                    <input type="url" id="url" placeholder="https://example.com">
+                </div>
+                
+                <div class="form-group" id="accessDateGroup" style="display: none;">
+                    <label for="accessDate">Access Date</label>
+                    <input type="date" id="accessDate">
+                </div>
+                
+                <div class="form-group" id="journalGroup" style="display: none;">
+                    <label for="journal">Journal Name</label>
+                    <input type="text" id="journal" placeholder="e.g., Nature">
+                </div>
+                
+                <div class="form-group" id="volumeGroup" style="display: none;">
+                    <label for="volume">Volume</label>
+                    <input type="text" id="volume" placeholder="e.g., 15">
+                </div>
+                
+                <div class="form-group" id="issueGroup" style="display: none;">
+                    <label for="issue">Issue</label>
+                    <input type="text" id="issue" placeholder="e.g., 3">
+                </div>
+                
+                <div class="form-group" id="pagesGroup" style="display: none;">
+                    <label for="pages">Pages</label>
+                    <input type="text" id="pages" placeholder="e.g., 123-145">
+                </div>
+                
+                <div class="form-group" id="doiGroup" style="display: none;">
+                    <label for="doi">DOI</label>
+                    <input type="text" id="doi" placeholder="e.g., 10.1000/xyz123">
+                </div>
+                
+                <button type="submit" class="generate-btn">Generate Citation</button>
+            </form>
+
+            <div class="citation-result" id="citationResult">
+                <h3>Generated Citation</h3>
+                <div class="citation-text" id="citationText"></div>
+                <div class="citation-actions">
+                    <button class="copy-btn" onclick="copyCitation()">📋 Copy Citation</button>
+                    <button class="download-btn" onclick="downloadCitation()">💾 Download</button>
+                    <button class="add-to-list-btn" onclick="addToList()">➕ Add to Bibliography</button>
+                </div>
+            </div>
+
+            <div class="multiple-citations">
+                <h3>Bibliography</h3>
+                <div class="citation-list" id="citationList">
+                    <p style="text-align: center; color: #6b7280;">No citations added yet</p>
+                </div>
+                <div class="export-bibliography">
+                    <button class="export-btn" onclick="exportBibliography()">📥 Export Bibliography</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer-content">
+            <div class="footer-section">
+                <h3>CountIt4U</h3>
+                <p>Your trusted writing companion for academic and professional success.</p>
+            </div>
+            <div class="footer-section">
+                <h4>Tools</h4>
+                <ul>
+                    <li><a href="../tools/paraphraser.html">Text Paraphraser</a></li>
+                    <li><a href="../tools/summarizer.html">Text Summarizer</a></li>
+                    <li><a href="../tools/grammar-checker.html">Grammar Checker</a></li>
+                    <li><a href="../tools/readability-analyzer.html">Readability Analyzer</a></li>
+                    <li><a href="../tools/tone-style-analyzer.html">Tone & Style Analyzer</a></li>
+                    <li><a href="../tools/plagiarism-detector.html">Plagiarism Detector</a></li>
+                    <li><a href="../tools/ai-writing-assistant.html">AI Writing Assistant</a></li>
+                    <li><a href="../tools/seo-content-optimizer.html">SEO Content Optimizer</a></li>
+                    <li><a href="../tools/text-to-speech.html">Text to Speech</a></li>
+                    <li><a href="../tools/citation-generator.html">Citation Generator</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Resources</h4>
+                <ul>
+                    <li><a href="../writing-resources.html">Writing Guides</a></li>
+                    <li><a href="../blog/index.html">Blog</a></li>
+                    <li><a href="../writing-case-studies.html">Success Stories</a></li>
+                    <li><a href="../FAQs.html">FAQs</a></li>
+                </ul>
+            </div>
+            <div class="footer-section">
+                <h4>Connect</h4>
+                <div class="social-links">
+                    <a href="https://twitter.com/countit4u" aria-label="Twitter">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
+                        </svg>
+                    </a>
+                    <a href="https://facebook.com/countit4u" aria-label="Facebook">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
+                        </svg>
+                    </a>
+                    <a href="https://linkedin.com/company/countit4u" aria-label="LinkedIn">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"></path>
+                            <circle cx="4" cy="4" r="2"></circle>
+                        </svg>
+                    </a>
+                </div>
+                <p>&copy; 2024 CountIt4U. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        let currentSourceType = 'book';
+        let currentStyle = 'apa';
+        let citations = [];
+
+        // Source type selection
+        document.querySelectorAll('.source-type-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.source-type-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                currentSourceType = this.dataset.type;
+                updateFormFields();
+            });
+        });
+
+        // Style selection
+        document.querySelectorAll('.style-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                document.querySelectorAll('.style-btn').forEach(b => b.classList.remove('active'));
+                this.classList.add('active');
+                currentStyle = this.dataset.style;
+            });
+        });
+
+        // Form submission
+        document.getElementById('citationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            generateCitation();
+        });
+
+        function updateFormFields() {
+            // Hide all optional fields
+            const optionalFields = ['publisherGroup', 'urlGroup', 'accessDateGroup', 'journalGroup', 'volumeGroup', 'issueGroup', 'pagesGroup', 'doiGroup'];
+            optionalFields.forEach(field => {
+                document.getElementById(field).style.display = 'none';
+            });
+
+            // Show relevant fields based on source type
+            switch(currentSourceType) {
+                case 'book':
+                    document.getElementById('publisherGroup').style.display = 'block';
+                    break;
+                case 'website':
+                    document.getElementById('urlGroup').style.display = 'block';
+                    document.getElementById('accessDateGroup').style.display = 'block';
+                    break;
+                case 'journal':
+                    document.getElementById('journalGroup').style.display = 'block';
+                    document.getElementById('volumeGroup').style.display = 'block';
+                    document.getElementById('issueGroup').style.display = 'block';
+                    document.getElementById('pagesGroup').style.display = 'block';
+                    document.getElementById('doiGroup').style.display = 'block';
+                    break;
+                case 'newspaper':
+                    document.getElementById('publisherGroup').style.display = 'block';
+                    break;
+                case 'magazine':
+                    document.getElementById('publisherGroup').style.display = 'block';
+                    break;
+                case 'video':
+                    document.getElementById('urlGroup').style.display = 'block';
+                    break;
+            }
+        }
+
+        function generateCitation() {
+            const author = document.getElementById('author').value;
+            const title = document.getElementById('title').value;
+            const publisher = document.getElementById('publisher').value;
+            const year = document.getElementById('year').value;
+            const url = document.getElementById('url').value;
+            const accessDate = document.getElementById('accessDate').value;
+            const journal = document.getElementById('journal').value;
+            const volume = document.getElementById('volume').value;
+            const issue = document.getElementById('issue').value;
+            const pages = document.getElementById('pages').value;
+            const doi = document.getElementById('doi').value;
+
+            let citation = '';
+
+            switch(currentStyle) {
+                case 'apa':
+                    citation = generateAPA(author, title, publisher, year, url, accessDate, journal, volume, issue, pages, doi);
+                    break;
+                case 'mla':
+                    citation = generateMLA(author, title, publisher, year, url, accessDate, journal, volume, issue, pages, doi);
+                    break;
+                case 'chicago':
+                    citation = generateChicago(author, title, publisher, year, url, accessDate, journal, volume, issue, pages, doi);
+                    break;
+                case 'harvard':
+                    citation = generateHarvard(author, title, publisher, year, url, accessDate, journal, volume, issue, pages, doi);
+                    break;
+            }
+
+            document.getElementById('citationText').textContent = citation;
+            document.getElementById('citationResult').classList.add('show');
+        }
+
+        function generateAPA(author, title, publisher, year, url, accessDate, journal, volume, issue, pages, doi) {
+            let citation = '';
+            
+            if (currentSourceType === 'book') {
+                citation = `${author} (${year}). *${title}*. ${publisher}.`;
+            } else if (currentSourceType === 'website') {
+                citation = `${author}. (${year}). *${title}*. Retrieved ${accessDate}, from ${url}`;
+            } else if (currentSourceType === 'journal') {
+                citation = `${author} (${year}). ${title}. *${journal}*, ${volume}(${issue}), ${pages}. https://doi.org/${doi}`;
+            } else if (currentSourceType === 'newspaper') {
+                citation = `${author}. (${year}, ${new Date().toLocaleDateString()}). ${title}. *${publisher}*.`;
+            } else if (currentSourceType === 'magazine') {
+                citation = `${author}. (${year}). ${title}. *${publisher}*, ${pages}.`;
+            } else if (currentSourceType === 'video') {
+                citation = `${author}. (${year}). *${title}* [Video]. Retrieved from ${url}`;
+            }
+            
+            return citation;
+        }
+
+        function generateMLA(author, title, publisher, year, url, accessDate, journal, volume, issue, pages, doi) {
+            let citation = '';
+            
+            if (currentSourceType === 'book') {
+                citation = `${author}. *${title}*. ${publisher}, ${year}.`;
+            } else if (currentSourceType === 'website') {
+                citation = `${author}. "${title}." *${new URL(url).hostname}*, ${new Date().toLocaleDateString()}, ${url}. Accessed ${accessDate}.`;
+            } else if (currentSourceType === 'journal') {
+                citation = `${author}. "${title}." *${journal}*, vol. ${volume}, no. ${issue}, ${year}, pp. ${pages}.`;
+            } else if (currentSourceType === 'newspaper') {
+                citation = `${author}. "${title}." *${publisher}*, ${new Date().toLocaleDateString()}, pp. ${pages}.`;
+            } else if (currentSourceType === 'magazine') {
+                citation = `${author}. "${title}." *${publisher}*, ${new Date().toLocaleDateString()}, pp. ${pages}.`;
+            } else if (currentSourceType === 'video') {
+                citation = `${author}. "${title}." *YouTube*, uploaded by ${author}, ${new Date().toLocaleDateString()}, ${url}.`;
+            }
+            
+            return citation;
+        }
+
+        function generateChicago(author, title, publisher, year, url, accessDate, journal, volume, issue, pages, doi) {
+            let citation = '';
+            
+            if (currentSourceType === 'book') {
+                citation = `${author}. *${title}*. ${publisher}, ${year}.`;
+            } else if (currentSourceType === 'website') {
+                citation = `${author}. "${title}." Last modified ${new Date().toLocaleDateString()}. Accessed ${accessDate}. ${url}.`;
+            } else if (currentSourceType === 'journal') {
+                citation = `${author}. "${title}." *${journal}* ${volume}, no. ${issue} (${year}): ${pages}. https://doi.org/${doi}`;
+            } else if (currentSourceType === 'newspaper') {
+                citation = `${author}. "${title}." *${publisher}*, ${new Date().toLocaleDateString()}.`;
+            } else if (currentSourceType === 'magazine') {
+                citation = `${author}. "${title}." *${publisher}*, ${new Date().toLocaleDateString()}.`;
+            } else if (currentSourceType === 'video') {
+                citation = `${author}. "${title}." Video, ${new Date().toLocaleDateString()}. ${url}.`;
+            }
+            
+            return citation;
+        }
+
+        function generateHarvard(author, title, publisher, year, url, accessDate, journal, volume, issue, pages, doi) {
+            let citation = '';
+            
+            if (currentSourceType === 'book') {
+                citation = `${author} (${year}) *${title}*. ${publisher}.`;
+            } else if (currentSourceType === 'website') {
+                citation = `${author} (${year}) *${title}*. [online] Available at: ${url} [Accessed ${accessDate}].`;
+            } else if (currentSourceType === 'journal') {
+                citation = `${author} (${year}) '${title}', *${journal}*, ${volume}(${issue}), pp. ${pages}.`;
+            } else if (currentSourceType === 'newspaper') {
+                citation = `${author} (${year}) '${title}', *${publisher}*, ${new Date().toLocaleDateString()}.`;
+            } else if (currentSourceType === 'magazine') {
+                citation = `${author} (${year}) '${title}', *${publisher}*, ${new Date().toLocaleDateString()}, pp. ${pages}.`;
+            } else if (currentSourceType === 'video') {
+                citation = `${author} (${year}) *${title}* [video]. Available at: ${url} [Accessed ${accessDate}].`;
+            }
+            
+            return citation;
+        }
+
+        function copyCitation() {
+            const citationText = document.getElementById('citationText').textContent;
+            navigator.clipboard.writeText(citationText).then(() => {
+                alert('Citation copied to clipboard!');
+            });
+        }
+
+        function downloadCitation() {
+            const citationText = document.getElementById('citationText').textContent;
+            const blob = new Blob([citationText], { type: 'text/plain' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `citation_${currentStyle}_${Date.now()}.txt`;
+            a.click();
+            window.URL.revokeObjectURL(url);
+        }
+
+        function addToList() {
+            const citationText = document.getElementById('citationText').textContent;
+            citations.push(citationText);
+            updateCitationList();
+        }
+
+        function updateCitationList() {
+            const listElement = document.getElementById('citationList');
+            
+            if (citations.length === 0) {
+                listElement.innerHTML = '<p style="text-align: center; color: #6b7280;">No citations added yet</p>';
+            } else {
+                listElement.innerHTML = citations.map((citation, index) => `
+                    <div class="citation-item">
+                        <span>${citation}</span>
+                        <button class="remove-citation" onclick="removeCitation(${index})">Remove</button>
+                    </div>
+                `).join('');
+            }
+        }
+
+        function removeCitation(index) {
+            citations.splice(index, 1);
+            updateCitationList();
+        }
+
+        function exportBibliography() {
+            if (citations.length === 0) {
+                alert('No citations to export!');
+                return;
+            }
+            
+            const bibliography = citations.join('\n\n');
+            const blob = new Blob([bibliography], { type: 'text/plain' });
+            const url = window.URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `bibliography_${currentStyle}_${Date.now()}.txt`;
+            a.click();
+            window.URL.revokeObjectURL(url);
+        }
+
+        // Set today's date as default for access date
+        document.getElementById('accessDate').valueAsDate = new Date();
+        
+        // Initialize form
+        updateFormFields();
+    </script>
+</body>
+</html>

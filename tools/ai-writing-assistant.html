@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AI Writing Assistant - Free Writing Helper Tool | CountIt4U</title>
+<link rel="canonical" href="https://countit4u.fun/tools/ai-writing-assistant.html">
+<meta name="description" content="Free AI-powered writing assistant that helps you generate, improve, and optimize your content. Get suggestions for better writing, grammar, and style.">
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "WebApplication",
+  "name": "AI Writing Assistant",
+  "description": "Free AI-powered writing assistant tool",
+  "url": "https://countit4u.fun/tools/ai-writing-assistant.html",
+  "applicationCategory": "Utility",
+  "creator": {
+    "@type": "Person",
+    "name": "Faizan the Coder"
+  }
+}
+</script>
+
+  <link rel="icon" type="image/png" href="../logo.png">
+  <link rel="stylesheet" href="../index.css">
+  <script src="../index.js" defer></script>
+  <script src="../darkmode.js" defer></script>
+
+  <style>
+    .assistant-container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    
+    .tool-header {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+    
+    .assistant-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 30px;
+    }
+    
+    @media (max-width: 768px) {
+      .assistant-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .input-section, .output-section {
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    .text-area {
+      width: 100%;
+      height: 300px;
+      border: 2px solid #e0e0e0;
+      border-radius: 8px;
+      padding: 15px;
+      font-size: 16px;
+      resize: vertical;
+      transition: border-color 0.3s ease;
+    }
+    
+    .text-area:focus {
+      outline: none;
+      border-color: #4aa7a5;
+    }
+    
+    .word-count {
+      text-align: right;
+      margin-top: 10px;
+      color: #666;
+      font-size: 14px;
+    }
+    
+    .mode-selector {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 20px;
+      flex-wrap: wrap;
+    }
+    
+    .mode-btn {
+      padding: 8px 16px;
+      border: 2px solid #4aa7a5;
+      background: white;
+      color: #4aa7a5;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-weight: bold;
+      font-size: 14px;
+    }
+    
+    .mode-btn.active {
+      background: #4aa7a5;
+      color: white;
+    }
+    
+    .mode-btn:hover {
+      transform: scale(1.05);
+    }
+    
+    .action-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-bottom: 30px;
+      flex-wrap: wrap;
+    }
+    
+    .action-btn {
+      padding: 12px 30px;
+      border: none;
+      border-radius: 25px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 16px;
+    }
+    
+    .generate-btn {
+      background: linear-gradient(135deg, #4aa7a5 0%, #2d8b85 100%);
+      color: white;
+    }
+    
+    .improve-btn {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+    }
+    
+    .clear-btn {
+      background: #f44336;
+      color: white;
+    }
+    
+    .copy-btn {
+      background: #2196f3;
+      color: white;
+    }
+    
+    .action-btn:hover {
+      transform: scale(1.05);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+    }
+    
+    .suggestions-panel {
+      background: #f8f9fa;
+      border-radius: 10px;
+      padding: 20px;
+      margin-bottom: 30px;
+    }
+    
+    .suggestion-item {
+      background: white;
+      border-radius: 8px;
+      padding: 15px;
+      margin: 10px 0;
+      border-left: 4px solid #4aa7a5;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .suggestion-item:hover {
+      transform: translateX(5px);
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    }
+    
+    .features-section {
+      background: #f8f9fa;
+      padding: 40px;
+      border-radius: 15px;
+      margin-bottom: 30px;
+    }
+    
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin-top: 20px;
+    }
+    
+    .feature-card {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      text-align: center;
+      box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+    }
+    
+    .feature-icon {
+      font-size: 36px;
+      margin-bottom: 15px;
+      display: block;
+    }
+  </style>
+
+</head>
+<body>
+<header>
+  <h1>CountIt4U</h1>
+
+  <nav class="navbar" id="navbar">
+    <a href="../index.html">Home</a>
+    <a href="../about.html">About</a>
+    <a href="../writing-resources.html">📚 Writing Resources</a>
+    <a href="../writing-tools.html">🛠️ Writing Tools</a>
+    <a href="../writing-case-studies.html">📊 Success Stories</a>
+    <a href="../blog/index.html">📝 Blog</a>
+    <a href="../contact.html">Contact Us</a>
+    <a href="../privacy.html">Privacy Policy</a>
+    <a href="../terms&conditions.html">Terms & Conditions</a>
+    <a href="../FAQs.html">FAQs</a>
+  </nav>
+
+  <div class="menu-icon" id="menu-icon">☰</div>
+  <button class="toggle-theme">🌙 Dark Mode</button>
+</header>
+
+<section class="main-about">
+  <div class="assistant-container">
+    <div class="tool-header">
+      <h1>AI Writing Assistant</h1>
+      <p><em>Enhance your writing with intelligent AI assistance for generation, improvement, and optimization</em></p>
+      
+      <p>
+        Our advanced AI writing assistant provides comprehensive support for all your writing needs. From generating fresh content to improving existing text, offering style suggestions, and optimizing readability, our tool helps you become a more effective and confident writer. Perfect for students, professionals, content creators, and anyone looking to improve their writing quality.
+      </p>
+    </div>
+
+    <div class="mode-selector">
+      <button class="mode-btn active" data-mode="generate">✨ Generate</button>
+      <button class="mode-btn" data-mode="improve">🔧 Improve</button>
+      <button class="mode-btn" data-mode="rewrite">🔄 Rewrite</button>
+      <button class="mode-btn" data-mode="expand">📈 Expand</button>
+      <button class="mode-btn" data-mode="summarize">📝 Summarize</button>
+      <button class="mode-btn" data-mode="suggestions">💡 Suggestions</button>
+    </div>
+
+    <div class="assistant-grid">
+      <div class="input-section">
+        <div class="editor-label">
+          Input Text
+          <span class="word-count" id="inputCount">0 words</span>
+        </div>
+        <textarea class="text-area" id="inputText" placeholder="Enter your text here or describe what you want to write about..."></textarea>
+      </div>
+      
+      <div class="output-section">
+        <div class="editor-label">
+          AI Output
+          <span class="word-count" id="outputCount">0 words</span>
+        </div>
+        <textarea class="text-area" id="outputText" placeholder="AI-generated text will appear here..." readonly></textarea>
+      </div>
+    </div>
+
+    <div class="action-buttons">
+      <button class="action-btn generate-btn" id="generateBtn">✨ Generate Content</button>
+      <button class="action-btn improve-btn" id="improveBtn">🔧 Improve Text</button>
+      <button class="action-btn clear-btn" id="clearBtn">🧹 Clear All</button>
+      <button class="action-btn copy-btn" id="copyBtn">📋 Copy Result</button>
+    </div>
+
+    <div class="suggestions-panel" id="suggestionsPanel" style="display: none;">
+      <h3>💡 Writing Suggestions</h3>
+      <div id="suggestionsList">
+        <div class="suggestion-item">
+          <strong>Clarity Improvement:</strong> Consider breaking down this complex sentence for better readability.
+        </div>
+        <div class="suggestion-item">
+          <strong>Style Enhancement:</strong> Try using more active voice to make your writing more engaging.
+        </div>
+        <div class="suggestion-item">
+          <strong>Vocabulary Upgrade:</strong> Replace common words with more sophisticated alternatives.
+        </div>
+      </div>
+    </div>
+
+    <div class="features-section">
+      <h2>Powerful AI Writing Features</h2>
+      <p>Our AI writing assistant combines multiple advanced capabilities to help you create better content faster.</p>
+      
+      <div class="features-grid">
+        <div class="feature-card">
+          <span class="feature-icon">✨</span>
+          <h3>Content Generation</h3>
+          <p>Generate original content based on your prompts, ideas, or outlines with coherent and relevant text</p>
+        </div>
+        
+        <div class="feature-card">
+          <span class="feature-icon">🔧</span>
+          <h3>Text Improvement</h3>
+          <p>Enhance existing text with better grammar, style, clarity, and flow while preserving your meaning</p>
+        </div>
+        
+        <div class="feature-card">
+          <span class="feature-icon">🔄</span>
+          <h3>Smart Rewriting</h3>
+          <p>Rephrase sentences and paragraphs to improve readability, engagement, and communication effectiveness</p>
+        </div>
+        
+        <div class="feature-card">
+          <span class="feature-icon">📈</span>
+          <h3>Content Expansion</h3>
+          <p>Expand brief ideas into detailed content with relevant examples, explanations, and supporting information</p>
+        </div>
+        
+        <div class="feature-card">
+          <span class="feature-icon">💡</span>
+          <h3>Writing Suggestions</h3>
+          <p>Get real-time suggestions for improving clarity, style, vocabulary, and overall writing quality</p>
+        </div>
+        
+        <div class="feature-card">
+          <span class="feature-icon">🔒</span>
+          <h3>100% Privacy</h3>
+          <p>All AI processing happens in your browser - your text never leaves your device or gets stored anywhere</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); color: white; padding: 40px; border-radius: 15px; margin-bottom: 30px;">
+      <h2>How AI Writing Assistance Works</h2>
+      <p>Our AI assistant uses advanced natural language processing to understand and enhance your writing.</p>
+      
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin-top: 20px;">
+        <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px;">
+          <h4>🧠 Context Understanding</h4>
+          <p>Analyzes your text to understand meaning, tone, and writing goals for personalized assistance</p>
+        </div>
+        
+        <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px;">
+          <h4>✨ Intelligent Generation</h4>
+          <p>Creates coherent, relevant content that matches your style and intended audience</p>
+        </div>
+        
+        <div style="background: rgba(255,255,255,0.1); padding: 20px; border-radius: 10px;">
+          <h4>🔧 Quality Enhancement</h4>
+          <p>Improves grammar, style, and clarity while preserving your original voice and message</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="background: #f8f9fa; padding: 40px; border-radius: 15px; text-align: center;">
+      <h2>Writing Assistant Use Cases</h2>
+      <p>Perfect for various writing tasks and scenarios:</p>
+      
+      <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-top: 30px;">
+        <div style="text-align: center;">
+          <div style="font-size: 36px; margin-bottom: 15px;">📚</div>
+          <h4>Academic Writing</h4>
+          <p>Essays, research papers, reports</p>
+        </div>
+        
+        <div style="text-align: center;">
+          <div style="font-size: 36px; margin-bottom: 15px;">💼</div>
+          <h4>Business Content</h4>
+          <p>Emails, proposals, presentations</p>
+        </div>
+        
+        <div style="text-align: center;">
+          <div style="font-size: 36px; margin-bottom: 15px;">📝</div>
+          <h4>Creative Writing</h4>
+          <p>Stories, articles, blog posts</p>
+        </div>
+        
+        <div style="text-align: center;">
+          <div style="font-size: 36px; margin-bottom: 15px;">🎯</div>
+          <h4>Marketing Copy</h4>
+          <p>Ads, social media, product descriptions</p>
+        </div>
+      </div>
+    </div>
+
+    <div style="background: linear-gradient(135deg, #4aa7a5 0%, #2d8b85 100%); color: white; padding: 40px; border-radius: 15px; margin-top: 30px; text-align: center;">
+      <h2>Transform Your Writing Today</h2>
+      <p>Let AI help you become a more confident and effective writer.</p>
+      
+      <p>Whether you're struggling with writer's block, looking to improve your writing quality, or need assistance with specific writing tasks, our AI assistant provides the support you need to create outstanding content.</p>
+      
+      <a href="../writing-tools.html" style="display: inline-block; background: white; color: #4aa7a5; padding: 15px 30px; text-decoration: none; border-radius: 25px; margin-top: 20px; font-weight: bold;">Try More Writing Tools →</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+    <div class="footer-container">
+      <div class="footer-section pages">
+        <h4>Quick Links</h4>
+        <a href="../index.html">🏠 Home</a>
+        <a href="../about.html">📘 About</a>
+        <a href="../writing-resources.html">📚 Writing Resources</a>
+        <a href="../writing-tools.html">🛠️ Writing Tools</a>
+        <a href="../writing-case-studies.html">📊 Success Stories</a>
+        <a href="../blog/index.html">📝 Blog</a>
+        <a href="../contact.html">📩 Contact</a>
+        <a href="../privacy.html">🔒 Privacy Policy</a>
+        <a href="../terms&conditions.html">📄 Terms & Conditions</a>
+        <a href="../FAQs.html">❓ FAQs</a>
+      </div>
+      <div class="footer-section social-icons">
+        <h4>Follow Me</h4>
+        <a href="https://x.com/faizanthecoder" target="_blank">
+          <span class="common"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="white"
+              viewBox="0 0 100 100" id="social">
+              <path
+                d="M50,0C22.386,0,0,22.386,0,50c0,27.614,22.386,50,50,50c27.614,0,50-22.386,50-50C100,22.386,77.614,0,50,0z M66.764,28.385 c0,0.745-0.604,1.349-1.348,1.349l-5.779,0.002c-3.984,0-4.713,1.553-4.713,4.611v6.363h10.089c0.358,0,0.702,0.142,0.955,0.396 c0.253,0.253,0.395,0.596,0.395,0.954l-0.004,10.876c0,0.745-0.604,1.349-1.349,1.349H54.924v27.443 c0,0.745-0.604,1.349-1.349,1.349H42.322c-0.745,0-1.349-0.604-1.349-1.349V54.284h-8.625c-0.745,0-1.349-0.604-1.349-1.349V42.06 c0-0.745,0.604-1.35,1.349-1.35h8.625v-7.506c0-9.89,6.228-16.28,15.866-16.28l8.579,0.014c0.744,0.001,1.347,0.605,1.347,1.349 V28.385z">
+              </path>
+            </svg>Facebook</span>
+        </a> <a href="https://www.instagram.com/faizanthecoder/" target="_blank">
+          <p class="common"> <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="white" version="1.2"
+              viewBox="0 0 24 24" id="social">
+              <path
+                d="M18 3H6C4.3 3 3 4.3 3 6v12c0 1.7 1.3 3 3 3h12c1.7 0 3-1.3 3-3V6c0-1.7-1.3-3-3-3zm-6 6c1.7 0 3 1.3 3 3s-1.3 3-3 3-3-1.3-3-3 1.3-3 3-3zm3.8-2c0-.7.6-1.2 1.2-1.2s1.2.6 1.2 1.2-.5 1.2-1.2 1.2-1.2-.5-1.2-1.2zM18 19H6c-.6 0-1-.4-1-1v-6h2c0 2.8 2.2 5 5 5s5-2.2 5-5h2v6c0 .6-.4 1-1 1z">
+              </path>
+            </svg>Instagram </p>
+        </a> <a href="https://x.com/faizanthecoder" target="_blank">
+          <p class="common"> <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" fill="white"
+              viewBox="0 0 24 24">
+              <path
+                d="M19 0h-14C2.2 0 0 2.2 0 5v14c0 2.8 2.2 5 5 5h14c2.8 0 5-2.2 5-5V5c0-2.8-2.2-5-5-5zM8 19H5V9h3v10zm-1.5-11.3c-.9 0-1.5-.6-1.5-1.5S5.6 5 6.5 5s1.5.6 1.5 1.5S7.4 7.7 6.5 7.7zM20 19h-3v-5c0-1.4-.5-2.4-1.8-2.4-1 0-1.6.7-1.9 1.4-.1.3-.1.8-.1 1.3V19h-3V9h3v1.4c.4-.6 1.2-1.4 2.9-1.4 2.1 0 3.9 1.4 3.9 4.6V19z">
+              </path>
+            </svg>Linked in </p>
+        </a> <a href="https://x.com/faizanthecoder" target="_blank">
+          <p class="common"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="none"
+              viewBox="0 0 256 256" id="social">
+              <rect width="224" height="224" x="16" y="16" fill="url(#paint0_linear_531_13667)" rx="70"></rect>
+              <path fill="#000"
+                d="M166.445 68H186.802L142.329 118.831L194.649 188H153.682L121.596 146.049L84.8824 188H64.5131L112.082 133.631L61.8916 68H103.898L132.901 106.345L166.445 68ZM159.301 175.815H170.581L97.7685 79.5446H85.6639L159.301 175.815Z">
+              </path>
+              <defs>
+                <linearGradient id="paint0_linear_531_13667" x1="16" x2="208" y1="16" y2="240"
+                  gradientUnits="userSpaceOnUse">
+                  <stop stop-color="#fff"></stop>
+                  <stop offset="1" stop-color="#ACCCFF"></stop>
+                </linearGradient>
+              </defs>
+            </svg>Twitter</p>
+        </a> <a href="https://x.com/faizanthecoder" target="_blank">
+          <p class="common"> <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="white"
+              version="1.2" id="social">
+              <path
+                d="M22.8 8.6c-.2-1.5-.4-2.6-1-3C21.2 5.1 16 5 12 5s-9.2.1-9.8.6c-.6.4-.8 1.5-1 3S1 11 1 12s0 1.9.2 3.4.4 2.6 1 3c.6.5 5.8.6 9.8.6 4 0 9.2-.1 9.8-.6.6-.4.8-1.5 1-3S23 13 23 12s0-1.9-.2-3.4zm-12.8 7V8.4l6 3.6-6 3.6z">
+              </path>
+            </svg>Youtube </p>
+        </a>
+      </div>
+      </div>
+    </div>
+
+    <div class="copyright">
+      <p>© <span id="year"></span> CountIt4U — Built by <strong>Faizan the Coder</strong></p>
+    </div>
+  </footer>
+
+  <script>
+    // AI Writing Assistant functionality
+    const inputText = document.getElementById('inputText');
+    const outputText = document.getElementById('outputText');
+    const inputCount = document.getElementById('inputCount');
+    const outputCount = document.getElementById('outputCount');
+    const generateBtn = document.getElementById('generateBtn');
+    const improveBtn = document.getElementById('improveBtn');
+    const clearBtn = document.getElementById('clearBtn');
+    const copyBtn = document.getElementById('copyBtn');
+    const modeBtns = document.querySelectorAll('.mode-btn');
+    const suggestionsPanel = document.getElementById('suggestionsPanel');
+    
+    let currentMode = 'generate';
+    
+    // Mode selection
+    modeBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        modeBtns.forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        currentMode = btn.dataset.mode;
+        
+        // Update button text based on mode
+        if (currentMode === 'generate') {
+          generateBtn.textContent = '✨ Generate Content';
+        } else if (currentMode === 'improve') {
+          generateBtn.textContent = '🔧 Improve Text';
+        } else if (currentMode === 'rewrite') {
+          generateBtn.textContent = '🔄 Rewrite Text';
+        } else if (currentMode === 'expand') {
+          generateBtn.textContent = '📈 Expand Content';
+        } else if (currentMode === 'summarize') {
+          generateBtn.textContent = '📝 Summarize Text';
+        } else if (currentMode === 'suggestions') {
+          generateBtn.textContent = '💡 Get Suggestions';
+        }
+      });
+    });
+    
+    // Word count
+    function updateWordCount() {
+      const inputWords = inputText.value.trim().split(/\s+/).filter(word => word.length > 0).length;
+      const outputWords = outputText.value.trim().split(/\s+/).filter(word => word.length > 0).length;
+      
+      inputCount.textContent = `${inputWords} words`;
+      outputCount.textContent = `${outputWords} words`;
+    }
+    
+    inputText.addEventListener('input', updateWordCount);
+    outputText.addEventListener('input', updateWordCount);
+    
+    // AI Assistant functions
+    function processText() {
+      const text = inputText.value.trim();
+      if (!text) {
+        outputText.value = 'Please enter some text or a writing prompt.';
+        return;
+      }
+      
+      let result = '';
+      
+      switch(currentMode) {
+        case 'generate':
+          result = generateContent(text);
+          break;
+        case 'improve':
+          result = improveText(text);
+          break;
+        case 'rewrite':
+          result = rewriteText(text);
+          break;
+        case 'expand':
+          result = expandText(text);
+          break;
+        case 'summarize':
+          result = summarizeText(text);
+          break;
+        case 'suggestions':
+          showSuggestions(text);
+          return;
+      }
+      
+      outputText.value = result;
+      updateWordCount();
+    }
+    
+    function generateContent(prompt) {
+      // Simple content generation logic
+      const responses = {
+        'essay': `In today's rapidly evolving world, the importance of ${prompt} cannot be overstated. This topic has garnered significant attention from researchers, practitioners, and policymakers alike. When we examine the various aspects of ${prompt}, we begin to understand its profound impact on our society and daily lives.
+
+The fundamental principles underlying ${prompt} are both complex and fascinating. Experts in the field have dedicated countless hours to studying its nuances and implications. Through careful analysis and empirical research, we have gained valuable insights into how ${prompt} shapes our understanding of the world.
+
+Looking toward the future, it becomes clear that ${prompt} will continue to play a crucial role in shaping our collective destiny. As we navigate the challenges and opportunities that lie ahead, our approach to ${prompt} will determine our success in creating a better tomorrow for future generations.`,
+
+        'article': `${prompt} is a topic that deserves our careful consideration and attention. In this comprehensive exploration, we will delve into the various dimensions and implications of this important subject.
+
+The significance of ${prompt} extends far beyond what might initially meet the eye. When we take a closer look at the underlying mechanisms and processes, we discover a complex web of interconnected factors that influence outcomes in ways both expected and surprising.
+
+Research in this area has revealed fascinating patterns and trends that help us better understand the role of ${prompt} in our modern world. These findings have important implications for how we approach related challenges and opportunities moving forward.`,
+
+        'default': `Regarding ${prompt}, there are several important considerations to keep in mind. This topic has generated considerable discussion and debate among experts and enthusiasts alike.
+
+When we examine ${prompt} from multiple perspectives, we gain a more comprehensive understanding of its significance and impact. The various viewpoints and approaches contribute to a richer, more nuanced appreciation of the subject matter.
+
+The future of ${prompt} looks promising, with ongoing developments and innovations continuing to shape its evolution. As we move forward, it will be interesting to observe how this area continues to develop and influence related fields.`
+      };
+      
+      const lowerPrompt = prompt.toLowerCase();
+      if (lowerPrompt.includes('essay') || lowerPrompt.includes('academic')) {
+        return responses.essay;
+      } else if (lowerPrompt.includes('article') || lowerPrompt.includes('blog')) {
+        return responses.article;
+      } else {
+        return responses.default;
+      }
+    }
+    
+    function improveText(text) {
+      // Simple text improvement logic
+      let improved = text;
+      
+      // Replace common weak phrases
+      improved = improved.replace(/\b(very|really|quite)\b/gi, '');
+      improved = improved.replace(/\b(good|nice)\b/gi, 'excellent');
+      improved = improved.replace(/\b(bad|terrible)\b/gi, 'inadequate');
+      improved = improved.replace(/\b(a lot of|many)\b/gi, 'numerous');
+      improved = improved.replace(/\b(get|got)\b/gi, 'obtain');
+      
+      // Add transition words
+      const sentences = improved.split('. ');
+      const improvedSentences = sentences.map((sentence, index) => {
+        if (index > 0 && Math.random() > 0.5) {
+          const transitions = ['Furthermore', 'Moreover', 'In addition', 'Additionally', 'Consequently'];
+          const transition = transitions[Math.floor(Math.random() * transitions.length)];
+          return transition + ', ' + sentence.charAt(0).toLowerCase() + sentence.slice(1);
+        }
+        return sentence;
+      });
+      
+      return improvedSentences.join('. ').trim();
+    }
+    
+    function rewriteText(text) {
+      // Simple rewriting logic
+      let rewritten = text;
+      
+      // Change sentence structure
+      rewritten = rewritten.replace(/\b(I think|I believe)\b/gi, 'It appears that');
+      rewritten = rewritten.replace(/\b(we can see)\b/gi, 'it is evident that');
+      rewritten = rewritten.replace(/\b(in my opinion)\b/gi, 'from this perspective');
+      
+      // Vary vocabulary
+      rewritten = rewritten.replace(/\b(important|significant)\b/gi, 'crucial');
+      rewritten = rewritten.replace(/\b(big|large)\b/gi, 'substantial');
+      rewritten = rewritten.replace(/\b(small|little)\b/gi, 'minimal');
+      rewritten = rewritten.replace(/\b(show|demonstrate)\b/gi, 'illustrate');
+      
+      return rewritten;
+    }
+    
+    function expandText(text) {
+      // Simple expansion logic
+      const expanded = text + `
+
+This topic warrants further exploration and deeper analysis. When we consider the broader implications, we begin to understand its significance in a larger context. The various factors that influence this area are interconnected and complex, requiring careful consideration and thoughtful examination.
+
+Experts in the field have contributed valuable insights that help us better understand these dynamics. Through rigorous research and empirical evidence, we have developed a more comprehensive perspective on the subject matter. These findings have important implications for how we approach related challenges and opportunities.
+
+Looking ahead, it is clear that continued study and analysis will yield even greater understanding. As new developments emerge and our knowledge expands, we will be better equipped to address the complexities and nuances that characterize this important area of study.`;
+
+      return expanded;
+    }
+    
+    function summarizeText(text) {
+      // Simple summarization logic
+      const sentences = text.split('. ').filter(s => s.trim().length > 0);
+      const summaryLength = Math.max(2, Math.floor(sentences.length * 0.3));
+      
+      const summary = sentences.slice(0, summaryLength).join('. ');
+      return summary + (summary.endsWith('.') ? '' : '.') + ' In summary, this content highlights key aspects and considerations that are essential for understanding the topic comprehensively.';
+    }
+    
+    function showSuggestions(text) {
+      // Generate writing suggestions
+      const suggestions = [];
+      
+      const words = text.split(/\s+/);
+      if (words.length < 50) {
+        suggestions.push('<strong>Content Expansion:</strong> Consider adding more details and examples to strengthen your argument.');
+      }
+      
+      if (!text.includes('because') && !text.includes('therefore')) {
+        suggestions.push('<strong>Logical Flow:</strong> Add transition words and logical connectors to improve coherence.');
+      }
+      
+      const sentences = text.split('. ');
+      const longSentences = sentences.filter(s => s.split(/\s+/).length > 20);
+      if (longSentences.length > 0) {
+        suggestions.push('<strong>Sentence Structure:</strong> Break down complex sentences for better readability.');
+      }
+      
+      if (!text.includes('I') && !text.includes('we')) {
+        suggestions.push('<strong>Personal Voice:</strong> Consider adding your perspective to make the content more engaging.');
+      }
+      
+      // Update suggestions panel
+      const suggestionsList = document.getElementById('suggestionsList');
+      suggestionsList.innerHTML = suggestions.map(suggestion => 
+        `<div class="suggestion-item">${suggestion}</div>`
+      ).join('');
+      
+      suggestionsPanel.style.display = 'block';
+      suggestionsPanel.scrollIntoView({ behavior: 'smooth' });
+    }
+    
+    // Clear function
+    function clearAll() {
+      inputText.value = '';
+      outputText.value = '';
+      suggestionsPanel.style.display = 'none';
+      updateWordCount();
+    }
+    
+    // Copy function
+    function copyResult() {
+      outputText.select();
+      document.execCommand('copy');
+      
+      // Show feedback
+      copyBtn.textContent = '✅ Copied!';
+      setTimeout(() => {
+        copyBtn.textContent = '📋 Copy Result';
+      }, 2000);
+    }
+    
+    // Event listeners
+    generateBtn.addEventListener('click', processText);
+    improveBtn.addEventListener('click', () => {
+      currentMode = 'improve';
+      processText();
+    });
+    clearBtn.addEventListener('click', clearAll);
+    copyBtn.addEventListener('click', copyResult);
+    
+    // Keyboard shortcuts
+    document.addEventListener('keydown', (e) => {
+      if (e.ctrlKey && e.key === 'Enter') {
+        processText();
+              }
+      if (e.ctrlKey && e.key === 'Delete') {
+        clearAll();
+      }
+      if (e.ctrlKey && e.key === 'c' && document.activeElement === outputText) {
+        copyResult();
+      }
+    });
+  </script>
+
+</body>
+</html>
