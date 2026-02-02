@@ -306,6 +306,172 @@
       background: #ffebee;
       color: #f44336;
     }
+    
+    /* Progress Bar Styles */
+    .progress-container {
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      margin: 20px 0;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    .progress-label {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+      font-weight: bold;
+      color: #333;
+    }
+    
+    .progress-bar {
+      width: 100%;
+      height: 8px;
+      background: #e0e0e0;
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 10px;
+      position: relative;
+      cursor: pointer;
+    }
+    
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #4aa7a5, #2d8b85);
+      width: 0%;
+      transition: width 0.1s ease;
+      border-radius: 4px;
+      position: relative;
+      z-index: 1;
+    }
+    
+    .progress-slider {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      opacity: 0;
+      cursor: pointer;
+      z-index: 2;
+    }
+    
+    .progress-bar:hover .progress-slider {
+      opacity: 0.7;
+    }
+    
+    .progress-bar:hover .progress-fill {
+      opacity: 0.8;
+    }
+    
+    .progress-time {
+      display: flex;
+      justify-content: space-between;
+      font-size: 14px;
+      color: #666;
+    }
+    
+    /* Sound Visualizer Styles */
+    .sound-visualizer {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 4px;
+      height: 60px;
+      margin: 20px 0;
+      padding: 20px;
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    .sound-bar {
+      width: 4px;
+      background: linear-gradient(to top, #4aa7a5, #2d8b85);
+      border-radius: 2px;
+      transition: height 0.1s ease;
+      height: 4px;
+    }
+    
+    .sound-visualizer.active .sound-bar {
+      animation: soundWave 1s ease-in-out infinite;
+    }
+    
+    .sound-visualizer.active .sound-bar:nth-child(1) { animation-delay: 0s; }
+    .sound-visualizer.active .sound-bar:nth-child(2) { animation-delay: 0.1s; }
+    .sound-visualizer.active .sound-bar:nth-child(3) { animation-delay: 0.2s; }
+    .sound-visualizer.active .sound-bar:nth-child(4) { animation-delay: 0.3s; }
+    .sound-visualizer.active .sound-bar:nth-child(5) { animation-delay: 0.4s; }
+    .sound-visualizer.active .sound-bar:nth-child(6) { animation-delay: 0.5s; }
+    .sound-visualizer.active .sound-bar:nth-child(7) { animation-delay: 0.6s; }
+    .sound-visualizer.active .sound-bar:nth-child(8) { animation-delay: 0.7s; }
+    
+    @keyframes soundWave {
+      0%, 100% { height: 4px; }
+      50% { height: 30px; }
+    }
+    
+    /* Real-Time Controls Styles */
+    .realtime-controls {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 10px;
+      padding: 20px;
+      margin: 20px 0;
+      color: white;
+    }
+    
+    .realtime-controls h4 {
+      margin: 0 0 15px 0;
+      color: white;
+    }
+    
+    .audio-player-container {
+      background: white;
+      border-radius: 10px;
+      padding: 20px;
+      margin: 20px 0;
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    .custom-audio-controls {
+      margin-top: 20px;
+    }
+    
+    .audio-control-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 15px;
+      margin-top: 15px;
+    }
+    
+    .control-btn {
+      background: linear-gradient(135deg, #4aa7a5, #2d8b85);
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 25px;
+      cursor: pointer;
+      font-size: 16px;
+      transition: all 0.3s ease;
+    }
+    
+    .control-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(74, 167, 165, 0.3);
+    }
+    
+    .control-btn:active {
+      transform: translateY(0);
+    }
+    
+    .progress-slider {
+      opacity: 0.7;
+      cursor: pointer;
+    }
+    
+    .progress-slider:hover {
+      opacity: 1;
+    }
   </style>
 
 </head>
@@ -360,28 +526,10 @@
             <option value="">Loading voices...</option>
           </select>
         </div>
-        
-        <div class="control-item">
-          <label for="rateRange">Speaking Rate</label>
-          <input type="range" id="rateRange" min="0.5" max="2" step="0.1" value="1">
-          <div class="range-value" id="rateValue">1.0x</div>
-        </div>
-        
-        <div class="control-item">
-          <label for="pitchRange">Pitch</label>
-          <input type="range" id="pitchRange" min="0.5" max="2" step="0.1" value="1">
-          <div class="range-value" id="pitchValue">1.0</div>
-        </div>
-        
-        <div class="control-item">
-          <label for="volumeRange">Volume</label>
-          <input type="range" id="volumeRange" min="0" max="1" step="0.1" value="1">
-          <div class="range-value" id="volumeValue">100%</div>
-        </div>
       </div>
       
       <div class="action-buttons">
-        <button class="btn btn-primary" id="speakBtn">🔊 Speak Text</button>
+        <button class="btn btn-primary" id="speakBtn">🔊 Convert to Audio</button>
         <button class="btn btn-secondary" id="pauseBtn" disabled>⏸️ Pause</button>
         <button class="btn btn-secondary" id="resumeBtn" disabled>▶️ Resume</button>
         <button class="btn btn-danger" id="stopBtn" disabled>⏹️ Stop</button>
@@ -389,13 +537,68 @@
       </div>
     </div>
 
-    <div id="audioSection" class="audio-section">
-      <h3>🎵 Audio Output</h3>
+    <div id="audioSection" class="audio-section" style="display: none;">
+      <h3>🎵 Audio Player</h3>
       <p>Status: <span id="ttsStatus" class="status-indicator status-ready">Ready</span></p>
       
-      <audio id="audioPlayer" class="audio-player" controls style="display: none;">
-        Your browser does not support the audio element.
-      </audio>
+      <!-- Professional Audio Player -->
+      <div class="audio-player-container">
+        <audio id="audioPlayer" controls style="display: none;">
+          Your browser does not support the audio element.
+        </audio>
+        
+        <!-- Custom Audio Controls -->
+        <div class="custom-audio-controls" id="customAudioControls" style="display: none;">
+          <div class="progress-container">
+            <div class="progress-label">
+              <span>Progress</span>
+              <span id="progressPercent">0%</span>
+            </div>
+            <div class="progress-bar" id="progressBarContainer">
+              <div class="progress-fill" id="progressFill"></div>
+              <input type="range" class="progress-slider" id="progressSlider" min="0" max="100" value="0">
+            </div>
+            <div class="progress-time">
+              <span id="currentTime">0:00</span>
+              <span id="totalTime">0:00</span>
+            </div>
+          </div>
+          
+          <!-- Real-Time Audio Controls -->
+          <div class="realtime-controls">
+            <h4>🎚️ Audio Controls</h4>
+            <div class="control-item">
+              <label for="masterVolume">Volume</label>
+              <input type="range" id="masterVolume" min="0" max="1" step="0.01" value="1">
+              <div class="range-value" id="masterVolumeValue">100%</div>
+            </div>
+            <div class="control-item">
+              <label for="playbackSpeed">Speed</label>
+              <input type="range" id="playbackSpeed" min="0.25" max="4" step="0.25" value="1">
+              <div class="range-value" id="playbackSpeedValue">1.0x</div>
+            </div>
+          </div>
+          
+          <div class="audio-control-buttons">
+            <button class="control-btn" id="rewindBtn">⏪ -10s</button>
+            <button class="control-btn" id="playPauseBtn">▶️</button>
+            <button class="control-btn" id="forwardBtn">⏩ +10s</button>
+            <button class="control-btn" id="stopBtn">⏹️ Stop</button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Sound Visualization -->
+      <div class="sound-visualizer" id="soundVisualizer">
+        <div class="sound-bar"></div>
+        <div class="sound-bar"></div>
+        <div class="sound-bar"></div>
+        <div class="sound-bar"></div>
+        <div class="sound-bar"></div>
+        <div class="sound-bar"></div>
+        <div class="sound-bar"></div>
+        <div class="sound-bar"></div>
+      </div>
       
       <div class="action-buttons">
         <button class="download-btn" id="downloadBtn" style="display: none;">💾 Download Audio</button>
@@ -580,23 +783,17 @@
     </div>
 
     <div class="copyright">
-      <p>© <span id="year"></span> CountIt4U — Built by <strong>Faizan the Coder</strong></p>
+      <p>&#169; <span id="year"></span> CountIt4U &#8212; Built by <strong>Faizan the Coder</strong></p>
     </div>
   </footer>
 
   <script>
-    // Text to Speech functionality
+    // Simple Text to Speech functionality
     const textInput = document.getElementById('textInput');
     const wordCount = document.getElementById('wordCount');
     const charCount = document.getElementById('charCount');
     const estimatedTime = document.getElementById('estimatedTime');
     const voiceSelect = document.getElementById('voiceSelect');
-    const rateRange = document.getElementById('rateRange');
-    const pitchRange = document.getElementById('pitchRange');
-    const volumeRange = document.getElementById('volumeRange');
-    const rateValue = document.getElementById('rateValue');
-    const pitchValue = document.getElementById('pitchValue');
-    const volumeValue = document.getElementById('volumeValue');
     const speakBtn = document.getElementById('speakBtn');
     const pauseBtn = document.getElementById('pauseBtn');
     const resumeBtn = document.getElementById('resumeBtn');
@@ -606,11 +803,29 @@
     const audioPlayer = document.getElementById('audioPlayer');
     const downloadBtn = document.getElementById('downloadBtn');
     const ttsStatus = document.getElementById('ttsStatus');
+    const progressFill = document.getElementById('progressFill');
+    const progressPercent = document.getElementById('progressPercent');
+    const currentTime = document.getElementById('currentTime');
+    const totalTime = document.getElementById('totalTime');
+    const soundVisualizer = document.getElementById('soundVisualizer');
+    const progressBarContainer = document.getElementById('progressBarContainer');
+    const progressSlider = document.getElementById('progressSlider');
+    const customAudioControls = document.getElementById('customAudioControls');
+    const playPauseBtn = document.getElementById('playPauseBtn');
+    const rewindBtn = document.getElementById('rewindBtn');
+    const forwardBtn = document.getElementById('forwardBtn');
+    const masterVolume = document.getElementById('masterVolume');
+    const masterVolumeValue = document.getElementById('masterVolumeValue');
+    const playbackSpeed = document.getElementById('playbackSpeed');
+    const playbackSpeedValue = document.getElementById('playbackSpeedValue');
     
     let synth = window.speechSynthesis;
     let utterance = null;
     let voices = [];
+    let isPlaying = false;
     let isPaused = false;
+    let audioBlob = null;
+    let audioUrl = null;
     
     // Load voices
     function loadVoices() {
@@ -637,17 +852,19 @@
     }
     loadVoices();
     
-    // Update range values
-    rateRange.addEventListener('input', () => {
-      rateValue.textContent = rateRange.value + 'x';
+    // Real-time audio controls
+    masterVolume.addEventListener('input', () => {
+      masterVolumeValue.textContent = Math.round(masterVolume.value * 100) + '%';
+      if (audioPlayer) {
+        audioPlayer.volume = masterVolume.value;
+      }
     });
     
-    pitchRange.addEventListener('input', () => {
-      pitchValue.textContent = pitchRange.value;
-    });
-    
-    volumeRange.addEventListener('input', () => {
-      volumeValue.textContent = Math.round(volumeRange.value * 100) + '%';
+    playbackSpeed.addEventListener('input', () => {
+      playbackSpeedValue.textContent = playbackSpeed.value + 'x';
+      if (audioPlayer) {
+        audioPlayer.playbackRate = parseFloat(playbackSpeed.value);
+      }
     });
     
     // Word and character count
@@ -670,13 +887,20 @@
       ttsStatus.className = 'status-indicator ' + className;
     }
     
-    // Speak text
-    function speakText() {
+    // Convert text to speech and create audio
+    function convertToAudio() {
       const text = textInput.value.trim();
       if (!text) {
         alert('Please enter some text to convert to speech.');
         return;
       }
+      
+      updateStatus('Converting to audio...', 'status-speaking');
+      speakBtn.disabled = true;
+      pauseBtn.disabled = false;
+      resumeBtn.disabled = true;
+      stopBtn.disabled = false;
+      audioSection.style.display = 'block';
       
       // Cancel any ongoing speech
       synth.cancel();
@@ -688,40 +912,40 @@
         utterance.voice = selectedVoice;
       }
       
-      utterance.rate = parseFloat(rateRange.value);
-      utterance.pitch = parseFloat(pitchRange.value);
-      utterance.volume = parseFloat(volumeRange.value);
-      
       utterance.onstart = () => {
+        soundVisualizer.classList.add('active');
         updateStatus('Speaking...', 'status-speaking');
-        speakBtn.disabled = true;
-        pauseBtn.disabled = false;
-        stopBtn.disabled = false;
+        isPlaying = true;
         isPaused = false;
-        audioSection.style.display = 'block';
       };
       
       utterance.onend = () => {
+        soundVisualizer.classList.remove('active');
         updateStatus('Completed', 'status-ready');
         speakBtn.disabled = false;
         pauseBtn.disabled = true;
         resumeBtn.disabled = true;
         stopBtn.disabled = true;
+        isPlaying = false;
         isPaused = false;
       };
       
-      utterance.onerror = () => {
+      utterance.onerror = (event) => {
         updateStatus('Error occurred', 'status-error');
+        soundVisualizer.classList.remove('active');
         speakBtn.disabled = false;
         pauseBtn.disabled = true;
         resumeBtn.disabled = true;
         stopBtn.disabled = true;
+        isPlaying = false;
+        isPaused = false;
+        console.error('Speech synthesis error:', event);
       };
       
       synth.speak(utterance);
     }
     
-    // Pause speech
+    // Speech control functions
     function pauseSpeech() {
       if (synth.speaking && !isPaused) {
         synth.pause();
@@ -732,7 +956,6 @@
       }
     }
     
-    // Resume speech
     function resumeSpeech() {
       if (synth.paused && isPaused) {
         synth.resume();
@@ -743,7 +966,6 @@
       }
     }
     
-    // Stop speech
     function stopSpeech() {
       synth.cancel();
       updateStatus('Stopped', 'status-ready');
@@ -751,7 +973,9 @@
       pauseBtn.disabled = true;
       resumeBtn.disabled = true;
       stopBtn.disabled = true;
+      isPlaying = false;
       isPaused = false;
+      soundVisualizer.classList.remove('active');
     }
     
     // Clear text
@@ -763,33 +987,58 @@
       updateStatus('Ready', 'status-ready');
     }
     
-    // Download audio (simulated)
-    function downloadAudio() {
-      // Note: Browser security restrictions prevent direct audio download from Web Speech API
-      // This is a placeholder function that would require server-side implementation
-      alert('Audio download feature requires server-side implementation. For now, you can use browser extensions or screen recording to capture the audio.');
-    }
-    
     // Event listeners
-    speakBtn.addEventListener('click', speakText);
+    speakBtn.addEventListener('click', convertToAudio);
     pauseBtn.addEventListener('click', pauseSpeech);
     resumeBtn.addEventListener('click', resumeSpeech);
     stopBtn.addEventListener('click', stopSpeech);
     clearBtn.addEventListener('click', clearText);
-    downloadBtn.addEventListener('click', downloadAudio);
     
     // Keyboard shortcuts
     textInput.addEventListener('keydown', (e) => {
       if (e.ctrlKey && e.key === 'Enter') {
-        speakText();
+        convertToAudio();
       }
       if (e.ctrlKey && e.key === 'Delete') {
         clearText();
+      }
+      if (e.code === 'Space' && e.target === textInput) {
+        e.preventDefault();
+        if (isPlaying) {
+          pauseSpeech();
+        } else if (isPaused) {
+          resumeSpeech();
+        }
       }
     });
     
     // Initialize counts
     updateCounts();
+    
+    // Cleanup when page is unloaded - STOPS AUDIO IMMEDIATELY
+    function cleanup() {
+      stopSpeech();
+    }
+    
+    // Add event listeners for page cleanup - AUDIO STOPS WHEN LEAVING PAGE
+    window.addEventListener('beforeunload', cleanup);
+    window.addEventListener('pagehide', cleanup);
+    window.addEventListener('unload', cleanup);
+    
+    // Pause audio when tab becomes hidden
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden && isPlaying && !isPaused) {
+        pauseSpeech();
+      }
+    });
+    
+    // Toggle floating tools
+    function toggleFloatingTools() {
+      const floatingTools = document.getElementById('floatingTools');
+      if (floatingTools) {
+        floatingTools.style.display = floatingTools.style.display === 'none' ? 'block' : 'none';
+      }
+    }
   </script>
 
 </body>

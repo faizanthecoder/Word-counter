@@ -563,37 +563,31 @@
 
   <script>
     // Tone & Style Analyzer functionality
-    const inputText = document.getElementById('inputText');
-    const outputText = document.getElementById('outputText');
-    const inputCount = document.getElementById('inputCount');
-    const outputCount = document.getElementById('outputCount');
+    const textInput = document.getElementById('textInput');
+    const textCount = document.getElementById('textCount');
     const analyzeBtn = document.getElementById('analyzeBtn');
-    const clearBtn = document.getElementById('clearBtn');
-    const copyBtn = document.getElementById('copyBtn');
+    const resultsSection = document.getElementById('resultsSection');
     
     // Word count
     function updateWordCount() {
-      const inputWords = inputText.value.trim().split(/\s+/).filter(word => word.length > 0).length;
-      const outputWords = outputText.value.trim().split(/\s+/).filter(word => word.length > 0).length;
-      
-      inputCount.textContent = `${inputWords} words`;
-      outputCount.textContent = `${outputWords} words`;
+      const words = textInput.value.trim().split(/\s+/).filter(word => word.length > 0).length;
+      textCount.textContent = `${words} words`;
     }
     
-    inputText.addEventListener('input', updateWordCount);
-    outputText.addEventListener('input', updateWordCount);
+    textInput.addEventListener('input', updateWordCount);
     
     // Tone analysis function
     function analyzeTone() {
-      const text = inputText.value.trim();
+      const text = textInput.value.trim();
       if (!text) {
-        outputText.value = 'Please enter some text to analyze.';
+        resultsSection.style.display = 'block';
+        resultsSection.innerHTML = '<div class="result-card"><p>Please enter some text to analyze.</p></div>';
         return;
       }
       
-      const analysis = performToneAnalysis(text);
-      outputText.value = analysis;
-      updateWordCount();
+      performToneAnalysis(text);
+      resultsSection.style.display = 'block';
+      resultsSection.scrollIntoView({ behavior: 'smooth' });
     }
     
     function performToneAnalysis(text) {
@@ -643,50 +637,69 @@
         complexity = 'Moderate';
       }
       
-      return `Tone & Style Analysis Results:
-
-Overall Tone: ${tone}
-Formality Level: ${formality}
-Emotional Tone: ${emotion}
-Sentence Complexity: ${complexity}
-
-Detailed Analysis:
-- Average Sentence Length: ${avgSentenceLength.toFixed(1)} words
-- Total Words: ${words.length}
-- Total Sentences: ${sentences.length}
-
-Style Recommendations:
-- Your writing style is ${formality.toLowerCase()} and ${emotion.toLowerCase()} in tone.
-- Consider adjusting sentence structure for better readability if needed.
-- Maintain consistency in tone throughout your content.
-- Use transition words to improve flow between ideas.
-
-This analysis provides insights into your writing style and helps you understand how your content may be perceived by readers.`;
+      // Update UI with results
+      document.getElementById('primaryTone').textContent = tone;
+      document.getElementById('emotionalIntensity').textContent = emotion;
+      document.getElementById('toneConsistency').textContent = 'Consistent';
+      document.getElementById('toneMeter').style.width = '70%';
+      
+      document.getElementById('formalityScore').textContent = formality;
+      document.getElementById('writingContext').textContent = formality === 'Formal' ? 'Professional/Academic' : 'Casual/Personal';
+      document.getElementById('audienceSuitability').textContent = formality === 'Formal' ? 'Business/Education' : 'General/Social';
+      document.getElementById('formalityMeter').style.width = formality === 'Formal' ? '80%' : '40%';
+      
+      document.getElementById('styleTags').innerHTML = `
+        <span class="style-tag">${tone}</span>
+        <span class="style-tag">${formality}</span>
+        <span class="style-tag">${complexity}</span>
+      `;
+      document.getElementById('sentenceComplexity').textContent = complexity;
+      document.getElementById('vocabularyLevel').textContent = formality === 'Formal' ? 'Advanced' : 'Intermediate';
+      
+      document.getElementById('clarityScore').textContent = 'Good';
+      document.getElementById('engagementLevel').textContent = emotion === 'Positive' ? 'High' : 'Moderate';
+      document.getElementById('persuasiveness').textContent = 'Moderate';
+      document.getElementById('readabilityScore').textContent = complexity === 'Simple' ? 'Easy' : 'Moderate';
+      
+      // Update suggestions
+      document.getElementById('suggestionsList').innerHTML = `
+        <div class="suggestion-item">
+          <strong>For Better Clarity:</strong> Consider breaking down complex sentences and using simpler vocabulary where appropriate.
+        </div>
+        <div class="suggestion-item">
+          <strong>For Enhanced Engagement:</strong> Try incorporating more active voice and varied sentence structures.
+        </div>
+        <div class="suggestion-item">
+          <strong>For Improved Tone:</strong> Adjust word choice to better match your intended emotional impact.
+        </div>
+        <div class="suggestion-item">
+          <strong>Style Analysis:</strong> Your writing is ${formality.toLowerCase()} with a ${emotion.toLowerCase()} tone and ${complexity.toLowerCase()} sentence structure.
+        </div>
+      `;
     }
     
     // Clear function
     function clearAll() {
-      inputText.value = '';
-      outputText.value = '';
-      updateWordCount();
+      textInput.value = '';
+      textCount.textContent = '0 words';
+      resultsSection.style.display = 'none';
     }
     
     // Copy function
     function copyResult() {
-      outputText.select();
-      document.execCommand('copy');
-      
-      // Show feedback
-      copyBtn.textContent = '✅ Copied!';
-      setTimeout(() => {
-        copyBtn.textContent = '📋 Copy Result';
-      }, 2000);
+      const resultsText = document.getElementById('resultsSection').innerText;
+      navigator.clipboard.writeText(resultsText).then(() => {
+        // Show feedback
+        const originalText = analyzeBtn.textContent;
+        analyzeBtn.textContent = '✅ Results Copied!';
+        setTimeout(() => {
+          analyzeBtn.textContent = originalText;
+        }, 2000);
+      });
     }
     
     // Event listeners
     analyzeBtn.addEventListener('click', analyzeTone);
-    clearBtn.addEventListener('click', clearAll);
-    copyBtn.addEventListener('click', copyResult);
     
     // Keyboard shortcuts
     document.addEventListener('keydown', (e) => {
@@ -695,9 +708,6 @@ This analysis provides insights into your writing style and helps you understand
       }
       if (e.ctrlKey && e.key === 'Delete') {
         clearAll();
-      }
-      if (e.ctrlKey && e.key === 'c' && document.activeElement === outputText) {
-        copyResult();
       }
     });
     
