@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3D Animations Demo - CountIt4U</title>
+    <link rel="canonical" href="https://countit4u.fun/3d-demo.html">
+    <meta name="description" content="Experience stunning 3D animations on CountIt4U - GSAP, Three.js particles, and CSS 3D transforms combined.">
+    
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="stylesheet" href="index.css">
+    <link rel="stylesheet" href="3d-animations.css">
+    <script src="darkmode.js" defer></script>
+    
+    <style>
+        .demo-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            min-height: 100vh;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero-section {
+            text-align: center;
+            margin-bottom: 80px;
+            position: relative;
+        }
+        
+        .hero-title {
+            font-size: 4rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #4fd1c5, #38b2ac);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            transform-style: preserve-3d;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.5rem;
+            color: #555;
+            margin-bottom: 40px;
+        }
+        
+        .demo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 60px;
+        }
+        
+        .demo-section {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+            transform-style: preserve-3d;
+        }
+        
+        .demo-title {
+            font-size: 2rem;
+            color: #44bfb4;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .counter-demo {
+            text-align: center;
+            margin: 30px 0;
+        }
+        
+        .counter-3d {
+            font-size: 3rem;
+            color: #44bfb4;
+            margin: 20px;
+        }
+        
+        .button-demo {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+        
+        .card-demo {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .mini-card {
+            background: linear-gradient(135deg, rgba(79, 209, 197, 0.1), rgba(68, 191, 180, 0.05));
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+        
+        .mini-card:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 10px 25px rgba(79, 209, 197, 0.3);
+        }
+        
+        .stats-demo {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            margin: 30px 0;
+        }
+        
+        .loader-demo {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100px;
+        }
+        
+        .performance-info {
+            background: rgba(79, 209, 197, 0.1);
+            border-radius: 15px;
+            padding: 20px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        
+        @media (max-width: 768px) {
+            .hero-title {
+                font-size: 2.5rem;
+            }
+            
+            .demo-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .counter-3d {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>CountIt4U</h1>
+        <nav class="navbar" id="navbar">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="blog/index.html">Blog</a>
+            <a href="contact.html">Contact Us</a>
+            <a href="privacy.html">Privacy Policy</a>
+            <a href="terms&conditions.html">Terms & Conditions</a>
+            <a href="FAQs.html">FAQs</a>
+        </nav>
+        <div class="menu-icon" id="menu-icon">☰</div>
+        <button class="toggle-theme">🌙 Dark Mode</button>
+    </header>
+
+    <main class="demo-container">
+        <section class="hero-section">
+            <h1 class="hero-title">3D Animations Showcase</h1>
+            <p class="hero-subtitle">Experience the power of GSAP + Three.js + CSS 3D transforms</p>
+            
+            <div class="performance-info">
+                <p>🚀 Optimized for performance • 📱 Mobile responsive • ♿ Accessibility friendly</p>
+            </div>
+        </section>
+
+        <div class="demo-grid">
+            <!-- 3D Counters Demo -->
+            <section class="demo-section">
+                <h2 class="demo-title">🔢 3D Counters</h2>
+                <p>Watch numbers flip and animate in 3D space</p>
+                
+                <div class="counter-demo">
+                    <div class="counter-3d" data-target="1234">0</div>
+                    <div class="counter-3d" data-target="5678">0</div>
+                    <div class="counter-3d" data-target="9012">0</div>
+                </div>
+                
+                <div class="button-demo">
+                    <button class="btn-3d" onclick="animateCounters()">🎯 Animate Counters</button>
+                    <button class="btn-3d" onclick="resetCounters()">🔄 Reset</button>
+                </div>
+            </section>
+
+            <!-- 3D Buttons Demo -->
+            <section class="demo-section">
+                <h2 class="demo-title">🎮 3D Buttons</h2>
+                <p>Interactive buttons with depth and press effects</p>
+                
+                <div class="button-demo">
+                    <button class="btn-3d">✨ Primary Action</button>
+                    <button class="btn-3d">🚀 Get Started</button>
+                    <button class="btn-3d">💡 Learn More</button>
+                    <button class="btn-3d">🎯 Try Now</button>
+                </div>
+            </section>
+
+            <!-- 3D Cards Demo -->
+            <section class="demo-section">
+                <h2 class="demo-title">🎴 3D Cards</h2>
+                <p>Cards that respond to mouse movement with 3D transforms</p>
+                
+                <div class="card-demo">
+                    <div class="tool-card-3d">
+                        <h3>📝 Writing Tool</h3>
+                        <p>Hover to see 3D effect</p>
+                    </div>
+                    <div class="tool-card-3d">
+                        <h3>🔍 Grammar Check</h3>
+                        <p>Interactive 3D card</p>
+                    </div>
+                    <div class="tool-card-3d">
+                        <h3>📊 Analytics</h3>
+                        <p>Smooth animations</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3D Stats Demo -->
+            <section class="demo-section">
+                <h2 class="demo-title">📈 3D Stats</h2>
+                <p>Statistics with 3D hover effects</p>
+                
+                <div class="stats-demo">
+                    <div class="stat-item-3d">
+                        <h4>📝 Words</h4>
+                        <p>10,234</p>
+                    </div>
+                    <div class="stat-item-3d">
+                        <h4>⚡ Speed</h4>
+                        <p>98%</p>
+                    </div>
+                    <div class="stat-item-3d">
+                        <h4>🎯 Accuracy</h4>
+                        <p>99.5%</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- 3D Loading Demo -->
+            <section class="demo-section">
+                <h2 class="demo-title">⏳ 3D Loading</h2>
+                <p>Beautiful 3D loading animations</p>
+                
+                <div class="loader-demo">
+                    <div class="loader-3d"></div>
+                </div>
+                
+                <div class="button-demo">
+                    <button class="btn-3d" onclick="showLoader()">🔄 Show Loader</button>
+                    <button class="btn-3d" onclick="hideLoader()">✅ Hide Loader</button>
+                </div>
+            </section>
+        </div>
+
+        <!-- Features Overview -->
+        <section class="demo-section">
+            <h2 class="demo-title">🌟 Features Included</h2>
+            <div class="card-demo">
+                <div class="mini-card">
+                    <h3>🎨 GSAP Animations</h3>
+                    <p>Smooth, performant animations</p>
+                </div>
+                <div class="mini-card">
+                    <h3>✨ Three.js Particles</h3>
+                    <p>Interactive particle background</p>
+                </div>
+                <div class="mini-card">
+                    <h3>🎭 CSS 3D Transforms</h3>
+                    <p>Hardware-accelerated effects</p>
+                </div>
+                <div class="mini-card">
+                    <h3>📱 Responsive Design</h3>
+                    <p>Works on all devices</p>
+                </div>
+                <div class="mini-card">
+                    <h3>⚡ Performance Optimized</h3>
+                    <p>60fps animations</p>
+                </div>
+                <div class="mini-card">
+                    <h3>🎯 Mouse Interactions</h3>
+                    <p>Follow mouse movement</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="footer-container">
+          <div class="footer-section pages">
+            <h4>Quick Links</h4>
+            <a href="index.html">🏠 Home</a>
+            <a href="about.html">📘 About</a>
+            <a href="./blog/index.html">📝 Blog</a>
+            <a href="contact.html">📩 Contact</a>
+            <a href="privacy.html">🔒 Privacy Policy</a>
+            <a href="terms&conditions.html">📄 Terms & Conditions</a>
+            <a href="FAQs.html">❓ FAQs</a>
+          </div>
+          <div class="footer-section social-icons">
+            <h4>Follow Me</h4>
+            <a href="https://x.com/faizanthecoder" target="_blank">
+              <span class="common"><svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="white"
+                  viewBox="0 0 100 100" id="social">
+                  <path
+                    d="M50,0C22.386,0,0,22.386,0,50c0,27.614,22.386,50,50,50c27.614,0,50-22.386,50-50C100,22.386,77.614,0,50,0z M66.764,28.385 c0,0.745-0.604,1.349-1.348,1.349l-5.779,0.002c-3.984,0-4.713,1.553-4.713,4.611v6.363h10.089c0.358,0,0.702,0.142,0.955,0.396 c0.253,0.253,0.395,0.596,0.395,0.954l-0.004,10.876c0,0.745-0.604,1.349-1.349,1.349H54.924v27.443 c0,0.745-0.604,1.349-1.349,1.349H42.322c-0.745,0-1.349-0.604-1.349-1.349V54.284h-8.625c-0.745,0-1.349-0.604-1.349-1.349V42.06 c0-0.745,0.604-1.35,1.349-1.35h8.625v-7.506c0-9.89,6.228-16.28,15.866-16.28l8.579,0.014c0.744,0.001,1.347,0.605,1.347,1.349 V28.385z">
+                  </path>
+                </svg>Facebook</span>
+            </a>
+          </div>
+          </div>
+        </div>
+
+        <div class="copyright">
+          <p>© <span id="year"></span> CountIt4U — Built by <strong>Faizan the Coder</strong></p>
+        </div>
+      </footer>
+
+    <script src="index.js"></script>
+    <script src="3d-animations.js"></script>
+    
+    <script>
+        // Demo-specific functions
+        function animateCounters() {
+            document.querySelectorAll('.counter-3d').forEach(counter => {
+                const target = parseInt(counter.dataset.target) || Math.floor(Math.random() * 9999);
+                counter.classList.add('updating');
+                
+                if (typeof gsap !== 'undefined') {
+                    gsap.to({ value: parseInt(counter.textContent) }, {
+                        value: target,
+                        duration: 2,
+                        ease: 'power2.out',
+                        onUpdate: function() {
+                            counter.textContent = Math.round(this.targets()[0].value);
+                        },
+                        onComplete: () => {
+                            counter.classList.remove('updating');
+                        }
+                    });
+                } else {
+                    // Fallback animation
+                    let current = parseInt(counter.textContent);
+                    const increment = (target - current) / 50;
+                    const timer = setInterval(() => {
+                        current += increment;
+                        if ((increment > 0 && current >= target) || (increment < 0 && current <= target)) {
+                            counter.textContent = target;
+                            clearInterval(timer);
+                            counter.classList.remove('updating');
+                        } else {
+                            counter.textContent = Math.round(current);
+                        }
+                    }, 30);
+                }
+            });
+        }
+        
+        function resetCounters() {
+            document.querySelectorAll('.counter-3d').forEach(counter => {
+                counter.textContent = '0';
+            });
+        }
+        
+        function showLoader() {
+            const loader = document.querySelector('.loader-3d');
+            if (loader) {
+                loader.style.display = 'block';
+            }
+        }
+        
+        function hideLoader() {
+            const loader = document.querySelector('.loader-3d');
+            if (loader) {
+                loader.style.display = 'none';
+            }
+        }
+        
+        // Auto-animate counters on page load
+        setTimeout(() => {
+            animateCounters();
+        }, 2000);
+    </script>
+</body>
+</html>
