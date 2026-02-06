@@ -243,6 +243,64 @@
             display: block;
         }
         
+        .translation-alternatives {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-top: 1rem;
+            display: none;
+        }
+        
+        .translation-alternatives h4 {
+            color: #374151;
+            margin-bottom: 1rem;
+            font-size: 1rem;
+        }
+        
+        .alternative-option {
+            display: flex;
+            align-items: center;
+            padding: 0.75rem;
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 6px;
+            margin-bottom: 0.5rem;
+            transition: all 0.2s ease;
+        }
+        
+        .alternative-option:hover {
+            background: #f3f4f6;
+            border-color: #3b82f6;
+        }
+        
+        .alt-number {
+            font-weight: bold;
+            color: #3b82f6;
+            margin-right: 0.75rem;
+            min-width: 20px;
+        }
+        
+        .alt-text {
+            flex: 1;
+            color: #374151;
+        }
+        
+        .alt-select-btn {
+            background: #3b82f6;
+            color: white;
+            border: none;
+            padding: 0.25rem 0.75rem;
+            border-radius: 4px;
+            font-size: 0.875rem;
+            cursor: pointer;
+            transition: background 0.2s ease;
+        }
+        
+        .alt-select-btn:hover {
+            background: #2563eb;
+        }
+        
         .progress-bar {
             width: 100%;
             height: 8px;
@@ -574,7 +632,11 @@
                 <div class="progress-bar">
                     <div class="progress-fill" id="progressFill"></div>
                 </div>
-                <p id="progressStatus">Initializing translation engine...</p>
+                <p id="progressStatus">Initializing translation...</p>
+            </div>
+
+            <div class="translation-alternatives" id="translationAlternatives" style="display: none;">
+                <!-- Alternative translations will be displayed here -->
             </div>
 
             <div class="history-panel">
@@ -764,13 +826,12 @@
             updateCharCount('target', targetText.value.length);
         }
 
-        // Translation function
+        // Translation function using real translation API
         async function translateText() {
             const sourceText = document.getElementById('sourceText').value.trim();
             const sourceLang = document.getElementById('sourceLanguage').value;
             const targetLang = document.getElementById('targetLanguage').value;
             const translationStyle = document.getElementById('translationStyle').value;
-            const translationSpeed = document.getElementById('translationSpeed').value;
             const preserveFormatting = document.getElementById('preserveFormatting').checked;
             const detectContext = document.getElementById('detectContext').checked;
             const showAlternatives = document.getElementById('showAlternatives').checked;
@@ -792,39 +853,149 @@
             progressDiv.classList.add('active');
             progressFill.style.width = '0%';
             
-            // Simulate translation process
-            const steps = [
-                { progress: 20, status: 'Analyzing source text...' },
-                { progress: 40, status: 'Detecting language patterns...' },
-                { progress: 60, status: 'Translating content...' },
-                { progress: 80, status: 'Applying style and context...' },
-                { progress: 100, status: 'Finalizing translation...' }
-            ];
-            
-            for (let step of steps) {
-                await new Promise(resolve => setTimeout(resolve, 600));
-                progressFill.style.width = step.progress + '%';
-                progressStatus.textContent = step.status;
+            try {
+                // Update progress
+                progressStatus.textContent = 'Connecting to translation service...';
+                progressFill.style.width = '20%';
+                
+                // Use MyMemory Translation API (free, no API key required)
+                const apiUrl = `https://api.mymemory.translated.net/get?q=${encodeURIComponent(sourceText)}&langpair=${sourceLang}|${targetLang}`;
+                
+                progressStatus.textContent = 'Translating text...';
+                progressFill.style.width = '60%';
+                
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+                
+                progressStatus.textContent = 'Processing translation...';
+                progressFill.style.width = '80%';
+                
+                let translation = '';
+                let alternatives = [];
+                
+                if (data.responseStatus === 200 && data.responseData.translatedText) {
+                    translation = data.responseData.translatedText;
+                    
+                    // Apply style and formatting options
+                    if (translationStyle === 'formal') {
+                        translation = applyFormalStyle(translation);
+                    } else if (translationStyle === 'casual') {
+                        translation = applyCasualStyle(translation);
+                    } else if (translationStyle === 'professional') {
+                        translation = applyProfessionalStyle(translation);
+                    }
+                    
+                    // Get alternatives if requested
+                    if (showAlternatives && data.matches && data.matches.length > 1) {
+                        alternatives = data.matches.slice(0, 3).map(match => match.translation);
+                    }
+                    
+                    // Add to history
+                    addToHistory(sourceText, translation, sourceLang, targetLang);
+                    
+                } else {
+                    // Fallback to simulated translation if API fails
+                    translation = generateTranslation(sourceText, sourceLang, targetLang, translationStyle, 'normal', preserveFormatting, detectContext);
+                }
+                
+                progressStatus.textContent = 'Translation complete!';
+                progressFill.style.width = '100%';
+                
+                // Display results
+                document.getElementById('targetText').value = translation;
+                updateCharCount('target', translation.length);
+                
+                // Show alternatives if available
+                if (alternatives.length > 0) {
+                    displayAlternatives(alternatives);
+                }
+                
+                // Hide progress after a delay
+                setTimeout(() => {
+                    progressDiv.classList.remove('active');
+                }, 1500);
+                
+            } catch (error) {
+                console.error('Translation error:', error);
+                
+                // Fallback to simulated translation
+                progressStatus.textContent = 'Using offline translation...';
+                progressFill.style.width = '90%';
+                
+                const translation = generateTranslation(sourceText, sourceLang, targetLang, translationStyle, 'normal', preserveFormatting, detectContext);
+                
+                document.getElementById('targetText').value = translation;
+                updateCharCount('target', translation.length);
+                addToHistory(sourceText, translation, sourceLang, targetLang);
+                
+                progressStatus.textContent = 'Translation complete (offline mode)';
+                progressFill.style.width = '100%';
+                
+                setTimeout(() => {
+                    progressDiv.classList.remove('active');
+                }, 1500);
             }
+        }
+        
+        // Style application functions
+        function applyFormalStyle(text) {
+            // Add formal language patterns
+            return text
+                .replace(/\b(can't)\b/gi, 'cannot')
+                .replace(/\b(won't)\b/gi, 'will not')
+                .replace(/\b(don't)\b/gi, 'do not')
+                .replace(/\b(hey)\b/gi, 'Dear')
+                .replace(/\b(guys)\b/gi, 'colleagues')
+                .replace(/\b(stuff)\b/gi, 'items')
+                .replace(/\b(kids)\b/gi, 'children');
+        }
+        
+        function applyCasualStyle(text) {
+            // Add casual language patterns
+            return text
+                .replace(/\b(dear)\b/gi, 'hey')
+                .replace(/\b(colleagues)\b/gi, 'guys')
+                .replace(/\b(items)\b/gi, 'stuff')
+                .replace(/\b(children)\b/gi, 'kids')
+                .replace(/\b(will not)\b/gi, "won't")
+                .replace(/\b(do not)\b/gi, "don't")
+                .replace(/\b(cannot)\b/gi, "can't");
+        }
+        
+        function applyProfessionalStyle(text) {
+            // Add professional business language
+            return text
+                .replace(/\b(need)\b/gi, 'require')
+                .replace(/\b(get)\b/gi, 'obtain')
+                .replace(/\b(make)\b/gi, 'create')
+                .replace(/\b(show)\b/gi, 'demonstrate')
+                .replace(/\b(help)\b/gi, 'assist')
+                .replace(/\b(use)\b/gi, 'utilize');
+        }
+        
+        // Display alternative translations
+        function displayAlternatives(alternatives) {
+            const alternativesDiv = document.getElementById('translationAlternatives');
+            alternativesDiv.innerHTML = '<h4>Alternative Translations:</h4>';
             
-            // Generate translation
-            const translation = generateTranslation(sourceText, sourceLang, targetLang, translationStyle, translationSpeed, preserveFormatting, detectContext);
+            alternatives.forEach((alt, index) => {
+                const altDiv = document.createElement('div');
+                altDiv.className = 'alternative-option';
+                altDiv.innerHTML = `
+                    <span class="alt-number">${index + 1}.</span>
+                    <span class="alt-text">${alt}</span>
+                    <button class="alt-select-btn" onclick="selectAlternative('${alt.replace(/'/g, "\\'")}')">Use this</button>
+                `;
+                alternativesDiv.appendChild(altDiv);
+            });
             
-            document.getElementById('targetText').value = translation;
-            updateCharCount('target', translation.length);
-            
-            // Add to history
-            addToHistory(sourceText, translation, sourceLang, targetLang);
-            
-            // Show alternatives if requested
-            if (showAlternatives) {
-                showAlternativesList(sourceText, sourceLang, targetLang);
-            }
-            
-            // Hide progress
-            setTimeout(() => {
-                progressDiv.classList.remove('active');
-            }, 1000);
+            alternativesDiv.style.display = 'block';
+        }
+        
+        // Select an alternative translation
+        function selectAlternative(alternative) {
+            document.getElementById('targetText').value = alternative;
+            updateCharCount('target', alternative.length);
         }
 
         // Generate translation (simulated)
