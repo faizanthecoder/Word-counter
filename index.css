@@ -4,6 +4,11 @@
      box-sizing: border-box
  }
 
+ html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 0;
+}
+
  body {
      font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
      min-height: 100vh;
@@ -12,6 +17,13 @@
      background: linear-gradient(116deg, #e8f9f7, #44bfb4);
      color: #222;
      transition: .3s;
+     overflow-x: hidden;
+     overflow-y: auto;
+     will-change: scroll-position;
+     -webkit-font-smoothing: antialiased;
+     -moz-osx-font-smoothing: grayscale;
+     backface-visibility: hidden;
+     transform: translateZ(0);
  }
 
  header {
@@ -92,8 +104,9 @@
      background: rgba(255, 255, 255, 0.4);
  }
  .outer-editor{
- margin: 20px;
- 
+    margin: 20px;
+    max-width: 100%;
+    overflow-x: hidden;
  }
 
  
@@ -102,6 +115,7 @@
      width: 100%;
      max-width: 800px;
      min-height: 250px;
+     max-height: 400px;
      border: 1px solid #83b6b0;
      border-radius: 10px;
      padding: 10px;
@@ -111,16 +125,11 @@
      outline: none;
      overflow-y: auto;
      white-space: pre-wrap;
-
-     /* 👇 Add these lines */
-     max-height: 400px;
-     /* Editor stops growing after this height */
-     overflow-y: auto;
-     /* Scroll appears inside */
+     word-wrap: break-word;
+     word-break: break-word;
+     resize: vertical;
      scrollbar-width: thin;
-     /* Slim scrollbar for Firefox */
      scrollbar-color: #38b2ac #e8f9f7;
-     /* Custom scrollbar colors */
  }
 
  .tools{
@@ -292,12 +301,16 @@
 
 
  main {
-     flex: 1;
-     display: flex;
-     flex-direction: column;
-     align-items: center;
-     padding: 30px 20px;
-     gap: 20px
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    max-width: 100%;
+    overflow-x: hidden;
+    align-items: center;
+    padding: 30px 20px;
+    gap: 20px;
+    contain: layout style paint;
+    will-change: transform;
  }
 
  .main-about {
@@ -626,12 +639,15 @@ box-shadow: 1px 11px 14px rgb(0 0 0 / 31%), inset 0 1px 0 rgba(255, 255, 255, 0.
 
 .highlight-box {
   background: #f9fafa;
-  /* border: 1px dashed #bcdad6; */
-      border: 1px solid #4aa7a5;
+  border: 1px solid #4aa7a5;
   padding: 12px;
   border-radius: 8px;
   min-height: 100px;
+  max-height: 200px;
+  overflow-y: auto;
   white-space: pre-wrap;
+  word-wrap: break-word;
+  word-break: break-word;
   color: #333;
 }
 

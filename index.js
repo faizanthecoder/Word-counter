@@ -55,9 +55,36 @@ function updateCounts() {
   const charsWithoutSpaces = cleanText.replace(/\s/g, '').length;
   const spaces = (cleanText.match(/ /g) || []).length;
 
-  // 4️⃣ Sentence & paragraph counts
-  const sentences = (cleanText.match(/[.!?]+(\s|$)/g) || []).length;
-  const paragraphs = cleanText.split(/\n+/).filter(p => p.trim() !== "").length;
+  // 4️⃣ Sentence & paragraph counts (completely rewritten)
+  let sentences = 0;
+  let paragraphs = 0;
+  
+  if (cleanText !== "") {
+    // Count sentences - look for sentence endings properly
+    const sentenceMatches = cleanText.match(/[.!?]+/g);
+    if (sentenceMatches) {
+      sentences = sentenceMatches.filter(s => s.trim()).length;
+    } else {
+      // Fallback: count non-empty segments
+      const segments = cleanText.split(/[.!?]+/).filter(s => s.trim().length > 0);
+      sentences = segments.length;
+    }
+    
+    // Count paragraphs - proper paragraph detection
+    const paraMatches = cleanText.split(/\n\s*\n/);
+    paragraphs = paraMatches.filter(p => p.trim().length > 0).length;
+    
+    // If no double newlines found, count single newlines as paragraphs
+    if (paragraphs === 0 && cleanText.includes('\n')) {
+      const singleLineParas = cleanText.split(/\n/).filter(p => p.trim().length > 0);
+      paragraphs = singleLineParas.length;
+    }
+    
+    // If still no paragraphs but there's text, count as 1
+    if (paragraphs === 0 && cleanText.trim().length > 0) {
+      paragraphs = 1;
+    }
+  }
 
   // 5️⃣ Update DOM
   wordCountEl.textContent = words;
@@ -96,14 +123,26 @@ function formatTime(seconds) {
   return secs === 0 ? `${minutes}m` : `${minutes}m ${secs}s`;
 }
 
-  // 🔍 Keyword Density
+  // 🔍 Keyword Density (improved)
   function updateKeywords(text) {
-    const words = text.toLowerCase().match(/\b[a-z]{3,}\b/g) || [];
+    // Better word extraction - exclude common words and get meaningful words
+    const commonWords = ['the', 'a', 'an', 'and', 'or', 'but', 'in', 'on', 'at', 'to', 'for', 'of', 'with', 'by', 'is', 'are', 'was', 'were', 'be', 'been', 'have', 'has', 'had', 'do', 'does', 'did', 'will', 'would', 'could', 'should', 'may', 'might', 'must', 'can', 'this', 'that', 'these', 'those', 'i', 'you', 'he', 'she', 'it', 'we', 'they'];
+    
+    const words = text.toLowerCase()
+      .match(/\b[a-z]{3,}\b/g) || []
+      .filter(word => !commonWords.includes(word));
+    
     const freq = {};
     words.forEach(w => freq[w] = (freq[w] || 0) + 1);
-    const top = Object.entries(freq).sort((a, b) => b[1] - a[1]).slice(0, 5);
-    keywordsEl.innerHTML =
-      top.map(([w, c]) => `<li>${w}: ${(c / words.length * 100).toFixed(1)}%</li>`).join("") || "<li>None</li>";
+    
+    const totalWords = words.length;
+    const top = Object.entries(freq)
+      .sort((a, b) => b[1] - a[1])
+      .slice(0, 5);
+    
+    keywordsEl.innerHTML = totalWords > 0 
+      ? top.map(([w, c]) => `<li>${w}: ${(c / totalWords * 100).toFixed(1)}%</li>`).join("") 
+      : "<li>Start typing to see keywords...</li>";
   }
 
   // 🎓 Reading Level (Flesch-Kincaid)
@@ -682,4 +721,81 @@ function checkGoal(words) {
 
 // editor.addEventListener('input', updateCounts);
 // searchWordInput.addEventListener('input', updateHighlight);
-// });
+
+// 🧠 Dictionary Function
+dictInput?.addEventListener('input', async () => {
+  const word = dictInput.value.trim();
+  if (!word) {
+    dictResult.innerHTML = 'Word meanings will appear here...';
+    return;
+  }
+
+  dictResult.innerHTML = '🔍 Searching...';
+  
+  try {
+    // Using Free Dictionary API
+    const response = await fetch(`https://api.dictionaryapi.dev/api/v2/entries/en/${word}`);
+    
+    if (!response.ok) {
+      dictResult.innerHTML = `❌ No definition found for "${word}"`;
+      return;
+    }
+
+    const data = await response.json();
+    const entry = data[0];
+    
+    if (!entry) {
+      dictResult.innerHTML = `❌ No definition found for "${word}"`;
+      return;
+    }
+
+    let meanings = '';
+    entry.meanings.forEach(meaning => {
+      meanings += `<div style="margin-bottom: 15px;">
+        <strong style="color: #38b2ac;">${meaning.partOfSpeech}</strong>
+        <ul style="margin: 5px 0; padding-left: 20px;">`;
+      
+      meaning.definitions.slice(0, 3).forEach(def => {
+        meanings += `<li style="margin-bottom: 5px;">${def.definition}</li>`;
+      });
+      
+      meanings += '</ul></div>';
+    });
+
+    dictResult.innerHTML = `
+      <div style="padding: 10px;">
+        <h4 style="color: #2c7a7b; margin-bottom: 10px;">${entry.word}</h4>
+        ${entry.phonetic ? `<p style="color: #666; font-style: italic;">${entry.phonetic}</p>` : ''}
+        ${meanings}
+      </div>
+    `;
+    
+  } catch (error) {
+    dictResult.innerHTML = '❌ Error fetching definition. Please try again.';
+    console.error('Dictionary error:', error);
+  }
+});
+
+// 🔍 Search functionality
+searchWordInput?.addEventListener('input', updateHighlight);
+  
+// 📝 Replace functionality
+document.getElementById('replaceBtn')?.addEventListener('click', () => {
+  const searchWord = searchWordInput.value.trim();
+  const replacement = replaceWordInput.value;
+  if (!searchWord) return;
+  const regex = new RegExp(`\\b(${escapeRegExp(searchWord)})\\b`, "gi");
+  editor.innerText = editor.innerText.replace(regex, replacement);
+  replaceWordInput.value = "";
+  updateCounts();
+});
+
+// 🎯 Event listeners
+editor?.addEventListener('input', updateCounts);
+  
+// Load saved text on page load
+const savedText = localStorage.getItem('savedText');
+if (savedText && editor) {
+  editor.innerText = savedText;
+  updateCounts();
+}
